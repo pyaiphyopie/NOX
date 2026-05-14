@@ -1,0 +1,11 @@
+name: nox_flutter_workspace
+description: Root workspace manifest for the NOX Flutter multi-package monorepo blueprint.
+publish_to: none
+version: 0.0.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dev_dependencies:
+  melos: ^2.6.0

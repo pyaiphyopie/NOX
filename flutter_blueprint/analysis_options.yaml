@@ -1,0 +1,22 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.gr.dart'
+  errors:
+    deprecated_member_use: warning
+    unused_import: warning
+    dead_code: warning
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    require_trailing_commas: true
+    sort_pub_dependencies: true
+    curly_braces_in_flow_control_structures: true
+    avoid_redundant_argument_values: true
+    avoid_positional_boolean_parameters: true
