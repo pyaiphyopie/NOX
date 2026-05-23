@@ -1,0 +1,112 @@
+name: CI — Build, Lint, Test, Security
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  # ── Lint & Format Check ──────────────────────────────────────
+  lint:
+    name: Lint (ESLint + Prettier)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: ESLint
+        run: npx eslint . --ext .js,.jsx --max-warnings 0
+
+      - name: Prettier Check
+        run: npx prettier --check "src/**/*.{js,jsx,css,json}"
+
+  # ── Type / Build Check ──────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # Store the dist folder as an artifact for deploy pipelines
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nox-dist
+          path: dist/
+          retention-days: 7
+
+  # ── Unit & Component Tests ──────────────────────────────────
+  test:
+    name: Test (Vitest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+      - run: npm test -- --coverage
+
+      # Upload coverage to GitHub if you use Codecov/Coveralls
+      # - uses: codecov/codecov-action@v5
+      #   with:
+      #     files: ./coverage/coverage-final.json
+
+  # ── Security: Dependency Audit ──────────────────────────────
+  audit:
+    name: Security Audit (npm + SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true # soft-fail — review findings manually
+
+      - name: Semgrep SAST
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        continue-on-error: true
+
+  # ── Docker Build (Validate, don't push) ─────────────────────
+  docker:
+    name: Docker Build Check
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t nox-prototype:ci .

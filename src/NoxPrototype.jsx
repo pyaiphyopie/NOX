@@ -57,7 +57,7 @@ const tags = ['All', 'Techno', 'Hip-Hop', 'EDM', 'Live Bands', 'Rooftop'];
 
 const phoneTabs = {
   Discover: {
-    label: 'Tonight\'s Pulse',
+    label: "Tonight's Pulse",
     title: 'AFTER DARK',
     body: "The city's underground pulse starts here.",
   },
@@ -126,22 +126,29 @@ export default function NoxPrototype() {
         <nav className="relative z-10 flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-xl">
           <div>
             <h1 className="text-3xl font-black tracking-[0.3em]">NOX</h1>
-            <p className="text-xs text-white/50 tracking-[0.2em] uppercase">
-              Own The Night
-            </p>
+            <p className="text-xs text-white/50 tracking-[0.2em] uppercase">Own The Night</p>
           </div>
 
           <div className="hidden md:flex gap-8 text-sm text-white/70">
-            <button className="hover:text-cyan-400 transition" onClick={() => scrollToId('discover')}>
+            <button
+              className="hover:text-cyan-400 transition"
+              onClick={() => scrollToId('discover')}
+            >
               Discover
             </button>
             <button className="hover:text-cyan-400 transition" onClick={() => scrollToId('venues')}>
               Venues
             </button>
-            <button className="hover:text-cyan-400 transition" onClick={() => scrollToId('operators')}>
+            <button
+              className="hover:text-cyan-400 transition"
+              onClick={() => scrollToId('operators')}
+            >
               Promoters
             </button>
-            <button className="hover:text-cyan-400 transition" onClick={() => switchPhoneTab('Tickets')}>
+            <button
+              className="hover:text-cyan-400 transition"
+              onClick={() => switchPhoneTab('Tickets')}
+            >
               Tickets
             </button>
           </div>
@@ -149,7 +156,10 @@ export default function NoxPrototype() {
           <button
             className="bg-cyan-500 hover:bg-cyan-400 transition px-5 py-2 rounded-full text-black font-semibold"
             onClick={() =>
-              showNotice('Beta access unlocked', 'NOX mobile app access is queued for the Yangon launch list.')
+              showNotice(
+                'Beta access unlocked',
+                'NOX mobile app access is queued for the Yangon launch list.',
+              )
             }
           >
             Get App
@@ -193,7 +203,8 @@ export default function NoxPrototype() {
             </h2>
 
             <p className="mt-8 text-lg text-white/70 leading-relaxed max-w-xl">
-              Discover events, secure digital tickets, manage nightlife operations, and power the next generation of entertainment ecosystems across emerging ASEAN cities.
+              Discover events, secure digital tickets, manage nightlife operations, and power the
+              next generation of entertainment ecosystems across emerging ASEAN cities.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -277,7 +288,11 @@ export default function NoxPrototype() {
                         className="block w-full text-left bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:scale-[1.02] transition"
                         onClick={() => openTickets(event)}
                       >
-                        <img src={event.image} alt={event.title} className="h-44 w-full object-cover" />
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="h-44 w-full object-cover"
+                        />
 
                         <div className="p-4">
                           <div className="flex justify-between items-start gap-4">
@@ -307,7 +322,9 @@ export default function NoxPrototype() {
 
                 {activeTab === 'Tickets' && (
                   <div className="rounded-3xl border border-cyan-400/30 bg-cyan-500/10 p-5">
-                    <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Selected Ticket</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">
+                      Selected Ticket
+                    </p>
                     <h4 className="mt-3 text-2xl font-black">{selectedEvent.title}</h4>
                     <p className="mt-1 text-sm text-white/60">{selectedEvent.venue}</p>
                     <div className="my-6 grid h-36 place-items-center rounded-2xl bg-white text-black">
@@ -329,16 +346,18 @@ export default function NoxPrototype() {
 
                 {activeTab === 'Create' && (
                   <div className="space-y-3">
-                    {['Draft event', 'Set capacity', 'Publish tickets', 'Scan entry'].map((step, index) => (
-                      <button
-                        key={step}
-                        className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left hover:border-cyan-400/50"
-                        onClick={() => showNotice('Workflow step selected', step)}
-                      >
-                        <span className="font-semibold">{step}</span>
-                        <span className="text-cyan-300">0{index + 1}</span>
-                      </button>
-                    ))}
+                    {['Draft event', 'Set capacity', 'Publish tickets', 'Scan entry'].map(
+                      (step, index) => (
+                        <button
+                          key={step}
+                          className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left hover:border-cyan-400/50"
+                          onClick={() => showNotice('Workflow step selected', step)}
+                        >
+                          <span className="font-semibold">{step}</span>
+                          <span className="text-cyan-300">0{index + 1}</span>
+                        </button>
+                      ),
+                    )}
                   </div>
                 )}
 
@@ -374,7 +393,9 @@ export default function NoxPrototype() {
       <section id="venues" className="px-8 py-24 max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">Platform Features</p>
+            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
+              Platform Features
+            </p>
 
             <h2 className="text-5xl font-black max-w-2xl leading-tight">
               Built for nightlife operators, creators, and urban audiences.
@@ -416,10 +437,15 @@ export default function NoxPrototype() {
         </div>
       </section>
 
-      <section id="operators" className="px-8 py-24 border-t border-white/10 bg-gradient-to-b from-black to-[#0A0F1F]">
+      <section
+        id="operators"
+        className="px-8 py-24 border-t border-white/10 bg-gradient-to-b from-black to-[#0A0F1F]"
+      >
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">Organizer Dashboard</p>
+            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
+              Organizer Dashboard
+            </p>
 
             <h2 className="text-5xl font-black leading-tight">
               Infrastructure for promoters and venues.

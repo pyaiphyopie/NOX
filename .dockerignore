@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.git/
+.github/
+*.md
+*.log
+.env
+.env.*
+.vscode/
+.idea/
+test/
+spec/
+README*
+LICENSE
