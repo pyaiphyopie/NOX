@@ -17,6 +17,7 @@
     "check": "npm run format:check && npm run lint && npm test && npm run build"
   },
   "dependencies": {
+    "@vitest/coverage-v8": "^4.1.7",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1"
