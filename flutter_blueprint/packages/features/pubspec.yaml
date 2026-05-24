@@ -16,6 +16,7 @@ dependencies:
     path: ../core
   nox_flutter_shared:
     path: ../shared
+  supabase_flutter: ^2.10.3
 
 dev_dependencies:
   flutter_test:

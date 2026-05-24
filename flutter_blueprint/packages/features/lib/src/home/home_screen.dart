@@ -28,6 +28,11 @@ class HomeScreen extends StatelessWidget {
               label: 'Settings',
               onPressed: () => context.go('/settings'),
             ),
+            const SizedBox(height: 12.0),
+            PrimaryButton(
+              label: 'NOX AI Studio',
+              onPressed: () => context.go('/studio'),
+            ),
           ],
         ),
       ),

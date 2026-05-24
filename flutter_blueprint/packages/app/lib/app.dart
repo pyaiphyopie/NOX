@@ -22,6 +22,33 @@ final GoRouter router = GoRouter(
   routes: <GoRoute>[
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/auth', builder: (context, state) => const AuthScreen()),
-    GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: '/studio',
+      builder: (context, state) => const StudioHomeScreen(),
+    ),
+    GoRoute(
+      path: '/studio/music',
+      builder: (context, state) => const MusicGeneratorScreen(),
+    ),
+    GoRoute(
+      path: '/studio/voice',
+      builder: (context, state) => const VoiceoverGeneratorScreen(),
+    ),
+    GoRoute(
+      path: '/studio/poster',
+      builder: (context, state) => const PosterGeneratorScreen(),
+    ),
+    GoRoute(
+      path: '/studio/copy',
+      builder: (context, state) => const CopyGeneratorScreen(),
+    ),
+    GoRoute(
+      path: '/studio/assets',
+      builder: (context, state) => const AssetLibraryScreen(),
+    ),
   ],
 );
