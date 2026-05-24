@@ -1,32 +1,61 @@
 import { afterEach, describe, it, expect } from 'vitest';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-afterEach(() => {
-  cleanup();
-});
+afterEach(() => cleanup());
 
-describe('App Component', () => {
-  it('renders the NOX prototype landing experience', () => {
-    render(<App />);
+function renderApp(initialRoute = '/') {
+  return render(
+    <MemoryRouter initialEntries={[initialRoute]}>
+      <App />
+    </MemoryRouter>,
+  );
+}
 
+describe('App (with React Router)', () => {
+  it('renders the NOX brand and tagline on any page', () => {
+    renderApp();
     expect(screen.getByRole('heading', { name: 'NOX' })).toBeInTheDocument();
     expect(screen.getByText('Own The Night')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Explore Events' })).toBeInTheDocument();
   });
 
-  it('filters events and opens a ticket from a button click', () => {
-    render(<App />);
+  it('renders the Discover page at /', () => {
+    renderApp('/');
+    expect(screen.getByText('Yangon Beta Launch')).toBeInTheDocument();
+    expect(screen.getByText('Explore Events')).toBeInTheDocument();
+  });
 
-    fireEvent.click(screen.getByRole('button', { name: 'EDM' }));
+  it('renders the Venues page at /venues', () => {
+    renderApp('/venues');
+    expect(screen.getByText('Venue Network')).toBeInTheDocument();
+    expect(screen.getByText('Warehouse 19')).toBeInTheDocument();
+  });
 
-    expect(screen.getByText('ELECTRIC MONSOON')).toBeInTheDocument();
-    expect(screen.queryByText('NEON DISTRICT')).not.toBeInTheDocument();
+  it('renders the Promoters page at /promoters', () => {
+    renderApp('/promoters');
+    expect(screen.getByText('Promoter Console')).toBeInTheDocument();
+    expect(screen.getByText('Live Event Analytics')).toBeInTheDocument();
+    expect(screen.getByText('1,248')).toBeInTheDocument();
+  });
 
-    fireEvent.click(screen.getByRole('button', { name: /ELECTRIC MONSOON/i }));
+  it('renders the Tickets page at /tickets', () => {
+    renderApp('/tickets');
+    expect(screen.getByText('Digital Entry')).toBeInTheDocument();
+    expect(screen.getByText('QR Entry Pass')).toBeInTheDocument();
+  });
 
-    expect(screen.getByText('Selected Ticket')).toBeInTheDocument();
-    expect(screen.getAllByText('ELECTRIC MONSOON').length).toBeGreaterThan(0);
+  it('renders the Profile page at /profile', () => {
+    renderApp('/profile');
+    expect(screen.getByText('Beta Insider')).toBeInTheDocument();
+    expect(screen.getByText('Saved Venues')).toBeInTheDocument();
+  });
+
+  it('shows notification when Get App is clicked', () => {
+    renderApp('/');
+    const getApp = screen.getByRole('button', { name: 'Get App' });
+    getApp.click();
+    expect(screen.getByText('Beta access unlocked')).toBeInTheDocument();
   });
 });

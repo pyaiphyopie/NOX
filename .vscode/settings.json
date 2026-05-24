@@ -2,5 +2,6 @@
     "jest.debugMode": true,
     "gitlens.debug": true,
     "eslint.debug": true,
-    "importCost.debug": true
+    "importCost.debug": true,
+    "editor.formatOnSave": true
 }
