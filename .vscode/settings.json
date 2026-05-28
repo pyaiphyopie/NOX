@@ -1,4 +1,4 @@
-{   "css.lint.unknownAtRules": "ignore",
+{   "css.lint.unknownAtRules": "warning",
     "jest.debugMode": true,
     "gitlens.debug": true,
     "eslint.debug": true,
