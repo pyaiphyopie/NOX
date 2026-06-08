@@ -1,5 +1,11 @@
 [
   {
+    "workflow": "ci.yml",
+    "command": "act workflow_dispatch -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-06-08T07:06:06.114Z"
+  },
+  {
     "workflow": "deploy.yml",
     "command": "act workflow_dispatch -W .github\\workflows\\deploy.yml",
     "success": true,
