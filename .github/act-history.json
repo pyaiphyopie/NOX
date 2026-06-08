@@ -1,5 +1,11 @@
 [
   {
+    "workflow": "dart.yml",
+    "command": "act push -W .github\\workflows\\dart.yml",
+    "success": true,
+    "timestamp": "2026-06-08T13:56:20.371Z"
+  },
+  {
     "workflow": "ci.yml",
     "command": "act workflow_dispatch -W .github\\workflows\\ci.yml",
     "success": true,
