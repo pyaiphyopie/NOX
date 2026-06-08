@@ -1,0 +1,15 @@
+action_id: trunk-upgrade-available
+date: 2026-06-08 23:40:57
+run: trunk upgrade --notify --allow-daemon-start=false
+run_from: ""
+trigger: schedule 1h
+result:
+  exit_code: 1
+  out: ""
+  err: Exception occurred while executing 'trunk-upgrade-available'. See .trunk\out\4nk7X.yaml for details.
+  error_path: C:\Users\pyaip\OneDrive\NOX\.trunk\out\4nk7X.yaml
+timestamp: 1780962057
+full_timestamp:
+  nanos: 158556000
+  seconds: 1780962057
+trunk_version: 1.25.0
