@@ -1,0 +1,33 @@
+version: 0.1
+tools:
+  definitions:
+    - name: yamllint
+      runtime: python
+      package: yamllint
+      shims: [yamllint]
+      known_good_version: 1.37.1
+lint:
+  definitions:
+    - name: yamllint
+      files: [yaml]
+      description: Validate, Verify and Reformat your YAML documents
+      commands:
+        - output: regex
+          parse_regex:
+            "((?P<path>.*):(?P<line>\\d+):(?P<col>\\d+): \\[(?P<severity>.*)\\] (?P<message>.*)
+            \\((?P<code>.*)\\))"
+          success_codes: [0, 1, 2]
+          run: yamllint -f parsable ${target}
+          read_output_from: stdout
+      tools: [yamllint]
+      suggest_if: files_present
+      direct_configs:
+        - .yamllint
+        - .yamllint.yaml
+        - .yamllint.yml
+      issue_url_format: https://yamllint.readthedocs.io/en/stable/rules.html
+      known_good_version: 1.37.1
+      version_command:
+        parse_regex: ${semver}
+        run: yamllint --version
+      batch: true

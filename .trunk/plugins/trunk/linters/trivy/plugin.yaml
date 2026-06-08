@@ -1,0 +1,87 @@
+version: 0.1
+downloads:
+  - name: trivy
+    downloads:
+      - url: https://github.com/aquasecurity/trivy/releases/download/v${version}/trivy_${version}_Linux-${cpu}.tar.gz
+        os: linux
+        cpu:
+          x86_64: 64bit
+          arm_64: ARM64
+      - url: https://github.com/aquasecurity/trivy/releases/download/v${version}/trivy_${version}_macOS-${cpu}.tar.gz
+        os: macos
+        cpu:
+          x86_64: 64bit
+          arm_64: ARM64
+      - url: https://github.com/aquasecurity/trivy/releases/download/v${version}/trivy_${version}_windows-${cpu}.zip
+        os: windows
+        cpu:
+          x86_64: 64bit
+          arm_64: ARM64
+tools:
+  definitions:
+    - name: trivy
+      download: trivy
+      shims: [trivy]
+      known_good_version: 0.70.0
+lint:
+  definitions:
+    - name: trivy
+      tools: [trivy]
+      suggest_if: config_present
+      description: A comprehensive and versatile security scanner
+      known_good_version: 0.70.0
+      # trivy supports --format template --template "@contrib/sarif.tpl", but it reports the wrong filepaths.
+      commands:
+        - name: fs-vuln
+          files: [lockfile]
+          output: sarif
+          run:
+            trivy fs ${target} --scanners vuln --format json --no-progress --cache-dir
+            ${shared_cachedir}
+          success_codes: [0]
+          read_output_from: stdout
+          # Trivy does not support batching
+          batch: false
+          is_security: true
+          enabled: false
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/trivy/trivy_fs_vuln_to_sarif.py
+        - name: fs-secret
+          files: [ALL]
+          output: sarif
+          run:
+            trivy fs ${target} --scanners secret --format json --no-progress --cache-dir
+            ${shared_cachedir}
+          success_codes: [0]
+          read_output_from: stdout
+          # Trivy does not support batching
+          batch: false
+          is_security: true
+          enabled: false
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/trivy/trivy_fs_secret_to_sarif.py
+        - name: config
+          files: [docker, yaml, terraform]
+          output: sarif
+          run: trivy config ${target} --format json --cache-dir ${tmpdir}
+          success_codes: [0]
+          read_output_from: stdout
+          # Trivy does not support batching
+          batch: false
+          is_security: true
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/trivy/trivy_config_to_sarif.py
+      # trivy-secret.yaml is old config file https://aquasecurity.github.io/trivy/v0.27.1/docs/secret/configuration/
+      direct_configs: [trivy.yaml, .trivyignore, .trivyignore.yaml, trivy-secret.yaml]
+      version_command:
+        parse_regex: Version ${semver}
+        run: trivy --version
+      environment:
+        - name: PATH
+          list: ["${linter}", "${env.PATH}"] # system path for docker
+        - name: USER
+          value: ${env.USER}
+          optional: true

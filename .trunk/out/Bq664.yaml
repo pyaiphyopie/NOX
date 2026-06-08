@@ -1,0 +1,27 @@
+trunk_cli_version: 1.25.0
+title: osv-scanner exited with exit_code=127
+report:
+  - osv-scanner exited with exit_code=127
+  - linter:
+      command: |
+        'C:\Users\pyaip\AppData\Local\trunk\tools\osv-scanner\2.3.8-dc2749505c1fa56202a84ecfeea0f227\osv-scanner.exe' '--lockfile=flutter_blueprint\packages\shared\pubspec.lock' --format json
+      stdin_path: (none)
+      run_from: C:\Users\pyaip\OneDrive\NOX\
+      timeout: 10m
+      rerun: (cd C:\Users\pyaip\OneDrive\NOX\; env -i 'PATH=C:\Users\pyaip\AppData\Local\trunk\tools\osv-scanner\2.3.8-dc2749505c1fa56202a84ecfeea0f227;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Users\pyaip\AppData\Local\trunk\tools\osv-scanner\2.3.8-dc2749505c1fa56202a84ecfeea0f227;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Users\pyaip\AppData\Local\hermes\hermes-agent\venv\Scripts;C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\dotnet\;C:\Users\pyaip\.local\bin;C:\Users\pyaip\AppData\Local\Microsoft\WindowsApps;C:\Users\pyaip\AppData\Local\Python\bin;C:\Users\pyaip\AppData\Local\Programs\Ghost;C:\Users\pyaip\AppData\Roaming\Testcontainers Desktop\;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Packages\Cloudflare.cloudflared_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\pyaip\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pyaip\AppData\Roaming\npm;C:\Users\pyaip\flutter\bin;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Packages\GitHub.Copilot_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\pyaip\AppData\Local\GitHubDesktop\bin;C:\U;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Links;' 'C:\Users\pyaip\AppData\Local\trunk\tools\osv-scanner\2.3.8-dc2749505c1fa56202a84ecfeea0f227\osv-scanner.exe' '--lockfile=flutter_blueprint\packages\shared\pubspec.lock' --format json)
+      affects_cache:
+        []
+      direct_configs:
+        []
+      exit_status: exited
+      exit_code: 127
+      stdout: (none)
+      stderr: |
+        Starting filesystem walk for root: C:\
+        Scanned C:\Users\pyaip\OneDrive\NOX\flutter_blueprint\packages\shared\pubspec.lock file and found 24 packages
+        End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 28.5135ms elapsed, 28.5135ms wall time
+        error when retrieving vulns: max retries exceeded: attempt 4: request failed: Post "https://api.osv.dev/v1/querybatch": dial tcp 142.251.12.121:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+        max retries exceeded: attempt 4: request failed: Post "https://api.osv.dev/v1/querybatch": dial tcp 142.251.12.121:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+    parser: |
+      (none)

@@ -1,0 +1,32 @@
+version: 0.1
+tools:
+  definitions:
+    - name: gofumpt
+      runtime: go
+      package: mvdan.cc/gofumpt
+      shims: [gofumpt]
+      known_good_version: 0.5.0
+lint:
+  definitions:
+    - name: gofumpt
+      tools: [gofumpt]
+      files: [go]
+      description: An opinionated formatter for Go code
+      commands:
+        - name: format
+          output: rewrite
+          run: gofumpt -w ${target}
+          success_codes: [0]
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+      # gofumpt releases are not auto-queriable with our current setup, so we will bump this fixed version from time to time
+      known_good_version: 0.5.0
+      suggest_if: never
+      version_command:
+        parse_regex: ${semver}
+        run: gofumpt --version
+      environment:
+        - name: PATH
+          list: ["${linter}/bin"]

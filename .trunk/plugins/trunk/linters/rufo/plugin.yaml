@@ -1,0 +1,29 @@
+version: 0.1
+tools:
+  definitions:
+    - name: rufo
+      runtime: ruby
+      package: rufo
+      shims: [rufo]
+      known_good_version: 0.13.0
+lint:
+  definitions:
+    - name: rufo
+      files: [ruby]
+      description: A Ruby formatter
+      commands:
+        - name: format
+          output: rewrite
+          run: rufo ${target}
+          success_codes: [0, 3]
+          batch: true
+          in_place: true
+          cache_results: true
+          formatter: true
+      direct_configs: [.rufo]
+      suggest_if: config_present
+      tools: [rufo]
+      known_good_version: 0.13.0
+      version_command:
+        parse_regex: ${semver}
+        run: rufo --version

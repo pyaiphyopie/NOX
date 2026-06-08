@@ -1,0 +1,17 @@
+# Mac
+.DS_Store
+
+# Node
+node_modules/
+
+# Typescript
+out/
+
+junit.xml
+
+# Snyk
+.dccache
+
+# Python
+__pycache__/
+*.pyc

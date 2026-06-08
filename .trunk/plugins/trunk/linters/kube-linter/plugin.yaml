@@ -1,0 +1,24 @@
+version: 0.1
+tools:
+  definitions:
+    - name: kube-linter
+      runtime: go
+      package: golang.stackrox.io/kube-linter/cmd/kube-linter
+      shims: [kube-linter]
+      known_good_version: 0.7.2
+lint:
+  definitions:
+    - name: kube-linter
+      tools: [kube-linter]
+      description: A static analyzer for Kubernetes
+      files:
+        - yaml
+      commands:
+        - output: sarif
+          run: kube-linter lint ${target} --format sarif
+          success_codes: [0, 1]
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+      known_good_version: 0.7.2
+      suggest_if: never

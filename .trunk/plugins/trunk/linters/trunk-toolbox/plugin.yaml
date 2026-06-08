@@ -1,0 +1,78 @@
+version: 0.1
+
+downloads:
+  - name: trunk-toolbox
+    version: 0.5.4
+    downloads:
+      - os:
+          linux: unknown-linux-gnu
+          macos: apple-darwin
+        cpu:
+          x86_64: x86_64
+          arm_64: aarch64
+        url: https://github.com/trunk-io/toolbox/releases/download/${version}/trunk-toolbox-${version}-${cpu}-${os}.tar.gz
+        version: ">=0.2.0"
+tools:
+  definitions:
+    - name: trunk-toolbox
+      download: trunk-toolbox
+      shims: [trunk-toolbox]
+      known_good_version: 0.7.0
+lint:
+  definitions:
+    - name: trunk-toolbox
+      description: Repository level linting tools
+      main_tool: trunk-toolbox
+      files: [ALL]
+      affects_cache: [toolbox.toml, log4rs.yaml]
+      known_good_version: 0.7.0
+      commands:
+        - name: lint
+          version: ">=0.7.0"
+          run:
+            trunk-toolbox --upstream=${upstream-ref} --cache-dir=${cachedir} --results=${tmpfile}
+            --workspace=${workspace} ${target}
+          output: sarif
+          batch: true
+          success_codes: [0]
+          read_output_from: tmp_file
+          cache_results: true
+          disable_upstream: false
+          direct_configs: [toolbox.toml]
+          max_concurrency: 1
+        - name: lint
+          version: ">=0.5.3"
+          run:
+            trunk-toolbox --upstream=${upstream-ref} --cache-dir=${cachedir} --results=${tmpfile}
+            ${target}
+          output: sarif
+          batch: true
+          success_codes: [0]
+          read_output_from: tmp_file
+          cache_results: true
+          disable_upstream: false
+          direct_configs: [toolbox.toml]
+          max_concurrency: 1
+        - name: lint
+          version: ">=0.4.1"
+          run:
+            trunk-toolbox --upstream=${upstream-ref} --cache-dir=${cachedir} --results=${tmpfile}
+            ${target}
+          output: sarif
+          batch: true
+          success_codes: [0]
+          read_output_from: tmp_file
+          disable_upstream: true
+          direct_configs: [toolbox.toml]
+          max_concurrency: 1
+        - name: lint
+          run: trunk-toolbox --upstream=${upstream-ref} --results=${tmpfile} ${target}
+          output: sarif
+          batch: true
+          success_codes: [0]
+          disable_upstream: true
+          read_output_from: tmp_file
+      suggest_if: never
+      version_command:
+        parse_regex: ${semver}
+        run: trunk-toolbox --version

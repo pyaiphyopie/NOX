@@ -1,0 +1,11 @@
+version: 0.1
+tools:
+  definitions:
+    - name: gt
+      # There used to be a download for older versions, but the assets are no longer available.
+      known_good_version: 1.0.0
+      runtime: node
+      package: "@withgraphite/graphite-cli"
+      shims:
+        - name: gt
+          target: gt

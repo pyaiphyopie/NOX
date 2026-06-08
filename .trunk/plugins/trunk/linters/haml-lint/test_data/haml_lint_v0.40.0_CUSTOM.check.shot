@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter haml-lint test CUSTOM 1`] = `
+{
+  "issues": [
+    {
+      "code": "IdNames",
+      "file": "test_data/basic.haml",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "2",
+      "linter": "haml-lint",
+      "message": "\`id\` attribute must be in lisp-case",
+      "targetType": "haml",
+    },
+    {
+      "code": "EmptyScript",
+      "file": "test_data/basic.haml",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "5",
+      "linter": "haml-lint",
+      "message": "Empty script should be removed",
+      "targetType": "haml",
+    },
+    {
+      "code": "SpaceBeforeScript",
+      "file": "test_data/basic.haml",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "5",
+      "linter": "haml-lint",
+      "message": "The - symbol should have one space separating it from code",
+      "targetType": "haml",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "haml",
+      "linter": "haml-lint",
+      "paths": [
+        "test_data/basic.haml",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "haml",
+      "linter": "haml-lint",
+      "paths": [
+        "test_data/empty.haml",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "haml",
+      "linter": "haml-lint",
+      "paths": [
+        "test_data/basic.haml",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "haml",
+      "linter": "haml-lint",
+      "paths": [
+        "test_data/empty.haml",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

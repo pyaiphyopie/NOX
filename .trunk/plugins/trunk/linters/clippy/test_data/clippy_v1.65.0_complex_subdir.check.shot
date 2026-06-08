@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter clippy test complex_subdir 1`] = `
+{
+  "issues": [
+    {
+      "code": "dead_code",
+      "column": "4",
+      "file": "test_data/complex_subdir/src/high.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#dead_code",
+      "level": "LEVEL_MEDIUM",
+      "line": "1",
+      "linter": "clippy",
+      "message": "function \`do_bad_math\` is never used",
+      "ranges": [
+        {
+          "filePath": "test_data/complex_subdir/src/high.rs",
+          "length": "11",
+          "offset": "3",
+        },
+      ],
+      "targetType": "rust",
+    },
+    {
+      "code": "arithmetic_overflow",
+      "column": "5",
+      "file": "test_data/complex_subdir/src/high.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#arithmetic_overflow",
+      "level": "LEVEL_HIGH",
+      "line": "2",
+      "linter": "clippy",
+      "message": "this arithmetic operation will overflow",
+      "ranges": [
+        {
+          "filePath": "test_data/complex_subdir/src/high.rs",
+          "length": "11",
+          "offset": "23",
+        },
+      ],
+      "targetType": "rust",
+    },
+    {
+      "code": "no_effect",
+      "column": "5",
+      "file": "test_data/complex_subdir/src/high.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#no_effect",
+      "level": "LEVEL_MEDIUM",
+      "line": "2",
+      "linter": "clippy",
+      "message": "statement with no effect",
+      "ranges": [
+        {
+          "filePath": "test_data/complex_subdir/src/high.rs",
+          "length": "12",
+          "offset": "23",
+        },
+      ],
+      "targetType": "rust",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/complex_subdir/src/high.rs",
+              "offset": "23",
+              "replacementText": "let _ = ",
+            },
+          ],
+        },
+      ],
+      "code": "unused_must_use",
+      "column": "5",
+      "file": "test_data/complex_subdir/src/high.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#unused_must_use",
+      "level": "LEVEL_MEDIUM",
+      "line": "2",
+      "linter": "clippy",
+      "message": "unused bitwise operation that must be used",
+      "ranges": [
+        {
+          "filePath": "test_data/complex_subdir/src/high.rs",
+          "length": "11",
+          "offset": "23",
+        },
+      ],
+      "targetType": "rust",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/complex_subdir/src/main.rs",
+              "length": "15",
+              "offset": "60",
+              "replacementText": "x <= y",
+            },
+          ],
+        },
+      ],
+      "code": "double_comparisons",
+      "column": "8",
+      "file": "test_data/complex_subdir/src/main.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#double_comparisons",
+      "level": "LEVEL_MEDIUM",
+      "line": "6",
+      "linter": "clippy",
+      "message": "this binary expression can be simplified",
+      "ranges": [
+        {
+          "filePath": "test_data/complex_subdir/src/main.rs",
+          "length": "15",
+          "offset": "60",
+        },
+      ],
+      "targetType": "rust",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "rust",
+      "linter": "clippy",
+      "paths": [
+        "test_data/complex_subdir",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

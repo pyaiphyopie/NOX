@@ -1,0 +1,50 @@
+version: 0.1
+downloads:
+  - name: scalafmt
+    version: 3.10.1
+    executable: true
+    downloads:
+      - os: linux
+        cpu: x86_64
+        url: https://github.com/scalameta/scalafmt/releases/download/v${version}/scalafmt-linux-musl
+      - os: macos
+        cpu: x86_64
+        url: https://github.com/scalameta/scalafmt/releases/download/v${version}/scalafmt-macos
+      # Use rosetta
+      - os: macos
+        cpu: arm_64
+        url: https://github.com/scalameta/scalafmt/releases/download/v${version}/scalafmt-macos
+      # No windows release
+tools:
+  definitions:
+    - name: scalafmt
+      download: scalafmt
+      shims: [scalafmt]
+      known_good_version: 3.10.1
+lint:
+  definitions:
+    - name: scalafmt
+      files: [scala]
+      tools: [scalafmt]
+      direct_configs: [.scalafmt.conf]
+      suggest_if: config_present
+      description: A Scala formatter
+      commands:
+        - name: format
+          output: rewrite
+          run: scalafmt ${target}
+          success_codes: [0]
+          run_from: ${root_or_parent_with(.scalafmt.conf)}
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+      version_command:
+        parse_regex: scalafmt ${semver}
+        run: scalafmt --version
+      known_good_version: 3.10.1
+      # We don't support this semver format, and it's a prerelease
+      known_bad_versions: [3.8.4-RC1, 3.9.0]

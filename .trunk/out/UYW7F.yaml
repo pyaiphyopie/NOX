@@ -1,0 +1,4 @@
+trunk_cli_version: 1.25.0
+title: "Error while executing: flutter_blueprint\\packages\\core\\pubspec.yaml"
+report:
+  - "filesystem error: in create_hard_link: The cloud operation cannot be performed on a file with incompatible hardlinks. [\"C:\\Users\\pyaip\\AppData\\Local\\Temp\\trunk\\yk2ruin\\.agent.md\"] [\"C:\\Users\\pyaip\\AppData\\Local\\Temp\\trunk\\capiaxg\\.agent.md\"]"

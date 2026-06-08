@@ -1,0 +1,34 @@
+version: 0.1
+lint:
+  files:
+    - name: circleci-config
+      comments: [hash]
+      filenames:
+        - .circleci/config.yml
+  definitions:
+    - name: circleci
+      files: [circleci-config]
+      tools: [circleci]
+      known_good_version: 0.1.34950
+      suggest_if: never
+      description: Validates CircleCI configuration files
+      commands:
+        - name: validate
+          platforms: [windows]
+          output: pass_fail
+          # pass_fail linters expect exit codes 0 and 1. Because circleci has exit codes 0 and 255, we must wrap it in a script.
+          run: sh ${plugin}/linters/circleci/run.sh ${target}
+          read_output_from: stderr
+          success_codes: [0, 1]
+        - name: validate
+          output: pass_fail
+          # pass_fail linters expect exit codes 0 and 1. Because circleci has exit codes 0 and 255, we must wrap it in a script.
+          run: ${plugin}/linters/circleci/run.sh ${target}
+          read_output_from: stderr
+          success_codes: [0, 1]
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+      version_command:
+        parse_regex: ${semver}
+        run: circleci version

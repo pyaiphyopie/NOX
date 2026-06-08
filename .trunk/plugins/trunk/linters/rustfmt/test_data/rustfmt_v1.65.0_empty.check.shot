@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter rustfmt test empty 1`] = `
+{
+  "issues": [],
+  "lintActions": [
+    {
+      "command": "format",
+      "fileGroupName": "rust",
+      "linter": "rustfmt",
+      "paths": [
+        "test_data/empty.in.rs",
+      ],
+      "verb": "TRUNK_VERB_FMT",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [
+    {
+      "column": "1",
+      "file": "test_data/empty.in.rs",
+      "issueClass": "ISSUE_CLASS_UNFORMATTED",
+      "level": "LEVEL_HIGH",
+      "line": "1",
+      "linter": "rustfmt",
+      "message": "Incorrect formatting, autoformat by running 'trunk fmt'",
+    },
+  ],
+}
+`;

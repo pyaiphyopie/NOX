@@ -1,0 +1,54 @@
+version: 0.1
+tools:
+  definitions:
+    - name: black
+      runtime: python
+      package: black[python2,jupyter]
+      shims: [black]
+      known_good_version: 25.9.0
+lint:
+  definitions:
+    - name: black
+      files: [python, jupyter, python-interface]
+      description: Uncompromising python formatter
+      commands:
+        - name: format
+          output: rewrite
+          run: black -q ${target}
+          success_codes: [0]
+          batch: true
+          in_place: true
+          allow_empty_files: false
+          cache_results: true
+          formatter: true
+      tools: [black]
+      suggest_if: files_present
+      affects_cache: [pyproject.toml]
+      known_good_version: 25.9.0
+      version_command:
+        parse_regex: black, version (.*)
+        run: black --version
+
+    # This name is here for backwards compat, but is no longer created by trunk init
+    - name: black-py
+      files: [python]
+      commands:
+        - name: format
+          output: rewrite
+          run: black -q ${target}
+          success_codes: [0]
+          batch: true
+          in_place: true
+          allow_empty_files: false
+          cache_results: true
+          formatter: true
+      runtime: python
+      package: black[python2]
+      suggest_if: never
+      affects_cache: [pyproject.toml]
+      formatter: true
+      known_good_version: 25.9.0
+      deprecated: "'black-py' is now handled by 'black'. Please delete 'black-py' from your config"
+      version_command:
+        parse_regex: black, version (.*)
+        run: black --version

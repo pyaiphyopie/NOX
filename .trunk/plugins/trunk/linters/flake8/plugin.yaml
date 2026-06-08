@@ -1,0 +1,37 @@
+version: 0.1
+tools:
+  definitions:
+    - name: flake8
+      runtime: python
+      package: flake8
+      shims: [flake8]
+      known_good_version: 7.3.0
+lint:
+  definitions:
+    - name: flake8
+      files: [python]
+      description: Python style guide enforcement
+      commands:
+        - name: lint
+          run: flake8 ${target} --output-file "${tmpfile}" --exit-zero
+          output: regex
+          parse_regex:
+            "((?P<path>.*):(?P<line>-?\\d+):(?P<col>-?\\d+): (?P<code>\\S+) (?P<message>.+))"
+          batch: true
+          read_output_from: tmp_file
+          run_from: ${parent}
+          success_codes: [0]
+          cache_results: true
+      tools: [flake8]
+      direct_configs: [.flake8]
+      suggest_if: config_present
+      affects_cache:
+        - setup.cfg
+        - tox.ini
+        # In case the user installs https://pypi.org/project/Flake8-pyproject/
+        - pyproject.toml
+      issue_url_format: https://flake8.pycqa.org/en/latest/user/error-codes.html
+      known_good_version: 7.3.0
+      version_command:
+        parse_regex: ${semver}
+        run: flake8 --version

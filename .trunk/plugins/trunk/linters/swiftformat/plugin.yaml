@@ -1,0 +1,41 @@
+version: 0.1
+downloads:
+  - name: swiftformat
+    downloads:
+      # Universal binary, both x86_64 and arm64
+      - os: macos
+        url: https://github.com/nicklockwood/SwiftFormat/releases/download/${version}/swiftformat.zip
+      # There exists a Linux download, but it is not self-contained. It expects some libFoundation.so to exist on the system.
+tools:
+  definitions:
+    - name: swiftformat
+      download: swiftformat
+      shims: [swiftformat]
+      known_good_version: 0.55.5
+lint:
+  definitions:
+    - name: swiftformat
+      files: [swift]
+      tools: [swiftformat]
+      description: Formatter for Swift
+      commands:
+        - name: format
+          output: rewrite
+          run: swiftformat "${target}"
+          success_codes: [0]
+          formatter: true
+          batch: true
+          in_place: true
+          cache_results: true
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+      affects_cache:
+        - .swift-version
+      direct_configs:
+        - .swiftformat
+      suggest_if: config_present
+      known_good_version: 0.55.5
+      version_command:
+        parse_regex: ${semver}
+        run: swiftformat --version

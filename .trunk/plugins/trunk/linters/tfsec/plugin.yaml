@@ -1,0 +1,56 @@
+version: 0.1
+downloads:
+  - name: tfsec
+    version: 1.28.1
+    executable: true
+    downloads:
+      - os:
+          linux: linux
+          macos: darwin
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/aquasecurity/tfsec/releases/download/v${version}/tfsec-${os}-${cpu}
+      - os: windows
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/aquasecurity/tfsec/releases/download/v${version}/tfsec-windows-${cpu}.exe
+tools:
+  definitions:
+    - name: tfsec
+      download: tfsec
+      shims: [tfsec]
+      known_good_version: 1.28.14
+lint:
+  definitions:
+    - name: tfsec
+      files: [terraform]
+      tools: [tfsec]
+      known_good_version: 1.28.14
+      suggest_if: never
+      description: Security scanner for your Terraform code
+      commands:
+        - name: lint
+          output: sarif
+          target: ${parent}
+          run: tfsec ${target} --format=sarif --ignore-hcl-errors
+          run_from: ${target_directory}
+          is_security: true
+          success_codes: [0, 1]
+          read_output_from: stdout
+          parser:
+            runtime: python
+            run: python3 ${cwd}/parse.py
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+      version_command:
+        parse_regex: v${semver}
+        run: tfsec --version
+      direct_configs:
+        - tfsec.yml
+        - tfsec.yaml
+        - .tfsec/config.json
+        - .tfsec/config.yml
+        - .tfsec/config.yaml

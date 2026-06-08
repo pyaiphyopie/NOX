@@ -1,0 +1,23 @@
+trunk_cli_version: 1.25.0
+title: trufflehog exited with exit_code=1
+report:
+  - trufflehog exited with exit_code=1
+  - linter:
+      command: |
+        'C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f\trufflehog.exe' filesystem --json --fail --only-verified --no-update 'flutter_blueprint\integration_test\app_test.dart'
+      stdin_path: (none)
+      run_from: C:\Users\pyaip\AppData\Local\Temp\trunk\rtbi16y\
+      timeout: 10m
+      rerun: (cd C:\Users\pyaip\AppData\Local\Temp\trunk\rtbi16y\; env -i 'PATH=C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin' 'C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f\trufflehog.exe' filesystem --json --fail --only-verified --no-update 'flutter_blueprint\integration_test\app_test.dart')
+      affects_cache:
+        []
+      direct_configs:
+        []
+      exit_status: exited
+      exit_code: 1
+      stdout: (none)
+      stderr: |
+        {"level":"info-0","ts":"2026-06-08T14:03:59+06:30","logger":"trufflehog","msg":"running source","source_manager_worker_id":"XFvIo","with_units":true}
+
+    parser: |
+      (none)

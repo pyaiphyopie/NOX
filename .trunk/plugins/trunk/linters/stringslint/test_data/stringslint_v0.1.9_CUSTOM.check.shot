@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter stringslint test CUSTOM 1`] = `
+{
+  "issues": [
+    {
+      "code": "missing_comment",
+      "column": "1",
+      "file": "test_data/Localizable.strings",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "1",
+      "linter": "stringslint",
+      "message": "MissingComment Violation: Comment for Localized string "abc" is missing",
+      "targetType": "strings",
+    },
+    {
+      "code": "unused",
+      "column": "1",
+      "file": "test_data/Localizable.strings",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "1",
+      "linter": "stringslint",
+      "message": "Unused Violation: Localized string "abc" is unused",
+      "targetType": "strings",
+    },
+    {
+      "code": "missing",
+      "column": "1",
+      "file": "test_data/basic.swift",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_MEDIUM",
+      "line": "3",
+      "linter": "stringslint",
+      "message": "Missing Violation: Localized string "test" is missing",
+      "targetType": "swift",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "strings",
+      "linter": "stringslint",
+      "paths": [
+        "test_data/Localizable.strings",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "swift",
+      "linter": "stringslint",
+      "paths": [
+        "test_data/basic.swift",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "strings",
+      "linter": "stringslint",
+      "paths": [
+        "test_data/Localizable.strings",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "swift",
+      "linter": "stringslint",
+      "paths": [
+        "test_data/basic.swift",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

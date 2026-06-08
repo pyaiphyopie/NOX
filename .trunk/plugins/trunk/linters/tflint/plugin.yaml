@@ -1,0 +1,62 @@
+version: 0.1
+downloads:
+  - name: tflint
+    version: 0.59.1
+    downloads:
+      # macos arm64 was introduced after this version.
+      - os: macos
+        url: https://github.com/terraform-linters/tflint/releases/download/v${version}/tflint_darwin_amd64.zip
+        version: <0.29.1
+      - os:
+          linux: linux
+          macos: darwin
+          windows: windows
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/terraform-linters/tflint/releases/download/v${version}/tflint_${os}_${cpu}.zip
+tools:
+  definitions:
+    - name: tflint
+      download: tflint
+      shims: [tflint]
+      known_good_version: 0.59.1
+lint:
+  definitions:
+    - name: tflint
+      files: [terraform]
+      description: A pluggable Terraform linter
+      commands:
+        - name: lint
+          output: sarif
+          prepare_run: tflint --init
+          run: tflint --format=sarif --force
+          success_codes: [0, 1, 2]
+          read_output_from: stdout
+          # tflint can only run on the current directory unless --recursive is passed
+          target: ${parent}
+          run_from: ${target_directory}
+          version: ">=0.47.0"
+          sandbox_type: expanded
+        - name: lint
+          output: sarif
+          prepare_run: tflint --init
+          run: tflint --format=sarif ${target} --force
+          success_codes: [0, 1]
+          read_output_from: stdout
+          run_from: ${root_or_parent_with(.tflint.hcl)}
+      suggest_if: files_present
+      tools: [tflint]
+      direct_configs: [.tflint.hcl]
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+        - name: TFLINT_PLUGIN_DIR
+          value: ${shared_cachedir}
+        - name: GITHUB_TOKEN
+          value: ${env.GITHUB_TOKEN}
+          optional: true
+      known_good_version: 0.59.1
+      version_command:
+        parse_regex: ${semver}
+        run: tflint --version

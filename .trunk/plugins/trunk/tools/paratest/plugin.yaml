@@ -1,0 +1,15 @@
+version: 0.1
+tools:
+  definitions:
+    - name: paratest
+      runtime: php
+      package: brianium/paratest
+      # Minimum version compatible with php@8.4
+      known_good_version: 7.6.0
+      shims: [paratest]
+      environment:
+        - name: PATH
+          list: ["${tool}/vendor/bin"]
+      health_checks:
+        - command: paratest --version
+          parse_regex: ParaTest v${semver}

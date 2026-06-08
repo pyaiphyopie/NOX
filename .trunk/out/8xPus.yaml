@@ -1,0 +1,24 @@
+trunk_cli_version: 1.25.0
+title: trufflehog exited with exit_code=1
+report:
+  - trufflehog exited with exit_code=1
+  - linter:
+      command: |
+        'C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f\trufflehog.exe' filesystem --json --fail --only-verified --no-update package.json
+      stdin_path: (none)
+      run_from: C:\Users\pyaip\AppData\Local\Temp\trunk\vr3i3uq\
+      timeout: 10m
+      rerun: (cd C:\Users\pyaip\AppData\Local\Temp\trunk\vr3i3uq\; env -i 'PATH=C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin' 'C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.5-717a9aeca7bc7a62dd12a647cea7ad2f\trufflehog.exe' filesystem --json --fail --only-verified --no-update package.json)
+      affects_cache:
+        []
+      direct_configs:
+        []
+      exit_status: exited
+      exit_code: 1
+      stdout: (none)
+      stderr: |
+        {"level":"info-0","ts":"2026-06-08T06:18:41+06:30","logger":"trufflehog","msg":"running source","source_manager_worker_id":"9b96Y","with_units":true}
+        {"level":"info-0","ts":"2026-06-08T06:18:45+06:30","logger":"trufflehog","msg":"finished scanning","chunks":1,"bytes":1720,"verified_secrets":0,"unverified_secrets":0,"scan_duration":"17.9529ms","trufflehog_version":"3.95.5","verification_caching":{"Hits":0,"Misses":0,"HitsWasted":0,"AttemptsSaved":0,"VerificationTimeSpentMS":0}}
+
+    parser: |
+      (none)

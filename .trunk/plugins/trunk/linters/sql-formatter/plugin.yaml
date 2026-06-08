@@ -1,0 +1,27 @@
+version: 0.1
+tools:
+  definitions:
+    - name: sql-formatter
+      runtime: node
+      package: sql-formatter
+      shims: [sql-formatter]
+      known_good_version: 15.6.10
+lint:
+  definitions:
+    - name: sql-formatter
+      files: [sql]
+      description: A SQL formatter
+      commands:
+        - output: rewrite
+          # sql-formatter does not autodetect dialect, so this may not be sufficient for all setups
+          run: sql-formatter
+          success_codes: [0]
+          formatter: true
+          stdin: true
+          # Linter does not support batching.
+      tools: [sql-formatter]
+      known_good_version: 15.6.10
+      suggest_if: never
+      version_command:
+        parse_regex: ${semver}
+        run: sql-formatter --version

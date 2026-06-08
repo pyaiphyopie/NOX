@@ -1,0 +1,124 @@
+version: 0.1
+lint:
+  # TODO(Tyler): This should be its own tool if we can avoid the eponymous pitfall
+  downloads:
+    - name: buf
+      version: 1.0.0-rc11
+      executable: true
+      downloads:
+        # macos arm64 was introduced after this version.
+        - os: macos
+          version: <0.42.0
+          url: https://github.com/bufbuild/buf/releases/download/v${version}/buf-Darwin-x86_64
+        - os:
+            linux: Linux
+          cpu:
+            x86_64: x86_64
+            arm_64: aarch64
+          url: https://github.com/bufbuild/buf/releases/download/v${version}/buf-${os}-${cpu}
+        - os:
+            macos: Darwin
+          cpu:
+            x86_64: x86_64
+            arm_64: arm64
+          url: https://github.com/bufbuild/buf/releases/download/v${version}/buf-${os}-${cpu}
+        - os: windows
+          cpu:
+            x86_64: x86_64
+            arm_64: arm64
+          url: https://github.com/bufbuild/buf/releases/download/v${version}/buf-Windows-${cpu}.exe
+  definitions:
+    - name: buf-format
+      files: [proto]
+      download: buf
+      suggest_if: never
+      description: Formatter for Protobuf
+      commands:
+        - name: format
+          output: rewrite
+          run: buf format -w --path=${target}
+          success_codes: [0, 100]
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+      environment:
+        - name: PATH
+          # needs system path for `diff`
+          list: ["${linter}", "${env.PATH}"]
+        - name: BUF_TOKEN
+          list: ["${env.BUF_TOKEN}"]
+          optional: true
+      issue_url_format: https://docs.buf.build/lint/rules#{}
+      direct_configs: [buf.yaml]
+      affects_cache:
+        - buf.lock
+        - buf.gen.yaml
+        - buf.work.yaml
+      known_good_version: 1.59.0 # format subcommand was added in 1.2.0
+      version_command:
+        parse_regex: ${semver}
+        run: buf --version
+
+    - name: buf-lint
+      files: [proto]
+      download: buf
+      description: Accelerate Protobuf development with Buf
+      commands:
+        - name: lint
+          output: buf
+          run: buf lint --path ${target} --error-format json
+          success_codes: [0, 100]
+          run_from: ${root_or_parent_with(buf.yaml)}
+      direct_configs: [buf.yaml]
+      suggest_if: config_present
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+        - name: BUF_TOKEN
+          list: ["${env.BUF_TOKEN}"]
+          optional: true
+      affects_cache:
+        - buf.lock
+        - buf.gen.yaml
+        - buf.work.yaml
+      issue_url_format: https://docs.buf.build/lint/rules#{}
+      known_good_version: 1.59.0 # newer version is needed to support Windows fully
+      version_command:
+        parse_regex: ${semver}
+        run: buf --version
+
+    - name: buf-breaking
+      files: [proto]
+      download: buf
+      suggest_if: never
+      description: Check for breaking Protobuf API changes
+      commands:
+        - name: lint
+          output: buf
+          target: ${root_or_parent_with(buf.work.yaml)}
+          run:
+            buf breaking --against .git#branch=${upstream-ref} --error-format json
+            --disable-symlinks
+          success_codes: [0, 1, 100]
+          run_from: ${root_or_parent_with(buf.work.yaml)}
+          # buf is configured to not follow symlinks, and relies on git state, so don't cache results
+          sandbox_type: copy_targets
+          cache_results: false
+      direct_configs: [buf.yaml, buf.work.yaml]
+      environment:
+        - name: PATH
+          # Buf requires access to git to checkout/build upstream
+          list: ["${linter}", "${env.PATH}"]
+        - name: BUF_TOKEN
+          list: ["${env.BUF_TOKEN}"]
+          optional: true
+      affects_cache:
+        - buf.lock
+        - buf.gen.yaml
+        - buf.work.yaml
+      issue_url_format: https://docs.buf.build/breaking/rules#{}
+      known_good_version: 1.59.0
+      version_command:
+        parse_regex: ${semver}
+        run: buf --version

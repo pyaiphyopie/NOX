@@ -1,0 +1,65 @@
+version: 0.1
+downloads:
+  - name: osv-scanner
+    version: 2.0.1
+    executable: true
+    downloads:
+      - os:
+          linux: linux
+          macos: darwin
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/google/osv-scanner/releases/download/v${version}/osv-scanner_${os}_${cpu}
+        version: ">=1.7.0"
+      - os:
+          linux: linux
+          macos: darwin
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/google/osv-scanner/releases/download/v${version}/osv-scanner_${version}_${os}_${cpu}
+      - os: windows
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/google/osv-scanner/releases/download/v${version}/osv-scanner_windows_${cpu}.exe
+        version: ">=1.7.0"
+      - os: windows
+        cpu:
+          x86_64: amd64
+          arm_64: arm64
+        url: https://github.com/google/osv-scanner/releases/download/v${version}/osv-scanner_${version}_windows_${cpu}.exe
+tools:
+  definitions:
+    - name: osv-scanner
+      download: osv-scanner
+      shims: [osv-scanner]
+      known_good_version: 2.2.4
+lint:
+  definitions:
+    - name: osv-scanner
+      files: [lockfile]
+      tools: [osv-scanner]
+      known_good_version: 2.2.4
+      description: Checks for known vulnerabilities in your dependencies
+      commands:
+        - name: scan
+          output: sarif
+          run: osv-scanner --lockfile=${target} --format json
+          success_codes: [0, 1, 128]
+          read_output_from: stdout
+          is_security: true
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/osv-scanner/osv_to_sarif.py
+      direct_configs:
+        - osv-scanner.toml
+      issue_url_format: https://osv.dev/{}
+      suggest_if: files_present
+      environment:
+        - name: PATH
+          list: ["${linter}", "${env.PATH}"]
+      version_command:
+        parse_regex: "version: ${version}"
+        run: osv-scanner --version

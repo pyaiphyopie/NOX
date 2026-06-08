@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter pylint test empty 1`] = `
+{
+  "issues": [],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "python",
+      "linter": "pylint",
+      "paths": [
+        "test_data/empty.in.py",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "python",
+      "linter": "pylint",
+      "paths": [
+        "test_data/empty.in.py",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

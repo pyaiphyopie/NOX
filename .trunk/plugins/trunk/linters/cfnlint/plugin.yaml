@@ -1,0 +1,28 @@
+version: 0.1
+tools:
+  definitions:
+    - name: cfnlint
+      runtime: python
+      package: cfn-lint
+      shims: [cfn-lint]
+      known_good_version: 1.50.0
+lint:
+  definitions:
+    - name: cfnlint
+      files: [cloudformation]
+      description: Checks Cloudformation files
+      commands:
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle cfnlint's JSON output and triggers.
+          output: cfnlint
+          run: cfn-lint -t ${target} -f=json
+          error_codes: [32]
+          batch: true
+          cache_results: true
+      tools: [cfnlint]
+      suggest_if: files_present
+      issue_url_format: https://github.com/aws-cloudformation/cfn-lint/blob/main/docs/rules.md
+      known_good_version: 1.50.0
+      version_command:
+        parse_regex: ${semver}
+        run: cfn-lint --version

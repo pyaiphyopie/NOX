@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter nancy test CUSTOM 1`] = `
+{
+  "issues": [],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "go-lockfile",
+      "linter": "nancy",
+      "paths": [
+        ".",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

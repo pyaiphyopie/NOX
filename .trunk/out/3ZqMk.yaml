@@ -1,0 +1,49 @@
+trunk_cli_version: 1.25.0
+title: eslint exited with exit_code=2
+report:
+  - eslint exited with exit_code=2
+  - suggestion: Eslint could not resolve dependencies; try running `npm install`
+  - linter:
+      command: |
+        'C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin\sh.exe' 'C:\Users\pyaip\AppData\Local\trunk\tools\eslint\8.57.0-e038d0e4bf117c8e145f23841d63b53d/node_modules/.bin\eslint' --output-file C:/Users/pyaip/AppData/Local/Temp/trunk/dertciw/7vs4w1Gx9QuR --format json 'apps\organizer-dashboard\postcss.config.js'
+      stdin_path: (none)
+      run_from: C:\Users\pyaip\AppData\Local\Temp\trunk\16tkawr\ilzx1bt\
+      timeout: 10m
+      rerun: (cd C:\Users\pyaip\AppData\Local\Temp\trunk\16tkawr\ilzx1bt\; env -i 'COMSPEC=C:\WINDOWS\system32\cmd.exe' HOME= 'NODE_PATH=C:\Users\pyaip\AppData\Local\trunk\tools\eslint\8.57.0-e038d0e4bf117c8e145f23841d63b53d/node_modules' 'PATH=C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Users\pyaip\AppData\Local\trunk\tools\eslint\8.57.0-e038d0e4bf117c8e145f23841d63b53d/node_modules/.bin;C:\Users\pyaip\AppData\Local\trunk\tools\node\22.16.0-12da8a4c27b144aedaf7d975e067667c/bin;C:\Users\pyaip\AppData\Local\trunk\tools\node\22.16.0-12da8a4c27b144aedaf7d975e067667c;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Amazon\AWSCLIV2\;C:\Users\pyaip\AppData\Local\hermes\hermes-agent\venv\Scripts;C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\dotnet\;C:\Users\pyaip\.local\bin;C:\Users\pyaip\AppData\Local\Microsoft\WindowsApps;C:\Users\pyaip\AppData\Local\Python\bin;C:\Users\pyaip\AppData\Local\Programs\Ghost;C:\Users\pyaip\AppData\Roaming\Testcontainers Desktop\;C:\Users\pyaip\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pyaip\AppData\Roaming\npm;C:\Users\pyaip\flutter\bin;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Packages\GitHub.Copilot_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\pyaip\AppData\Local\GitHubDesktop\bin;C:\U;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Links;' 'C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin\sh.exe' 'C:\Users\pyaip\AppData\Local\trunk\tools\eslint\8.57.0-e038d0e4bf117c8e145f23841d63b53d/node_modules/.bin\eslint' --output-file C:/Users/pyaip/AppData/Local/Temp/trunk/dertciw/7vs4w1Gx9QuR --format json 'apps\organizer-dashboard\postcss.config.js')
+      affects_cache:
+        - package.json
+      direct_configs:
+        - .eslintrc.cjs
+      exit_status: exited
+      exit_code: 2
+      stdout: (none)
+      stderr: |
+
+        Oops! Something went wrong! :(
+
+        ESLint: 8.57.0
+
+        Error: Failed to load plugin 'react' declared in '.eslintrc.cjs': Cannot find module './UTF16SurrogatePairToCodePoint'
+        Require stack:
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\es-abstract\2024\CodePointAt.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\es-abstract\2024\AdvanceStringIndex.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\es-abstract\2024\GetIterator.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\es-abstract\2024\AddEntriesFromIterable.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\object.fromentries\implementation.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\object.fromentries\index.js
+        - C:\Users\pyaip\OneDrive\NOX\node_modules\eslint-plugin-react\index.js
+        - C:\Users\pyaip\AppData\Local\trunk\tools\eslint\8.57.0-e038d0e4bf117c8e145f23841d63b53d\node_modules\@eslint\eslintrc\dist\eslintrc.cjs
+        Referenced from: C:\Users\pyaip\AppData\Local\Temp\trunk\16tkawr\ilzx1bt\.eslintrc.cjs
+            at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+            at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+            at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+            at Function._load (node:internal/modules/cjs/loader:1211:37)
+            at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+            at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+            at Module.require (node:internal/modules/cjs/loader:1487:12)
+            at require (node:internal/modules/helpers:135:16)
+            at Object.<anonymous> (C:\Users\pyaip\OneDrive\NOX\node_modules\es-abstract\2024\CodePointAt.js:8:37)
+            at Module._compile (node:internal/modules/cjs/loader:1730:14)
+
+    parser: |
+      (none)

@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+import os
+from datetime import datetime, timedelta
+
+import click
+
+directory = os.path.dirname(__file__)
+with open(os.path.join(directory, "linter_sample_plugin.yaml"), "r") as file:
+    initial_plugin_contents = file.read()
+
+with open(os.path.join(directory, "linter_sample.test.ts"), "r") as file:
+    initial_test_contents = file.read()
+
+
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.argument("workspace")
+def scan(workspace):
+    linter_dir = os.path.join(workspace, "linters")
+    generated_files = False
+    for linter_name in os.listdir(linter_dir):
+        subdir_path = os.path.join(linter_dir, linter_name)
+        if os.path.isfile(subdir_path):
+            continue
+
+        subdir_contents = os.listdir(subdir_path)
+        # If this is a newly created, empty directory, dump template files
+        if (
+            len(subdir_contents) == 0
+            and os.stat(subdir_path).st_ctime
+            > (datetime.now() - timedelta(seconds=10)).timestamp()
+        ):
+            generated_files = True
+            # Write plugin.yaml
+            with open(os.path.join(subdir_path, "plugin.yaml"), "w") as plugin_file:
+                plugin_file.write(
+                    initial_plugin_contents.replace("NAME_HERE", linter_name)
+                )
+
+            # Write test file
+            with open(
+                os.path.join(
+                    subdir_path, "{}.test.ts".format(linter_name.replace("-", "_"))
+                ),
+                "w",
+            ) as test_file:
+                test_file.write(initial_test_contents.replace("NAME_HERE", linter_name))
+
+            # Create empty test_data dir
+            test_dir = os.path.join(subdir_path, "test_data")
+            os.mkdir(test_dir)
+            print("Created starter files in {}", subdir_path)
+
+    if not generated_files:
+        print("No generated files")
+
+
+if __name__ == "__main__":
+    cli()

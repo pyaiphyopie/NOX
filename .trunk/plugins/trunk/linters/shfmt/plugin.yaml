@@ -1,0 +1,31 @@
+version: 0.1
+tools:
+  definitions:
+    - name: shfmt
+      runtime: go
+      package: mvdan.cc/sh/v${major_version}/cmd/shfmt
+      shims: [shfmt]
+      # shfmt releases are not auto-queriable with our current setup, so we will bump this fixed version from time to time
+      known_good_version: 3.6.0
+lint:
+  definitions:
+    - name: shfmt
+      files: [shell]
+      description: A shell formatter
+      commands:
+        - name: format
+          output: shfmt
+          run: shfmt -w -s ${target}
+          success_codes: [0, 1]
+          cache_results: true
+          formatter: true
+          batch: true
+          in_place: true
+      tools: [shfmt]
+      suggest_if: files_present
+      affects_cache: [.editorconfig]
+      # shfmt releases are not auto-queriable with our current setup, so we will bump this fixed version from time to time
+      known_good_version: 3.6.0
+      version_command:
+        parse_regex: ${semver}
+        run: shfmt --version

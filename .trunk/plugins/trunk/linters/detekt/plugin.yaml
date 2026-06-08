@@ -1,0 +1,109 @@
+version: 0.1
+lint:
+  downloads:
+    - name: detekt
+      version: 1.23.8
+      downloads:
+        # Cross-platform download
+        - url: https://github.com/detekt/detekt/releases/download/v${version}/detekt-cli-${version}.zip
+          strip_components: 1
+  definitions:
+    - name: detekt
+      files: [kotlin]
+      download: detekt
+      description: Static code analysis for Kotlin
+      commands:
+        - name: lint
+          platforms: [windows]
+          output: sarif
+          run:
+            detekt-cli --build-upon-default-config --config .detekt.yaml --input ${target,} --report
+            sarif:${tmpfile}
+          success_codes: [0, 1, 2]
+          read_output_from: tmp_file
+          batch: true
+          cache_results: true
+        - name: lint
+          output: sarif
+          run:
+            detekt-cli --build-upon-default-config --config .detekt.yaml --input ${target,} --report
+            sarif:${tmpfile}
+          success_codes: [0, 2]
+          read_output_from: tmp_file
+          batch: true
+          cache_results: true
+      direct_configs: [.detekt.yaml]
+      runtime: java
+      suggest_if: never
+      environment:
+        - name: PATH
+          list: ["${env.PATH}"]
+      known_good_version: 1.23.8
+      version_command:
+        parse_regex: ${semver}
+        run: detekt-cli --version
+
+    - name: detekt-explicit
+      files: [kotlin]
+      download: detekt
+      description: Static code analysis for Kotlin
+      commands:
+        - name: lint
+          platforms: [windows]
+          output: sarif
+          run:
+            detekt-cli --config .detekt.yaml --input ${target} --report sarif:${tmpfile}
+            --auto-correct
+          success_codes: [0, 1, 2]
+          read_output_from: tmp_file
+        - name: lint
+          output: sarif
+          run:
+            detekt-cli --config .detekt.yaml --input ${target} --report sarif:${tmpfile}
+            --auto-correct
+          success_codes: [0, 2]
+          read_output_from: tmp_file
+      direct_configs: [.detekt.yaml]
+      runtime: java
+      suggest_if: never
+      environment:
+        - name: PATH
+          list: ["${env.PATH}"]
+      known_good_version: 1.23.8
+      version_command:
+        parse_regex: ${semver}
+        run: detekt-cli --version
+
+    - name: detekt-gradle
+      supported_platforms: [linux, macos]
+      files: [kotlin]
+      description: Static code analysis for Kotlin
+      commands:
+        - name: lint
+          # Custom parser/trigger type defined in the trunk cli.
+          output: detekt_gradle
+          target: .
+          run: sh ${workspace}/gradlew detekt --info --continue
+          success_codes: [0, 1]
+          disable_upstream: true
+      suggest_if: never
+      environment:
+        - name: GRADLE_OPTS
+          value: ${env.GRADLE_OPTS}
+          optional: true
+        - name: GRADLE_USER_HOME
+          value: ${env.GRADLE_USER_HOME}
+          optional: true
+        - name: JAVA_HOME
+          value: ${env.JAVA_HOME}
+          optional: true
+        - name: LANG
+          value: ${env.LANG}
+          optional: true
+        - name: PATH
+          list: ["${env.PATH}"]
+        - name: GRADLE_ENTERPRISE_ACCESS_KEY
+          value: ${env.GRADLE_ENTERPRISE_ACCESS_KEY}
+          optional: true
+      # crank up timeout: gradle installation and daemon start can be slow
+      run_timeout: 10m

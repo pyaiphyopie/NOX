@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter clippy test malformed_subdir 1`] = `
+{
+  "issues": [
+    {
+      "code": "compiler",
+      "column": "1",
+      "file": "test_data/malformed_subdir/src/main.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#compiler",
+      "level": "LEVEL_HIGH",
+      "line": "10",
+      "linter": "clippy",
+      "message": "expected item, found \`<eof>\`",
+      "ranges": [
+        {
+          "filePath": "test_data/malformed_subdir/src/main.rs",
+          "length": "1",
+          "offset": "225",
+        },
+      ],
+      "targetType": "rust",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/malformed_subdir/src/main.rs",
+              "offset": "126",
+              "replacementText": ";",
+            },
+          ],
+        },
+      ],
+      "code": "compiler",
+      "column": "1",
+      "file": "test_data/malformed_subdir/src/main.rs",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#compiler",
+      "level": "LEVEL_HIGH",
+      "line": "5",
+      "linter": "clippy",
+      "message": "expected \`;\`, found keyword \`fn\`",
+      "ranges": [
+        {
+          "filePath": "test_data/malformed_subdir/src/main.rs",
+          "length": "2",
+          "offset": "128",
+        },
+        {
+          "filePath": "test_data/malformed_subdir/src/main.rs",
+          "offset": "126",
+        },
+      ],
+      "targetType": "rust",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "rust",
+      "linter": "clippy",
+      "paths": [
+        "test_data/malformed_subdir",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

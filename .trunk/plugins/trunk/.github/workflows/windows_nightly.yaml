@@ -1,0 +1,93 @@
+name: Windows Tests
+on:
+  # NOTE(Tyler): Preserve this workflow for testing, but in the future we'll want to remove it.
+  workflow_dispatch: {}
+
+permissions: read-all
+
+jobs:
+  # Run tests against all linters for snapshots and latest version as they exist on main
+  # This job is used to diagnose plugin config health in advance of a release
+  linter_tests_main:
+    name: Linter Tests Main
+    runs-on: windows-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        linter-version: [Snapshots, Latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Cache tool downloads
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: /tmp/plugins_testing_download_cache
+          # No need to key on trunk version unless we change how we store downloads.
+          key: trunk-${{ runner.os }}
+
+      - name: Delete cache
+        # For now, avoid deleting cache on pull request changes to nightly. This improves PR experience.
+        if: env.TRIGGER != 'pull_request'
+        run: |
+          if [ -d "/tmp/plugins_testing_download_cache" ]
+          then
+            tmp_dir=/tmp/${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
+            mv "/tmp/plugins_testing_download_cache" ${tmp_dir}
+            chmod -R u+w ${tmp_dir}
+            rm -rf ${tmp_dir}
+          fi
+        shell: bash
+
+      - name: Linter Tests
+        uses: ./.github/actions/linter_tests
+        with:
+          linter-version: ${{ matrix.linter-version }}
+          ref-type: main
+          snyk-token: ${{ secrets.TRUNK_SNYK_TOKEN }}
+          sourcery-token: ${{ secrets.TRUNK_SOURCERY_TOKEN }}
+          cli-path: ${{ github.workspace }}\trunk.ps1
+          # manually specify more parallelism to avoid bottlenecks
+          append-args: linters -- --maxWorkers=5
+          # Analytics uploader is not yet supported on Windows
+          trunk-prod-token: ${{ secrets.TRUNK_ORG_PROD_TOKEN }}
+
+  tool_tests_main:
+    name: Tool Tests Main
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Cache tool downloads
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: /tmp/plugins_testing_download_cache
+          # No need to key on trunk version unless we change how we store downloads.
+          key: trunk-${{ runner.os }}
+
+      - name: Delete cache
+        # For now, avoid deleting cache on pull request changes to nightly. This improves PR experience.
+        if: env.TRIGGER != 'pull_request'
+        run: |
+          if [ -d "/tmp/plugins_testing_download_cache" ]
+          then
+            tmp_dir=/tmp/${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
+            mv "/tmp/plugins_testing_download_cache" ${tmp_dir}
+            chmod -R u+w ${tmp_dir}
+            rm -rf ${tmp_dir}
+          fi
+        shell: bash
+
+      # TODO(lauri): For now this just runs on the hardcoded versions. We should configure this
+      # akin to the linter_tests job.
+      - name: Tool Tests
+        if: failure() || success()
+        uses: ./.github/actions/tool_tests
+        with:
+          cli-path: ${{ github.workspace }}\trunk.ps1
+          append-args: tools -- --maxWorkers=5
+          # Analytics uploader is not yet supported on Windows
+          trunk-prod-token: ${{ secrets.TRUNK_ORG_PROD_TOKEN }}

@@ -1,0 +1,121 @@
+version: 0.1
+
+# version used for local trunk runs and testing
+cli:
+  version: 1.25.0
+  shell_hooks:
+    enforce: true
+
+plugins:
+  sources:
+    - id: trunk
+      local: .
+
+    - id: configs
+      uri: https://github.com/trunk-io/configs
+      ref: v1.2.1
+
+runtimes:
+  enabled:
+    - java@13.0.11
+    - node@22.16.0
+    - python@3.12.2
+
+lint:
+  files:
+    - name: plugin.yaml
+      filenames: [plugin.yaml]
+  definitions:
+    - name: definition-checker
+      description: Checks plugin.yaml files for repo best practices
+      files: [plugin.yaml]
+      runtime: node
+      extra_packages:
+        - ts-node
+        - yaml
+      commands:
+        - name: check
+          run: ts-node ${workspace}/repo-tools/definition-checker/check.ts ${target}
+          batch: true
+          sandbox_type: expanded
+          output: regex
+          parse_regex: "((?P<path>.*) \\[(?P<severity>.*)\\]: (?P<message>.*) \\((?P<code>.*)\\))"
+          success_codes: [0]
+  enabled:
+    # enabled linters inherited from github.com/trunk-io/configs plugin
+    - pinact@4.0.0
+    - ls-lint@2.3.1
+    - pmd@7.18.0
+    - definition-checker
+    - eslint@9.27.0
+    - trunk-toolbox@0.7.0
+  disabled:
+    - pylint # pylint diagnostics are too strict
+    - semgrep
+
+  ignore:
+    - linters: [ALL]
+      paths:
+        - "**/test_data" # required for golangci-lint, which runs on directories
+        - "**/test_data/**"
+    - linters: [prettier]
+      paths: [linters/markdownlint/README.md]
+  threshold:
+    - linters: [trunk]
+      level: high
+
+actions:
+  # Uncomment to enable more verbose action logs
+  # output_level: verbose
+  definitions:
+    - id: repo-tests
+      display_name: Repo Tests
+      description: Run tests on plugin configuration and documentation
+      runtime: node
+      packages_file: package.json
+      run: npm test tests/repo_tests
+      triggers:
+        - git_hooks: [pre-push]
+
+    - id: linter-test-helper
+      display_name: Linter Test Generator
+      description: Generate boilerplate test code when new linters are defined
+      runtime: python
+      packages_file: repo-tools/linter-test-helper/requirements.txt
+      run: python3 repo-tools/linter-test-helper/generate scan ${workspace}
+      triggers:
+        - files: [linters/**]
+
+    - id: tool-test-helper
+      display_name: Tool Test Generator
+      description: Generate boilerplate test code when new tools are defined
+      runtime: python
+      packages_file: repo-tools/tool-test-helper/requirements.txt
+      run: python3 repo-tools/tool-test-helper/generate scan ${workspace}
+      triggers:
+        - files: [tools/**]
+
+    - id: remove-release-snapshots
+      display_name: Remove Release Snapshots
+      description: Remove release tag from snapshots that were added to the release
+      run:
+        grep "// trunk-upgrade-validation:RELEASE" -r --include=*.shot -l | xargs -I {} sed -i -e
+        '/^\/\/ trunk-upgrade-validation:RELEASE/d' {}
+      shell: bash
+
+  enabled:
+    # enabled actions inherited from github.com/trunk-io/configs plugin
+    - terraform-docs
+    - linter-test-helper
+    - npm-check-pre-push
+    - remove-release-snapshots
+    - repo-tests
+    - tool-test-helper
+tools:
+  enabled:
+    - clangd-indexing-tools@19.1.2
+    - clangd@19.1.2
+
+  runtimes:
+    # expose shims in .trunk/tools
+    - node

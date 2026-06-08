@@ -1,0 +1,28 @@
+version: 0.1
+tools:
+  definitions:
+    - name: haml-lint
+      runtime: ruby
+      package: haml_lint
+      shims: [haml-lint]
+      known_good_version: 0.40.0
+lint:
+  definitions:
+    - name: haml-lint
+      files: [haml]
+      description: Keeps HAML files clean and readable
+      commands:
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle haml_lint's JSON output.
+          output: haml_lint
+          run: haml-lint ${target} --reporter=json
+          success_codes: [0, 65]
+          batch: true
+          cache_results: false
+      direct_configs: [.haml-lint.yml]
+      tools: [haml-lint]
+      suggest_if: files_present
+      known_good_version: 0.40.0
+      version_command:
+        parse_regex: ${semver}
+        run: haml-lint --version

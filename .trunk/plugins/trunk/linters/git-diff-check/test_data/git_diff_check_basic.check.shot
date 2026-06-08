@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter git-diff-check test basic 1`] = `
+{
+  "issues": [
+    {
+      "code": "error",
+      "column": "1",
+      "file": "test_data/basic.in.txt",
+      "issueClass": "ISSUE_CLASS_NEW",
+      "level": "LEVEL_HIGH",
+      "line": "1",
+      "linter": "git-diff-check",
+      "message": "leftover conflict marker",
+      "targetType": "ALL",
+    },
+    {
+      "code": "error",
+      "column": "1",
+      "file": "test_data/basic.in.txt",
+      "issueClass": "ISSUE_CLASS_NEW",
+      "level": "LEVEL_HIGH",
+      "line": "3",
+      "linter": "git-diff-check",
+      "message": "leftover conflict marker",
+      "targetType": "ALL",
+    },
+    {
+      "code": "error",
+      "column": "1",
+      "file": "test_data/basic.in.txt",
+      "issueClass": "ISSUE_CLASS_NEW",
+      "level": "LEVEL_HIGH",
+      "line": "5",
+      "linter": "git-diff-check",
+      "message": "leftover conflict marker",
+      "targetType": "ALL",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "ALL",
+      "linter": "git-diff-check",
+      "paths": [
+        "test_data/basic.in.txt",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "ALL",
+      "linter": "git-diff-check",
+      "paths": [
+        "test_data/basic.in.txt",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

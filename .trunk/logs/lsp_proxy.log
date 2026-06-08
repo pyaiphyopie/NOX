@@ -1,0 +1,28 @@
+[06-07 15:45:16] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-07 15:48:41] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-07 16:51:39] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 05:29:48] [spec.cc:872] Malformed LSP headers: Content-Length: 64
+
+
+[06-08 05:29:49] [spec.cc:873] Malformed LSP content:                                                                 
+[06-08 05:29:49] [message_receiver.cc:28] Failed to parse message: [json.exception.parse_error.101] parse error at line 1, column 65: syntax error while parsing value - unexpected end of input; expected '[', '{', or a literal
+[06-08 05:29:49] [shared_server_context.hh:133] Message processing failed: [json.exception.parse_error.101] parse error at line 1, column 65: syntax error while parsing value - unexpected end of input; expected '[', '{', or a literal
+[06-08 05:39:45] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 05:58:53] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 13:13:22] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 14:48:00] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:62099: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-08 14:48:00] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:62099: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-08 14:48:08] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 15:31:44] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:52402: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-08 15:31:44] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:52402: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-08 15:31:55] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-09 03:40:50] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-09 04:10:50] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:64526: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-09 04:10:50] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:64526: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-09 04:11:04] [login.cc:52] GetUserRequest failed with status 16: No session provided 

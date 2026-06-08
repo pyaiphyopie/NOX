@@ -1,0 +1,21 @@
+[05-28 20:58:04] [sentry.cc:364] Trunk Internal Error
+---
+trunk_cli_version: 1.25.0
+title: Internal trunk error occurred. Please report this issue to us @ https://slack.trunk.io
+report:
+  - Timeout connecting to host
+[06-07 15:41:46] [client.cc:330] prettier - .trunk\trunk.yaml
+[06-07 15:44:53] [client.cc:330] prettier - .trunk\configs\.yamllint.yaml
+[06-07 15:44:53] [client.cc:330] prettier - .trunk\trunk.yaml
+[06-07 16:30:40] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 14:13:16] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-08 16:31:54] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[06-09 00:31:58] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:55522: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
+ -- 10061)
+[06-09 00:31:58] [sentry.cc:364] Trunk Internal Error
+---
+trunk_cli_version: 1.25.0
+title: Internal trunk error occurred. Please report this issue to us @ https://slack.trunk.io
+report:
+  - "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:55522: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.\r\n -- 10061)"
+[06-09 05:10:59] [login.cc:52] GetUserRequest failed with status 16: No session provided 

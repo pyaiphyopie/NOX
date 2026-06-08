@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter taplo test CUSTOM 1`] = `
+{
+  "issues": [
+    {
+      "code": "error",
+      "column": "1",
+      "file": "test_data/bad.toml",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_HIGH",
+      "line": "3",
+      "linter": "taplo",
+      "message": "conflicting keys",
+      "targetType": "toml",
+    },
+    {
+      "code": "error",
+      "column": "8",
+      "file": "test_data/bad.toml",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_HIGH",
+      "line": "9",
+      "linter": "taplo",
+      "message": "conflicting keys",
+      "targetType": "toml",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "format",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/basic.toml",
+      ],
+      "verb": "TRUNK_VERB_FMT",
+    },
+    {
+      "command": "format",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/empty.toml",
+      ],
+      "verb": "TRUNK_VERB_FMT",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/basic.toml",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/empty.toml",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/basic.toml",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "toml",
+      "linter": "taplo",
+      "paths": [
+        "test_data/empty.toml",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

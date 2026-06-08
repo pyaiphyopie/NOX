@@ -1,0 +1,36 @@
+version: 0.1
+tools:
+  definitions:
+    - name: standardrb
+      runtime: ruby
+      package: standard
+      shims: [standardrb]
+      known_good_version: 1.3.0
+lint:
+  definitions:
+    - name: standardrb
+      files: [ruby, gemspec]
+      description: Ruby's bikeshed-proof linter and formatter
+      commands:
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle rubocop's JSON output.
+          output: rubocop
+          run: standardrb ${target} --format json
+          success_codes: [0, 1]
+          batch: true
+        - name: fix
+          output: rewrite
+          # NOTE(Tyler): It does not seem necessary to add another command for --fix-unsafely, but we can revisit as necessary
+          run: standardrb ${target} --fix
+          success_codes: [0, 1]
+          formatter: true
+          batch: true
+          in_place: true
+      direct_configs: [.standard.yml]
+      suggest_if: config_present
+      tools: [standardrb]
+      issue_url_format: https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/{}
+      known_good_version: 1.3.0
+      version_command:
+        parse_regex: ${semver}
+        run: standardrb --version

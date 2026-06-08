@@ -1,0 +1,80 @@
+version: 0.1
+tools:
+  definitions:
+    - name: stylelint
+      runtime: node
+      package: stylelint
+      shims: [stylelint]
+      known_good_version: 16.25.0
+lint:
+  definitions:
+    - name: stylelint
+      files: [css, sass]
+      tools: [stylelint]
+      description: Over 100 built-in rules for modern CSS
+      commands:
+        - name: lint
+          version: ">=16.0.0"
+          read_output_from: stderr
+          # Custom parser type defined in the trunk cli to handle stylelint's JSON output.
+          output: stylelint
+          success_codes: [0, 2]
+          run: stylelint -f json ${target}
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle stylelint's JSON output.
+          output: stylelint
+          success_codes: [0, 2]
+          run: stylelint -f json ${target}
+        - name: fix
+          formatter: true
+          output: rewrite
+          success_codes: [0, 2]
+          run: stylelint --fix ${target}
+          in_place: true
+      direct_configs:
+        - stylelint.config.js
+        - .stylelintrc.js
+        - stylelint.config.mjs
+        - .stylelintrc.mjs
+        - stylelint.config.cjs
+        - .stylelintrc.cjs
+        - .stylelintrc.json
+        - .stylelintrc.yml
+        - .stylelintrc.yaml
+        - .stylelintrc
+      suggest_if: config_present
+      affects_cache:
+        - package.json
+        - .stylelintignore
+      known_good_version: 16.25.0
+      version_command:
+        parse_regex: ${semver}
+        run: stylelint --version
+
+    - name: stylelint-fmt
+      files: [css, sass]
+      type: rewrite
+      deprecated:
+        "'stylelint-fmt' is now handled by 'stylelint'. Please delete 'stylelint-fmt' from your
+        config"
+      suggest_if: never
+      command: [stylelint, --fix, "${target}"]
+      runtime: node
+      package: stylelint
+      success_codes: [0, 2]
+      direct_configs:
+        - .stylelintrc
+        - .stylelintrc.json
+        - .stylelintrc.yml
+        - .stylelintrc.yaml
+        - .stylelintrc.js
+        - .stylelintrc.cjs
+      affects_cache:
+        - package.json
+        - .stylelintignore
+      known_good_version: 16.25.0
+      formatter: true
+      version_command:
+        parse_regex: ${semver}
+        run: stylelint --version
+      in_place: true

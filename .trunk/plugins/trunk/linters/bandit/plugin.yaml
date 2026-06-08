@@ -1,0 +1,31 @@
+version: 0.1
+tools:
+  definitions:
+    - name: bandit
+      runtime: python
+      package: bandit
+      shims: [bandit]
+      known_good_version: 1.8.6
+lint:
+  definitions:
+    - name: bandit
+      files: [python]
+      tools: [bandit]
+      suggest_if: files_present
+      direct_configs: [.bandit]
+      description: A security linter for Python
+      commands:
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle bandit's JSON output.
+          output: bandit
+          run: bandit --exit-zero --ini .bandit --format json --output ${tmpfile} ${target}
+          success_codes: [0]
+          read_output_from: tmp_file
+          batch: true
+          cache_results: true
+          is_security: true
+      issue_url_format: https://pypi.org/project/bandit/
+      known_good_version: 1.8.6
+      version_command:
+        parse_regex: ${semver}
+        run: bandit --version

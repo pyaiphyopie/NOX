@@ -1,0 +1,25 @@
+trunk_cli_version: 1.25.0
+title: checkov timed out after 600 seconds
+report:
+  - checkov timed out after 600 seconds
+  - linter:
+      command: |
+        'C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.2.533-1b32b562f9a815299b22c23859896118/Scripts\checkov.cmd' -f 'flutter_blueprint\packages\core\pubspec.yaml' -o sarif --output-file-path C:/Users/pyaip/AppData/Local/Temp/trunk/fs4oxt3/3zpl8HOJ4LDJ, --soft-fail
+      stdin_path: (none)
+      run_from: C:\Users\pyaip\OneDrive\NOX\
+      timeout: 10m
+      rerun: (cd C:\Users\pyaip\OneDrive\NOX\; env -i PYTHONUTF8=1 HOME= 'SYSTEMROOT=C:\WINDOWS' 'VIRTUAL_ENV=C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.2.533-1b32b562f9a815299b22c23859896118' 'PATH=C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:/Users/pyaip/AppData/Local/trunk/tools/git-bash/2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin;C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.2.533-1b32b562f9a815299b22c23859896118/bin;C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.2.533-1b32b562f9a815299b22c23859896118/Scripts;C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin;C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/bin;C:\Users\pyaip\AppData\Local\trunk\tools\git-bash\2.40.1-da0c3e1526d36e62bf43d06ec46c5052/usr/bin' 'C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.2.533-1b32b562f9a815299b22c23859896118/Scripts\checkov.cmd' -f 'flutter_blueprint\packages\core\pubspec.yaml' -o sarif --output-file-path C:/Users/pyaip/AppData/Local/Temp/trunk/fs4oxt3/3zpl8HOJ4LDJ, --soft-fail)
+      affects_cache:
+        []
+      direct_configs:
+        []
+      exit_status: timeout
+      exit_code: -1
+      stdout: (none)
+      stderr: |
+        File association not found for extension .py
+
+      tmpfile: |
+        {"$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json", "version": "2.1.0", "runs": [{"tool": {"driver": {"name": "Checkov", "version": "3.2.533", "informationUri": "https://checkov.io", "rules": [], "organization": "bridgecrew"}}, "results": []}]}
+    parser: |
+      (none)

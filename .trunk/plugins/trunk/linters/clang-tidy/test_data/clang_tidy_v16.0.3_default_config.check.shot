@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter clang-tidy test default_config 1`] = `
+{
+  "issues": [
+    {
+      "code": "clang-diagnostic-error",
+      "column": "10",
+      "file": "test_data/a_includes.cc",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_HIGH",
+      "line": "1",
+      "linter": "clang-tidy",
+      "message": "'invalid_case_style.hh' file not found",
+      "targetType": "c++-source",
+    },
+    {
+      "code": "clang-diagnostic-error",
+      "column": "10",
+      "file": "test_data/b_includes.cc",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "level": "LEVEL_HIGH",
+      "line": "1",
+      "linter": "clang-tidy",
+      "message": "'invalid_case_style.hh' file not found",
+      "targetType": "c++-source",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/basic.cc",
+              "length": "6",
+              "offset": "29",
+              "replacementText": "kUnused",
+            },
+          ],
+        },
+      ],
+      "code": "readability-identifier-naming",
+      "column": "30",
+      "file": "test_data/basic.cc",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://clang.llvm.org/extra/clang-tidy/checks/list.html",
+      "level": "LEVEL_MEDIUM",
+      "line": "1",
+      "linter": "clang-tidy",
+      "message": "invalid case style for constexpr variable 'unused'",
+      "targetType": "c++-source",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/invalid_case_style.hh",
+              "length": "16",
+              "offset": "20",
+              "replacementText": "InvalidCaseStyle",
+            },
+          ],
+        },
+      ],
+      "code": "readability-identifier-naming",
+      "column": "7",
+      "file": "test_data/invalid_case_style.hh",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://clang.llvm.org/extra/clang-tidy/checks/list.html",
+      "level": "LEVEL_MEDIUM",
+      "line": "3",
+      "linter": "clang-tidy",
+      "message": "invalid case style for class 'invalidCaseStyle'",
+      "targetType": "c++-header",
+    },
+    {
+      "autofixOptions": [
+        {
+          "replacements": [
+            {
+              "filePath": "test_data/test.hh",
+              "offset": "14",
+              "replacementText": "static ",
+            },
+          ],
+        },
+      ],
+      "code": "readability-convert-member-functions-to-static",
+      "column": "15",
+      "file": "test_data/test.hh",
+      "issueClass": "ISSUE_CLASS_EXISTING",
+      "issueUrl": "https://clang.llvm.org/extra/clang-tidy/checks/list.html",
+      "level": "LEVEL_MEDIUM",
+      "line": "2",
+      "linter": "clang-tidy",
+      "message": "method 'Bar' can be made static",
+      "targetType": "c++-header",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "c++-source",
+      "linter": "clang-tidy",
+      "paths": [
+        "test_data/a_includes.cc",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "c++-source",
+      "linter": "clang-tidy",
+      "paths": [
+        "test_data/b_includes.cc",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "c++-source",
+      "linter": "clang-tidy",
+      "paths": [
+        "test_data/basic.cc",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "c++-header",
+      "linter": "clang-tidy",
+      "paths": [
+        "test_data/invalid_case_style.hh",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "c++-header",
+      "linter": "clang-tidy",
+      "paths": [
+        "test_data/test.hh",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter clippy test malformed 1`] = `
+{
+  "issues": [
+    {
+      "code": "E0583",
+      "column": "1",
+      "file": "src/main.rs",
+      "issueClass": "ISSUE_CLASS_NEW",
+      "issueUrl": "https://rust-lang.github.io/rust-clippy/master/#E0583",
+      "level": "LEVEL_HIGH",
+      "line": "3",
+      "linter": "clippy",
+      "message": "file not found for module \`high\`",
+      "ranges": [
+        {
+          "filePath": "src/main.rs",
+          "length": "9",
+          "offset": "118",
+        },
+      ],
+      "targetType": "rust",
+    },
+  ],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "rust",
+      "linter": "clippy",
+      "paths": [
+        ".",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

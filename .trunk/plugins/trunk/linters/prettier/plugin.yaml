@@ -1,0 +1,59 @@
+version: 0.1
+tools:
+  definitions:
+    - name: prettier
+      runtime: node
+      package: prettier
+      shims: [prettier]
+      known_good_version: 3.6.2
+lint:
+  definitions:
+    - name: prettier
+      files:
+        - typescript
+        - yaml
+        - css
+        - postcss
+        - sass
+        - html
+        - markdown
+        - json
+        - javascript
+        - graphql
+        - prettier_supported_configs
+      description: A universal formatter
+      commands:
+        - name: format
+          output: sarif
+          run: prettier -w ${target}
+          read_output_from: stderr
+          success_codes: [0, 2]
+          batch: true
+          in_place: true
+          formatter: true
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/prettier/prettier_to_sarif.py ${exit_code}
+      tools: [prettier]
+      suggest_if: files_present
+      direct_configs:
+        - .prettierrc
+        - .prettierrc.json
+        - .prettierrc.yml
+        - .prettierrc.yaml
+        - .prettierrc.json5
+        - .prettierrc.js
+        - .prettierrc.cjs
+        - .prettierrc.mjs
+        - prettier.config.js
+        - prettier.config.cjs
+        - prettier.config.mjs
+        - .prettierrc.toml
+        - .prettierignore
+      affects_cache:
+        - package.json
+        - .editorconfig # Undocumented config file
+      known_good_version: 3.6.2
+      version_command:
+        parse_regex: ${semver}
+        run: prettier --version

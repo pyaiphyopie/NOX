@@ -1,0 +1,32 @@
+version: 0.1
+tools:
+  definitions:
+    - name: codespell
+      runtime: python
+      package: codespell
+      shims: [codespell]
+      known_good_version: 2.4.1
+lint:
+  definitions:
+    - name: codespell
+      files: [ALL]
+      direct_configs: [.codespellrc]
+      suggest_if: config_present
+      description: Check for common misspellings in your code
+      affects_cache:
+        - pyproject.toml
+        - setup.cfg
+      tools: [codespell]
+      known_good_version: 2.4.1
+      known_bad_versions: [2.2.3]
+      commands:
+        - name: lint
+          output: sarif
+          run: codespell ${target}
+          success_codes: [0, 65]
+          read_output_from: stdout
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/codespell/codespell_to_sarif.py
+          batch: true
+          cache_results: true

@@ -1,0 +1,10 @@
+version: 0.1
+tools:
+  definitions:
+    - name: bazel-differ
+      package: github.com/ewhauser/bazel-differ/cli
+      runtime: go
+      known_good_version: 0.0.5
+      shims:
+        - name: bazel-differ
+          target: cli

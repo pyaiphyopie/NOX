@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing linter git-diff-check test conflict 1`] = `
+{
+  "issues": [],
+  "lintActions": [
+    {
+      "command": "lint",
+      "fileGroupName": "ALL",
+      "linter": "git-diff-check",
+      "paths": [
+        "test_data/conflict.in.txt",
+      ],
+      "verb": "TRUNK_VERB_CHECK",
+    },
+    {
+      "command": "lint",
+      "fileGroupName": "ALL",
+      "linter": "git-diff-check",
+      "paths": [
+        "test_data/conflict.in.txt",
+      ],
+      "upstream": true,
+      "verb": "TRUNK_VERB_CHECK",
+    },
+  ],
+  "taskFailures": [],
+  "unformattedFiles": [],
+}
+`;

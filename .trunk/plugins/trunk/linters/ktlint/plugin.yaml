@@ -1,0 +1,46 @@
+version: 0.1
+lint:
+  downloads:
+    - name: ktlint
+      version: 1.7.1
+      executable: true
+      downloads:
+        # Cross-platform download
+        - url: https://github.com/pinterest/ktlint/releases/download/${version}/ktlint
+  definitions:
+    - name: ktlint
+      files: [kotlin]
+      download: ktlint
+      runtime: java
+      description: An anti-bikeshedding Kotlin linter and formatter
+      commands:
+        - name: format
+          platforms: [windows]
+          run: java -jar ${linter}/ktlint.exe -F "${target}"
+          output: rewrite
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+          success_codes: [0, 1]
+        - name: format
+          run: ktlint -F "${target}"
+          output: rewrite
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+          success_codes: [0, 1]
+      affects_cache:
+        - .editorconfig
+      environment:
+        - name: PATH
+          list: ["${linter}"]
+        - name: LANG
+          # C.UTF-8 is preferred for machine output, but mac barfs on that
+          value: en_US.UTF-8
+      suggest_if: files_present
+      known_good_version: 1.7.1
+      version_command:
+        parse_regex: ${semver}
+        run: java -jar ${linter}/ktlint.exe --version

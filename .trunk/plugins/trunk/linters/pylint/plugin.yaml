@@ -1,0 +1,35 @@
+version: 0.1
+tools:
+  definitions:
+    - name: pylint
+      runtime: python
+      package: pylint
+      shims: [pylint]
+      known_good_version: 4.0.2
+lint:
+  definitions:
+    - name: pylint
+      files: [python]
+      description: Static code analysis for Python
+      commands:
+        - name: lint
+          # Custom parser type defined in the trunk cli to handle pylint's JSON output.
+          output: pylint
+          run: pylint --exit-zero --output ${tmpfile} --output-format json ${target}
+          success_codes: [0]
+          read_output_from: tmp_file
+          batch: true
+          cache_results: true
+      tools: [pylint]
+      suggest_if: config_present
+      direct_configs:
+        - pylintrc
+        - .pylintrc
+      affects_cache:
+        - pyproject.toml
+        - setup.cfg
+      issue_url_format: http://pylint-messages.wikidot.com/messages:{}
+      known_good_version: 4.0.2
+      version_command:
+        parse_regex: pylint ${semver}
+        run: pylint --version

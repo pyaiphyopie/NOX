@@ -1,0 +1,32 @@
+version: 0.1
+tools:
+  definitions:
+    - name: gitleaks
+      runtime: go
+      package: github.com/zricethezav/gitleaks/v${major_version}
+      shims: [gitleaks]
+      known_good_version: 8.29.0
+lint:
+  definitions:
+    - name: gitleaks
+      files: [ALL]
+      description: Protect and discover secrets
+      commands:
+        - name: lint
+          run: gitleaks detect --no-git --source=${target} --exit-code=101 -f sarif -r "${tmpfile}"
+          output: sarif
+          read_output_from: tmp_file
+          success_codes: [0, 101]
+          sandbox_type: copy_targets
+          cache_results: true
+          allow_empty_files: false
+      tools: [gitleaks]
+      direct_configs:
+        - .gitleaks.config
+        - .gitleaks.toml
+        - .gitleaksignore
+      suggest_if: config_present
+      known_good_version: 8.29.0
+      known_bad_versions:
+        - 8.10.0
+        - 8.10.1

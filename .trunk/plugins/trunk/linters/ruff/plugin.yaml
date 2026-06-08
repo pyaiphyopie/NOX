@@ -1,0 +1,102 @@
+version: 0.1
+tools:
+  definitions:
+    - name: ruff
+      runtime: python
+      package: ruff
+      shims: [ruff]
+      known_good_version: 0.14.3
+lint:
+  definitions:
+    - name: ruff
+      description: A Python linter and formatter
+      commands:
+        - name: lint
+          # As of ruff v0.6.0, ruff runs by default on jupyter notebooks
+          version: ">=0.6.0"
+          files: [python, python-interface, jupyter]
+          run: ruff check --cache-dir ${cachedir} --output-format json ${target}
+          output: sarif
+          parser:
+            runtime: python
+            run: python3 ${cwd}/ruff_to_sarif.py 0
+          batch: true
+          success_codes: [0, 1]
+        - name: lint
+          # As of ruff v0.1.0, --format is replaced with --output-format
+          version: ">=0.1.0"
+          files: [python, python-interface]
+          run: ruff check --cache-dir ${cachedir} --output-format json ${target}
+          output: sarif
+          parser:
+            runtime: python
+            run: python3 ${cwd}/ruff_to_sarif.py 0
+          batch: true
+          success_codes: [0, 1]
+        - name: lint
+          # As of ruff v0.0.266, column edits are 1-indexed
+          version: ">=0.0.266"
+          files: [python, python-interface]
+          run: ruff check --cache-dir ${cachedir} --format json ${target}
+          output: sarif
+          parser:
+            runtime: python
+            run: python3 ${cwd}/ruff_to_sarif.py 0
+          batch: true
+          success_codes: [0, 1]
+        - name: lint
+          files: [python, python-interface]
+          run: ruff check --cache-dir ${cachedir} --format json ${target}
+          output: sarif
+          parser:
+            runtime: python
+            run: python3 ${cwd}/ruff_to_sarif.py 1
+          batch: true
+          success_codes: [0, 1]
+        - name: format
+          files: [python, python-interface]
+          output: rewrite
+          run: ruff format ${target}
+          success_codes: [0]
+          batch: true
+          in_place: true
+          allow_empty_files: false
+          cache_results: true
+          formatter: true
+          enabled: false
+      tools: [ruff]
+      direct_configs: [ruff.toml]
+      affects_cache:
+        - pyproject.toml
+        - setup.cfg
+        - tox.ini
+      known_good_version: 0.14.3
+      suggest_if: files_present
+      issue_url_format: https://docs.astral.sh/ruff/rules/#{}
+      version_command:
+        parse_regex: ruff ${semver}
+        run: ruff --version
+
+    # Not necessary if ruff>=0.6.0
+    - name: ruff-nbqa
+      description: A Python linter for Jupyter notebooks
+      files: [jupyter]
+      commands:
+        - name: lint
+          run: nbqa 'ruff check --cache-dir=${cachedir} --quiet' ${target}
+          output: pass_fail
+          batch: true
+          success_codes: [0, 1]
+      runtime: python
+      package: ruff
+      extra_packages: [nbqa==1.8.5]
+      direct_configs: [ruff.toml]
+      affects_cache:
+        - pyproject.toml
+        - setup.cfg
+        - tox.ini
+      known_good_version: 0.14.3
+      suggest_if: never
+      version_command:
+        parse_regex: ruff ${semver}
+        run: ruff --version

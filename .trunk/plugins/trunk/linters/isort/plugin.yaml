@@ -1,0 +1,34 @@
+version: 0.1
+tools:
+  definitions:
+    - name: isort
+      runtime: python
+      package: isort
+      shims: [isort]
+      known_good_version: 7.0.0
+lint:
+  definitions:
+    - name: isort
+      files: [python]
+      description: Sorts your Python imports
+      commands:
+        - name: format
+          output: rewrite
+          run: isort -q --overwrite-in-place ${target}
+          success_codes: [0]
+          batch: true
+          in_place: true
+          formatter: true
+      tools: [isort]
+      direct_configs: [.isort.cfg]
+      suggest_if: files_present
+      affects_cache:
+        - pyproject.toml
+        - setup.cfg
+        - tox.ini
+        - .editorconfig
+      issue_url_format: https://pypi.org/project/flake8-isort/
+      known_good_version: 7.0.0
+      version_command:
+        parse_regex: ${semver}
+        run: isort --version-number

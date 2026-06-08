@@ -1,0 +1,25 @@
+version: 0.1
+tools:
+  definitions:
+    - name: golines
+      runtime: go
+      package: github.com/segmentio/golines
+      shims: [golines]
+      known_good_version: 0.13.0
+lint:
+  definitions:
+    - name: golines
+      files: [go]
+      tools: [golines]
+      description: Enforces line limits in Go
+      commands:
+        - name: format
+          output: rewrite
+          run: golines -w ${target}
+          success_codes: [0]
+          cache_results: true
+          formatter: true
+          in_place: true
+          batch: true
+      suggest_if: never
+      known_good_version: 0.13.0

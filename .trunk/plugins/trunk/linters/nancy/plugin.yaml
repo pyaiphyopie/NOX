@@ -1,0 +1,51 @@
+version: 0.1
+lint:
+  downloads:
+    - name: nancy
+      version: 1.0.41
+      downloads:
+        - os:
+            linux: linux
+            macos: darwin
+          cpu:
+            x86_64: amd64
+            arm_64: arm64
+          url: https://github.com/sonatype-nexus-community/nancy/releases/download/v${version}/nancy-v${version}-${os}-${cpu}.tar.gz
+        - os: windows
+          cpu:
+            x86_64: amd64
+            arm_64: arm64
+          url: https://github.com/sonatype-nexus-community/nancy/releases/download/v${version}/nancy-v${version}-windows-${cpu}.zip
+  definitions:
+    - name: nancy
+      files: [go-lockfile]
+      download: nancy
+      runtime: go
+      description: Checks for vulnerabilities in your Go dependencies
+      commands:
+        - output: sarif
+          run: sh ${plugin}/linters/nancy/run.sh
+          success_codes: [0, 1, 2]
+          target: .
+          read_output_from: stdout
+          is_security: true
+          parser:
+            runtime: python
+            run: python3 ${plugin}/linters/nancy/parse.py
+      version_command:
+        parse_regex: nancy version ${semver}
+        run: nancy --version
+      suggest_if: never
+      environment:
+        - name: PATH
+          list: ["${runtime}", "${linter}", "${env.PATH}"]
+        - name: OSS_INDEX_USERNAME
+          value: ${env.OSS_INDEX_USERNAME}
+          optional: true
+        - name: OSS_INDEX_TOKEN
+          value: ${env.OSS_INDEX_TOKEN}
+          optional: true
+        - name: USER
+          value: ${env.USER}
+          optional: true
+      known_good_version: 1.0.41
