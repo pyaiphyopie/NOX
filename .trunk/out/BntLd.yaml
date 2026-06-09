@@ -1,0 +1,14 @@
+trunk_cli_version: 1.25.0
+title: Exception occurred while executing trunk-upgrade-available
+report:
+  - message: Unable to find binary in PATH
+    binary: bash
+    PATH:
+      - C:\/bin
+      - C:\/usr/bin
+  - command: |
+      bash -c 'C:/Users/pyaip/AppData/Local/trunk/cli/trunk-1.25.0-windows/trunk.exe upgrade --notify --allow-daemon-start=false' trunk-upgrade-available
+    stdin_path: (none)
+    run_from: C:\Users\pyaip\OneDrive\NOX/
+    timeout: 0
+    rerun: (cd C:\Users\pyaip\OneDrive\NOX/; env -i 'Path=C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\CMake\bin;C:\Users\pyaip\AppData\Local\hermes\hermes-agent\venv\Scripts;C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\dotnet\;C:\Users\pyaip\.local\bin;C:\Users\pyaip\AppData\Local\Microsoft\WindowsApps;C:\Users\pyaip\AppData\Local\Python\bin;C:\Users\pyaip\AppData\Local\Programs\Ghost;C:\Users\pyaip\AppData\Roaming\Testcontainers Desktop\;C:\Users\pyaip\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pyaip\AppData\Roaming\npm;C:\Users\pyaip\flutter\bin;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Packages\GitHub.Copilot_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\pyaip\AppData\Local\GitHubDesktop\bin;C:\U;C:\Users\pyaip\AppData\Local\Microsoft\WinGet\Links;' 'PATH=C:\/bin;C:\/usr/bin' 'HOMEPATH=\Users\pyaip' 'SystemRoot=C:\WINDOWS' 'windir=C:\WINDOWS' 'APPDATA=C:\Users\pyaip\AppData\Roaming' 'LOCALAPPDATA=C:\Users\pyaip\AppData\Local' 'USERPROFILE=C:\Users\pyaip' 'TMP=C:\Users\pyaip\AppData\Local\Temp' 'TEMP=C:\Users\pyaip\AppData\Local\Temp' bash -c 'C:/Users/pyaip/AppData/Local/trunk/cli/trunk-1.25.0-windows/trunk.exe upgrade --notify --allow-daemon-start=false' trunk-upgrade-available)
