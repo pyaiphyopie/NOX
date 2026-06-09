@@ -435,3 +435,75 @@
 [2026-06-09 07:41:43.473] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
 [2026-06-09 07:41:43.485] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
 [2026-06-09 07:41:43.489] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:41:47.318] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:41:47.318] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:41:47.326] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:41:47.326] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:41:47.332] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:41:47.336] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:06.949] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:06.949] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:06.958] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:06.958] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:06.962] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:06.965] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:07.566] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:07.566] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:07.811] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:07.811] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:07.813] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:07.816] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:09.533] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:09.533] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:09.638] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:09.638] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:09.641] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:09.644] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:15.840] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:15.840] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:15.865] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:15.865] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:15.870] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:15.873] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:18.094] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:18.094] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:18.098] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:18.104] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:18.107] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:18.110] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:30.724] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:30.724] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:30.732] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:30.732] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:30.739] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:30.743] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:38.852] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:38.852] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:38.858] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:38.858] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:38.863] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:38.867] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:41.575] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:41.575] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:41.584] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:41.585] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:41.587] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:41.590] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:54.545] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:42:54.546] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:42:54.549] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:54.549] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:54.552] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:42:54.555] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:10.460] [global] [info] [git_source_control.cc:517] Computing merge base between 33c28ff1c50db11d0d4aaf07ec83749cdea39f78 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:43:10.460] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:43:10.464] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:10.464] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:10.467] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:10.473] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:17.034] [global] [info] [git_source_control.cc:517] Computing merge base between d00d4a89aff66a8f23cfff1fd0fe0b57125ab002 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 07:43:17.078] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 07:43:17.082] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:17.082] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:17.087] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 07:43:17.091] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
