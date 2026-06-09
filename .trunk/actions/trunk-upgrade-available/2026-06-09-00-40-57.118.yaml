@@ -1,0 +1,15 @@
+action_id: trunk-upgrade-available
+date: 2026-06-09 00:40:57
+run: trunk upgrade --notify --allow-daemon-start=false
+run_from: ""
+trigger: schedule 1h
+result:
+  exit_code: 1
+  out: ""
+  err: Exception occurred while executing 'trunk-upgrade-available'. See .trunk\out\Kg6aD.yaml for details.
+  error_path: C:\Users\pyaip\OneDrive\NOX\.trunk\out\Kg6aD.yaml
+timestamp: 1780965657
+full_timestamp:
+  nanos: 118437000
+  seconds: 1780965657
+trunk_version: 1.25.0
