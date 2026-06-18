@@ -1,5 +1,5 @@
 # ---- Stage 1: Build ----
-FROM node:22-alpine AS builder
+FROM node:22.23.0-alpine AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # ---- Stage 2: Production ----
-FROM nginx:1.27-alpine AS production
+FROM nginx:1.27.21-alpine AS production
 
 # Security: run as non-root
 RUN addgroup -g 1001 -S nox && \
