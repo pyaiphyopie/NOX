@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "NOX_PIO",
+			"path": "../../../Documents/PlatformIO/Projects/NOX_PIO"
+		}
+	],
+	"settings": {
+		"gitlens.debug": true,
+		"eslint.debug": true,
+		"importCost.debug": true,
+		"liveServer.settings.multiRootWorkspaceName": "NOX"
+	}
+}

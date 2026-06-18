@@ -27,3 +27,115 @@
 [2026-06-09 12:01:12.629] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
 [2026-06-09 12:01:12.632] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
 [2026-06-09 12:01:12.635] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:17.632] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:01:17.633] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:01:17.775] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:17.775] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:17.779] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:17.783] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:21.040] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:01:21.131] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:01:21.148] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:21.148] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:21.152] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:21.165] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:22.031] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:01:22.032] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:01:22.093] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:22.093] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:22.096] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:22.100] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:29.458] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:01:29.458] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:01:29.604] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:29.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:29.607] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:29.610] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:55.889] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:01:55.889] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:01:55.893] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:55.893] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:55.898] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:01:55.901] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:08.564] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:02:08.564] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:02:08.622] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:08.622] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:08.627] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:08.629] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:27.749] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:02:27.750] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:02:27.759] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:27.760] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:27.763] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:27.767] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:29.207] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:02:29.208] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:02:29.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:29.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:29.234] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:02:29.241] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:05:38.471] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:05:38.471] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:05:38.485] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:05:38.485] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:05:38.488] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:05:38.501] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:10.961] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:06:10.961] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:06:10.971] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:10.972] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:10.975] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:10.980] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:38.600] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:06:38.601] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:06:38.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:38.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:38.608] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:06:38.614] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:07:16.227] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-06-09 12:07:16.227] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-06-09 12:07:16.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:07:16.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:07:16.238] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:07:16.247] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
+[2026-06-09 12:10:57.162] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
+[2026-06-09 12:10:57.175] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
+[2026-06-09 12:10:57.179] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
+[2026-06-09 12:10:57.221] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 12:10:57.221] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.097] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
+[2026-06-09 13:10:57.110] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
+[2026-06-09 13:10:57.114] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
+[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 13:10:57.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.103] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
+[2026-06-09 14:10:57.112] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
+[2026-06-09 14:10:57.114] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
+[2026-06-09 14:10:57.137] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
+[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
+[2026-06-09 15:07:16.823] [global] [info] [server.cc:96] Shutting down daemon due to inactivity
+[2026-06-09 15:07:16.840] [global] [info] [server.cc:136] Shutdown daemon
+[2026-06-09 15:07:18.154] [global] [info] [windows_monitor_impl.cc:182] Received cancel signal for monitor
+[2026-06-09 15:07:18.155] [global] [info] [windows_monitor_impl.cc:90] Closing monitor worker
+[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:224] Monitor shutdown complete. Closing handles
+[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:232] Closed monitor canceller handle
+[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:237] Closed monitor overlap handle
+[2026-06-09 15:07:18.596] [global] [info] [windows_monitor_impl.cc:242] Closed monitor workspace handle
+[2026-06-09 15:07:19.439] [global] [warning] [windows_monitor_impl.cc:226] Unable to join thread on monitor shutdown
+[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:232] Closed monitor canceller handle
+[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:237] Closed monitor overlap handle
+[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:242] Closed monitor workspace handle
+[2026-06-09 15:07:19.931] [global] [info] [service.cc:162] Writing notification state to file
