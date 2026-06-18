@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nox_flutter_blueprint/app.dart';
+import '../../lib/app.dart';
 
 void main() {
   testWidgets('home screen renders and navigates to auth', (WidgetTester tester) async {

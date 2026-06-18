@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../shared/app_theme.dart';
-import '../home/home_screen.dart';
-import '../home/event_model.dart';
-import '../tickets/ticket_purchase_screen.dart';
-import '../auth/auth_screen.dart';
-import '../settings/settings_screen.dart';
+import 'src/shared/app_theme.dart';
+import 'src/features/home/home_screen.dart';
+import 'src/features/home/event_model.dart';
+import 'src/features/tickets/ticket_purchase_screen.dart';
+import 'src/features/auth/auth_screen.dart';
+import 'src/features/settings/settings_screen.dart';
 
 class NoxBlueprintApp extends StatelessWidget {
   const NoxBlueprintApp({super.key});

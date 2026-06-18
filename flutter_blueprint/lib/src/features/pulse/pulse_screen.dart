@@ -61,7 +61,7 @@ class PulseScreen extends StatelessWidget {
                 Text(
                   '2,400+ people are out tonight across Yangon.',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontSize: 15,
                   ),
                 ),
@@ -93,7 +93,7 @@ class PulseScreen extends StatelessWidget {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF00AEEF).withOpacity(0.15),
+                      color: const Color(0xFF00AEEF).withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(
@@ -114,7 +114,7 @@ class PulseScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        Text(
+                        const Text(
                           'Trending tonight',
                           style: TextStyle(color: Colors.white38, fontSize: 12),
                         ),
