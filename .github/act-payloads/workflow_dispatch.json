@@ -1,0 +1,13 @@
+{
+  "repository": {
+    "name": "your-repo",
+    "owner": {
+      "login": "your-username"
+    },
+    "full_name": "your-username/your-repo"
+  },
+  "sender": {
+    "login": "test-user"
+  },
+  "inputs": {}
+}
