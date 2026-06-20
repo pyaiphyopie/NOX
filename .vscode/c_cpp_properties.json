@@ -1,18 +1,175 @@
 {
-  "configurations": [
-    {
-      "name": "windows-gcc-x64",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "gcc",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
-    }
-  ],
-  "version": 4
+	"configurations": [
+		{
+			"name": "windows-gcc-x64",
+			"includePath": [
+				"${workspaceFolder}/**"
+			],
+			"compilerPath": "gcc",
+			"cStandard": "${default}",
+			"cppStandard": "${default}",
+			"intelliSenseMode": "windows-gcc-x64",
+			"compilerArgs": [
+				""
+			]
+		}
+	],
+	"version": 4,
+	"Transform": "AWS::Serverless-2016-10-31",
+	"Resources": {
+		"Api": {
+			"Type": "AWS::Serverless::Api",
+			"Properties": {
+				"Name": {
+					"Fn::Sub": [
+						"${ResourceName} From Stack ${AWS::StackName}",
+						{
+							"ResourceName": "Api"
+						}
+					]
+				},
+				"StageName": "Prod",
+				"DefinitionBody": {
+					"openapi": "3.0",
+					"info": {},
+					"paths": {
+						"/": {
+							"get": {
+								"responses": {}
+							}
+						}
+					}
+				},
+				"EndpointConfiguration": "REGIONAL",
+				"TracingEnabled": true
+			}
+		},
+		"UserPoolClient": {
+			"Type": "AWS::Cognito::UserPoolClient"
+		},
+		"Table": {
+			"Type": "AWS::DynamoDB::Table",
+			"Properties": {
+				"AttributeDefinitions": [
+					{
+						"AttributeName": "id",
+						"AttributeType": "S"
+					}
+				],
+				"BillingMode": "PAY_PER_REQUEST",
+				"KeySchema": [
+					{
+						"AttributeName": "id",
+						"KeyType": "HASH"
+					}
+				],
+				"StreamSpecification": {
+					"StreamViewType": "NEW_AND_OLD_IMAGES"
+				}
+			}
+		},
+		"EventRule": {
+			"Type": "AWS::Events::Rule",
+			"Properties": {
+				"EventPattern": {
+					"source": [
+						"aws.health"
+					]
+				}
+			}
+		},
+		"Schedule": {
+			"Type": "AWS::Scheduler::Schedule",
+			"Properties": {
+				"ScheduleExpression": "rate(1 minute)",
+				"FlexibleTimeWindow": {
+					"Mode": "OFF"
+				}
+			}
+		},
+		"Stream": {
+			"Type": "AWS::Kinesis::Stream",
+			"Properties": {
+				"StreamEncryption": {
+					"EncryptionType": "KMS",
+					"KeyId": "alias/aws/kinesis"
+				},
+				"StreamModeDetails": {
+					"StreamMode": "ON_DEMAND"
+				}
+			}
+		},
+		"Function": {
+			"Type": "AWS::Serverless::Function",
+			"Properties": {
+				"Description": {
+					"Fn::Sub": [
+						"Stack ${AWS::StackName} Function ${ResourceName}",
+						{
+							"ResourceName": "Function"
+						}
+					]
+				},
+				"CodeUri": "src/Function",
+				"Handler": "index.handler",
+				"Runtime": "nodejs22.x",
+				"MemorySize": 3008,
+				"Timeout": 30,
+				"Tracing": "Active"
+			}
+		},
+		"FunctionLogGroup": {
+			"Type": "AWS::Logs::LogGroup",
+			"DeletionPolicy": "Retain",
+			"Properties": {
+				"LogGroupName": {
+					"Fn::Sub": "/aws/lambda/${Function}"
+				}
+			}
+		},
+		"Layer": {
+			"Type": "AWS::Serverless::LayerVersion",
+			"Properties": {
+				"Description": {
+					"Fn::Sub": [
+						"Stack ${AWS::StackName} Layer ${ResourceName}",
+						{
+							"ResourceName": "Layer"
+						}
+					]
+				},
+				"ContentUri": "src/Layer",
+				"RetentionPolicy": "Retain"
+			}
+		}
+	},
+	"Metadata": {
+		"AWS::Composer::ExternalResources": {
+			"ExternalRDS": {
+				"Type": "externalRDS",
+				"Settings": {
+					"Port": {
+						"Ref": "ExternalRDSPort"
+					},
+					"Hostname": {
+						"Ref": "ExternalRDSHostname"
+					},
+					"SecretArn": {
+						"Ref": "ExternalRDSSecretArn"
+					}
+				}
+			}
+		}
+	},
+	"Parameters": {
+		"ExternalRDSPort": {
+			"Type": "Number"
+		},
+		"ExternalRDSHostname": {
+			"Type": "String"
+		},
+		"ExternalRDSSecretArn": {
+			"Type": "String"
+		}
+	}
 }
