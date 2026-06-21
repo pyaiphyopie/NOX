@@ -2,14 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach"
-    },
-    {
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
       "name": "Launch Extension",
-      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js"
+      ],
       "preLaunchTask": "npm",
       "request": "launch",
       "type": "extensionHost"
@@ -21,8 +20,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/pyaip/.codex/worktrees/76a6/NOX",
-      "program": "c:/Users/pyaip/.codex/worktrees/76a6/NOX/build/Debug/outDebug",
+      "cwd": "c:/Users/pyaip/OneDrive/NOX",
+      "program": "c:/Users/pyaip/OneDrive/NOX/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

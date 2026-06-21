@@ -112,7 +112,7 @@ export default function NoxPrototype() {
                   </h3>
 
                   <p className="text-black/70 mt-2 text-sm">
-                    The city's underground pulse starts here.
+                    The city&apos;s underground pulse starts here.
                   </p>
                 </div>
 
@@ -312,4 +312,6 @@ export default function NoxPrototype() {
       </footer>
     </div>
   );
+}
+
 }

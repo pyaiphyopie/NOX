@@ -1,6 +1,60 @@
 [
   {
     "workflow": "ci.yml",
+    "command": "act push -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-06-08T16:23:49.943Z"
+  },
+  {
+    "workflow": "security-scan.yml",
+    "command": "act push -W .github\\workflows\\security-scan.yml",
+    "success": true,
+    "timestamp": "2026-06-08T15:18:56.809Z"
+  },
+  {
+    "workflow": "dart.yml",
+    "command": "act push -W .github\\workflows\\dart.yml",
+    "success": true,
+    "timestamp": "2026-06-08T13:56:20.371Z"
+  },
+  {
+    "workflow": "ci.yml",
+    "command": "act workflow_dispatch -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-06-08T07:06:06.114Z"
+  },
+  {
+    "workflow": "deploy.yml",
+    "command": "act workflow_dispatch -W .github\\workflows\\deploy.yml",
+    "success": true,
+    "timestamp": "2026-06-07T10:05:50.115Z"
+  },
+  {
+    "workflow": "ci.yml",
+    "command": "act workflow_dispatch -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-05-30T08:47:32.254Z"
+  },
+  {
+    "workflow": "ci.yml",
+    "command": "act push -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-05-28T14:45:34.307Z"
+  },
+  {
+    "workflow": "ci.yml",
+    "command": "act push -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-05-25T10:35:27.704Z"
+  },
+  {
+    "workflow": "ci.yml",
+    "command": "act push -W .github\\workflows\\ci.yml",
+    "success": true,
+    "timestamp": "2026-05-23T18:19:53.959Z"
+  },
+  {
+    "workflow": "ci.yml",
     "command": "act workflow_dispatch -W .github\\workflows\\ci.yml",
     "success": true,
     "timestamp": "2026-06-19T06:36:07.191Z"

@@ -17,6 +17,7 @@
     "check": "npm run format:check && npm run lint && npm test && npm run build"
   },
   "dependencies": {
+    "@vitest/coverage-v8": "^4.1.7",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1"
@@ -36,5 +37,21 @@
     "tailwindcss": "^3.4.19",
     "vite": "^8.0.14",
     "vitest": "^4.1.7"
-  }
+  },
+  "description": "Urban nightlife infrastructure prototype built with Flutter.",
+  "main": "postcss.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pyaiphyopie/NOX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pyaiphyopie/NOX/issues"
+  },
+  "homepage": "https://github.com/pyaiphyopie/NOX#readme"
 }
