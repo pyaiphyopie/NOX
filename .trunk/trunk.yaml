@@ -27,7 +27,7 @@ lint:
     - osv-scanner@2.4.0
     - oxipng@10.1.1
     - pinact@4.0.0
-    - prettier@3.9.3
+    - prettier@3.9.4
     - trufflehog@3.95.7
     - yamllint@1.38.0
 actions:
