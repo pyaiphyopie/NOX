@@ -8,7 +8,9 @@ class TicketPurchaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sold = ((event.attendance / event.capacity) * 100).round();
+    final sold = event.capacity > 0
+        ? ((event.attendance / event.capacity) * 100).round()
+        : 0;
     return Scaffold(
       backgroundColor: const Color(0xFF070707),
       appBar: AppBar(
@@ -27,6 +29,17 @@ class TicketPurchaseScreen extends StatelessWidget {
                 event.coverUrl,
                 height: 220,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  height: 220,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A1A1A),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: const Center(
+                    child: Icon(Icons.broken_image,
+                        color: Colors.white24, size: 48),
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),

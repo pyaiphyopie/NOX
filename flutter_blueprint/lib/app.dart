@@ -31,7 +31,36 @@ final GoRouter router = GoRouter(
       path: '/ticket/:id',
       builder: (context, state) {
         final id = state.pathParameters['id']!;
-        final event = mockEvents.firstWhere((e) => e.id == id);
+        final event = mockEvents.cast<Event?>().firstWhere(
+              (e) => e!.id == id,
+              orElse: () => null,
+            );
+        if (event == null) {
+          return Scaffold(
+            backgroundColor: const Color(0xFF070707),
+            appBar: AppBar(
+              title: const Text('Not Found'),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error_outline, color: Colors.white38, size: 64),
+                  const SizedBox(height: 16),
+                  const Text('Event not found',
+                      style: TextStyle(fontSize: 20, color: Colors.white54)),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () => GoRouter.of(context).go('/'),
+                    child: const Text('Back to Discover'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
         return TicketPurchaseScreen(event: event);
       },
     ),

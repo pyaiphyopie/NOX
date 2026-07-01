@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Notification from './components/Notification';
+import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 import DiscoverPage from './pages/DiscoverPage';
 import VenuesPage from './pages/VenuesPage';
@@ -30,14 +31,16 @@ export default function App() {
           <Navbar onGetApp={showGetAppNotice} />
           <Notification notice={notice} onClose={closeNotice} />
 
-          <Routes>
-            <Route path="/" element={<DiscoverPage />} />
-            <Route path="/venues" element={<VenuesPage />} />
-            <Route path="/promoters" element={<PromotersPage />} />
-            <Route path="/tickets" element={<TicketsPage />} />
-            <Route path="/event/:id" element={<EventDetailPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </Routes>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<DiscoverPage />} />
+              <Route path="/venues" element={<VenuesPage />} />
+              <Route path="/promoters" element={<PromotersPage />} />
+              <Route path="/tickets" element={<TicketsPage />} />
+              <Route path="/event/:id" element={<EventDetailPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </Routes>
+          </ErrorBoundary>
         </div>
         <Footer />
       </div>

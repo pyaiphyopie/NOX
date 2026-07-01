@@ -129,7 +129,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               delegate: SliverChildBuilderDelegate(
                 (context, i) {
                   final e = _filtered[i];
-                  final sold = ((e.attendance / e.capacity) * 100).round();
+                  final sold = e.capacity > 0
+                      ? ((e.attendance / e.capacity) * 100).round()
+                      : 0;
                   return GestureDetector(
                     onTap: () => context.go('/ticket/${e.id}'),
                     child: Container(
@@ -151,6 +153,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                               height: 180,
                               width: double.infinity,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                height: 180,
+                                color: const Color(0xFF1A1A1A),
+                                child: const Center(
+                                  child: Icon(Icons.broken_image,
+                                      color: Colors.white24, size: 48),
+                                ),
+                              ),
                             ),
                           ),
                           Padding(

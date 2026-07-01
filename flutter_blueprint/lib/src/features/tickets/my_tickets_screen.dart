@@ -35,6 +35,18 @@ class MyTicketsScreen extends StatelessWidget {
                     width: 80,
                     height: 80,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1A1A),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.broken_image,
+                            color: Colors.white24, size: 28),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
