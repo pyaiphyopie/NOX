@@ -90,6 +90,8 @@ export default function DiscoverPage() {
             ['4.8\u2605', 'Avg Rating'],
           ]}
           className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          valueClassName="text-4xl font-black text-cyan-400"
+          labelClassName="text-white/50 mt-2 text-sm"
         />
       </section>
     </>
