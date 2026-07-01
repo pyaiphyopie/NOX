@@ -1,9 +1,19 @@
 import { useMemo, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CATEGORIES, EVENTS } from '../data/events';
 import EventCard from '../components/EventCard';
 
+const PHONE_TABS = [
+  { path: '/', label: 'Discover' },
+  { path: '/tickets', label: 'Tickets' },
+  { path: '/promoters', label: 'Create' },
+  { path: '/profile', label: 'Profile' },
+];
+
 export default function DiscoverPage() {
   const [activeTag, setActiveTag] = useState('All');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const filteredEvents = useMemo(() => {
     if (activeTag === 'All') return EVENTS;
@@ -29,12 +39,18 @@ export default function DiscoverPage() {
             generation of entertainment ecosystems across emerging ASEAN cities.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <button className="bg-cyan-500 text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">
+            <button
+              className="bg-cyan-500 text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+              onClick={() => navigate('/tickets')}
+            >
               Explore Events
             </button>
-            <span className="border border-white/20 px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition cursor-pointer text-white">
+            <button
+              className="border border-white/20 px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition cursor-pointer text-white"
+              onClick={() => navigate('/promoters')}
+            >
               View Demo
-            </span>
+            </button>
           </div>
           <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
             {[
@@ -86,13 +102,18 @@ export default function DiscoverPage() {
               ))}
             </div>
             <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/80 backdrop-blur-xl flex justify-around py-4 text-xs text-white/60">
-              {['Discover', 'Tickets', 'Create', 'Profile'].map((tab) => (
-                <button
-                  key={tab}
-                  className={tab === 'Discover' ? 'text-cyan-400' : 'hover:text-cyan-300'}
+              {PHONE_TABS.map(({ path, label }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className={`no-underline ${
+                    location.pathname === path
+                      ? 'text-cyan-400'
+                      : 'text-white/60 hover:text-cyan-300'
+                  }`}
                 >
-                  {tab}
-                </button>
+                  {label}
+                </Link>
               ))}
             </div>
           </div>

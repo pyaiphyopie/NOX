@@ -53,9 +53,7 @@ NOX/
 │   ├── App.jsx              # Main application component
 │   ├── App.test.jsx         # Application tests
 │   ├── index.css            # Global styles
-│   ├── main.jsx             # Application entry point
-│   ├── NoxPrototype.jsx     # Prototype wrapper
-│   └── NoxPrototype.test.jsx # Prototype tests
+│   └── main.jsx             # Application entry point
 └── test/                     # Additional test files
 ```
 

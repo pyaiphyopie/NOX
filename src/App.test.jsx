@@ -1,5 +1,5 @@
 import { afterEach, describe, it, expect } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
@@ -17,14 +17,14 @@ function renderApp(initialRoute = '/') {
 describe('App (with React Router)', () => {
   it('renders the NOX brand and tagline on any page', () => {
     renderApp();
-    expect(screen.getByRole('heading', { name: 'NOX' })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { name: 'NOX' }).length).toBeGreaterThan(0);
     expect(screen.getByText('Own The Night')).toBeInTheDocument();
   });
 
   it('renders the Discover page at /', () => {
     renderApp('/');
-    expect(screen.getByText('Yangon Beta Launch')).toBeInTheDocument();
-    expect(screen.getByText('Explore Events')).toBeInTheDocument();
+    expect(screen.getByText(/Yangon Beta Launch/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Explore Events' })).toBeInTheDocument();
   });
 
   it('renders the Venues page at /venues', () => {
@@ -49,13 +49,25 @@ describe('App (with React Router)', () => {
   it('renders the Profile page at /profile', () => {
     renderApp('/profile');
     expect(screen.getByText('Beta Insider')).toBeInTheDocument();
-    expect(screen.getByText('Saved Venues')).toBeInTheDocument();
+    expect(screen.getAllByText('Saved Venues').length).toBeGreaterThan(0);
   });
 
   it('shows notification when Get App is clicked', () => {
     renderApp('/');
     const getApp = screen.getByRole('button', { name: 'Get App' });
-    getApp.click();
+    fireEvent.click(getApp);
     expect(screen.getByText('Beta access unlocked')).toBeInTheDocument();
+  });
+
+  it('navigates to Tickets when Explore Events is clicked on Discover', () => {
+    renderApp('/');
+    fireEvent.click(screen.getByRole('button', { name: 'Explore Events' }));
+    expect(screen.getByText('Digital Entry')).toBeInTheDocument();
+  });
+
+  it('navigates to Promoters when View Demo is clicked on Discover', () => {
+    renderApp('/');
+    fireEvent.click(screen.getByRole('button', { name: 'View Demo' }));
+    expect(screen.getByText('Promoter Console')).toBeInTheDocument();
   });
 });

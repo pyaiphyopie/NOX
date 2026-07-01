@@ -1,5 +1,7 @@
-/* Tailwind CSS v3 - Modern import method */
-@import "tailwindcss";
+/* Tailwind CSS v3 directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   color-scheme: dark;
