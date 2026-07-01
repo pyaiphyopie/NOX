@@ -41,5 +41,7 @@ var selected = [
   'xml', // also includes html
   'yaml',
 ];
-document.querySelectorAll('input[type=checkbox]').forEach(function (elem) {elem.checked = selected.includes(elem.value);});
+document.querySelectorAll('input[type=checkbox]').forEach(function (elem) {
+  elem.checked = selected.includes(elem.value);
+});
 ```
