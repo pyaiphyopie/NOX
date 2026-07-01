@@ -1,14 +1,10 @@
-import { useMemo, useState } from 'react';
-import { CATEGORIES, EVENTS } from '../data/events';
+import useFilteredEvents from '../hooks/useFilteredEvents';
+import CategoryFilter from '../components/CategoryFilter';
 import EventCard from '../components/EventCard';
+import StatGrid from '../components/StatGrid';
 
 export default function DiscoverPage() {
-  const [activeTag, setActiveTag] = useState('All');
-
-  const filteredEvents = useMemo(() => {
-    if (activeTag === 'All') return EVENTS;
-    return EVENTS.filter((e) => e.category === activeTag);
-  }, [activeTag]);
+  const { activeTag, setActiveTag, filteredEvents, categories } = useFilteredEvents();
 
   return (
     <>
@@ -36,18 +32,14 @@ export default function DiscoverPage() {
               View Demo
             </span>
           </div>
-          <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
-            {[
+          <StatGrid
+            items={[
               ['300+', 'Events Planned'],
               ['50+', 'Promoters'],
               ['20+', 'Venues'],
-            ].map(([v, l]) => (
-              <div key={l}>
-                <h3 className="text-3xl font-black text-cyan-400">{v}</h3>
-                <p className="text-sm text-white/60 mt-1">{l}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+            className="mt-12 grid grid-cols-3 gap-6 max-w-lg"
+          />
         </div>
 
         <div className="relative flex justify-center">
@@ -66,21 +58,11 @@ export default function DiscoverPage() {
                   The city&apos;s underground pulse starts here.
                 </p>
               </div>
-              <div className="flex gap-2 overflow-x-auto pb-2 text-sm">
-                {CATEGORIES.map((tag) => (
-                  <button
-                    key={tag}
-                    className={`px-4 py-2 rounded-full border whitespace-nowrap transition ${
-                      activeTag === tag
-                        ? 'bg-cyan-500 text-black border-cyan-400'
-                        : 'bg-white/5 border-white/10 hover:bg-cyan-500/20'
-                    }`}
-                    onClick={() => setActiveTag(tag)}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
+              <CategoryFilter
+                categories={categories}
+                activeTag={activeTag}
+                onTagChange={setActiveTag}
+              />
               {filteredEvents.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
@@ -100,19 +82,15 @@ export default function DiscoverPage() {
       </section>
 
       <section className="px-8 py-16 border-t border-white/10">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
+        <StatGrid
+          items={[
             ['15K+', 'Monthly Users'],
             ['500+', 'Events Hosted'],
             ['98%', 'QR Success'],
-            ['4.8★', 'Avg Rating'],
-          ].map(([v, l]) => (
-            <div key={l}>
-              <h3 className="text-4xl font-black text-cyan-400">{v}</h3>
-              <p className="text-white/50 mt-2 text-sm">{l}</p>
-            </div>
-          ))}
-        </div>
+            ['4.8\u2605', 'Avg Rating'],
+          ]}
+          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+        />
       </section>
     </>
   );

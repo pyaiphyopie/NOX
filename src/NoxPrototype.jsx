@@ -1,4 +1,8 @@
 import { useMemo, useState } from 'react';
+import CategoryFilter from './components/CategoryFilter';
+import FeatureGrid from './components/FeatureGrid';
+import SectionHeader from './components/SectionHeader';
+import StatGrid from './components/StatGrid';
 
 const events = [
   {
@@ -227,22 +231,14 @@ export default function NoxPrototype() {
               </button>
             </div>
 
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
-              <div>
-                <h3 className="text-3xl font-black text-cyan-400">300+</h3>
-                <p className="text-sm text-white/60 mt-1">Events Planned</p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-black text-cyan-400">50+</h3>
-                <p className="text-sm text-white/60 mt-1">Promoters</p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-black text-cyan-400">20+</h3>
-                <p className="text-sm text-white/60 mt-1">Venues</p>
-              </div>
-            </div>
+            <StatGrid
+              items={[
+                ['300+', 'Events Planned'],
+                ['50+', 'Promoters'],
+                ['20+', 'Venues'],
+              ]}
+              className="mt-12 grid grid-cols-3 gap-6 max-w-lg"
+            />
           </div>
 
           <div id="phone-preview" className="relative flex justify-center">
@@ -266,21 +262,11 @@ export default function NoxPrototype() {
 
                 {activeTab === 'Discover' && (
                   <>
-                    <div className="flex gap-2 overflow-x-auto pb-2 text-sm">
-                      {tags.map((tag) => (
-                        <button
-                          key={tag}
-                          className={`px-4 py-2 rounded-full border whitespace-nowrap transition ${
-                            activeTag === tag
-                              ? 'bg-cyan-500 text-black border-cyan-400'
-                              : 'bg-white/5 border-white/10 hover:bg-cyan-500/20'
-                          }`}
-                          onClick={() => setActiveTag(tag)}
-                        >
-                          {tag}
-                        </button>
-                      ))}
-                    </div>
+                    <CategoryFilter
+                      categories={tags}
+                      activeTag={activeTag}
+                      onTagChange={setActiveTag}
+                    />
 
                     {filteredEvents.map((event) => (
                       <button
@@ -392,49 +378,13 @@ export default function NoxPrototype() {
 
       <section id="venues" className="px-8 py-24 max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
-              Platform Features
-            </p>
-
-            <h2 className="text-5xl font-black max-w-2xl leading-tight">
-              Built for nightlife operators, creators, and urban audiences.
-            </h2>
-          </div>
+          <SectionHeader
+            label="Platform Features"
+            heading="Built for nightlife operators, creators, and urban audiences."
+          />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              title: 'Event Discovery',
-              desc: 'Real-time nightlife discovery optimized for mobile-first urban culture.',
-            },
-            {
-              title: 'QR Ticketing',
-              desc: 'Fraud-resistant digital entry infrastructure with instant validation.',
-            },
-            {
-              title: 'Promoter OS',
-              desc: 'Operational dashboards, analytics, attendance tracking, and guestlists.',
-            },
-            {
-              title: 'Venue Intelligence',
-              desc: 'Customer trends, forecasting, and nightlife behavioral insights.',
-            },
-          ].map((item) => (
-            <button
-              key={item.title}
-              className="text-left bg-white/5 border border-white/10 rounded-3xl p-6 hover:border-cyan-400/40 transition"
-              onClick={() => showNotice(item.title, item.desc)}
-            >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500 mb-6" />
-
-              <h3 className="text-2xl font-black mb-4">{item.title}</h3>
-
-              <p className="text-white/60 leading-relaxed">{item.desc}</p>
-            </button>
-          ))}
-        </div>
+        <FeatureGrid onFeatureClick={(item) => showNotice(item.title, item.desc)} />
       </section>
 
       <section
@@ -443,13 +393,10 @@ export default function NoxPrototype() {
       >
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
-              Organizer Dashboard
-            </p>
-
-            <h2 className="text-5xl font-black leading-tight">
-              Infrastructure for promoters and venues.
-            </h2>
+            <SectionHeader
+              label="Organizer Dashboard"
+              heading="Infrastructure for promoters and venues."
+            />
 
             <div className="mt-10 space-y-6">
               {[

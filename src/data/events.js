@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 // ── Event Data ────────────────────────────────────
 export const EVENTS = [
   {
@@ -141,5 +139,24 @@ export const PROMOTER_WORKFLOW = [
   {
     step: 'Scan entry',
     description: 'Use the NOX Scanner to validate digital tickets at the door.',
+  },
+];
+
+export const PLATFORM_FEATURES = [
+  {
+    title: 'Event Discovery',
+    desc: 'Real-time nightlife discovery optimized for mobile-first urban culture.',
+  },
+  {
+    title: 'QR Ticketing',
+    desc: 'Fraud-resistant digital entry infrastructure with instant validation.',
+  },
+  {
+    title: 'Promoter OS',
+    desc: 'Operational dashboards, analytics, attendance tracking, and guestlists.',
+  },
+  {
+    title: 'Venue Intelligence',
+    desc: 'Customer trends, forecasting, and nightlife behavioral insights.',
   },
 ];

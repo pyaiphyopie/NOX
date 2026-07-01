@@ -1,10 +1,11 @@
 import { VENUES } from '../data/events';
+import GlassCard from '../components/GlassCard';
 
 export default function ProfilePage() {
   return (
     <section className="px-8 py-24 max-w-4xl mx-auto">
-      {/* ── Profile Header ──────────────────── */}
-      <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
+      {/* -- Profile Header -- */}
+      <GlassCard className="mb-8">
         <div className="flex items-center gap-6">
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-3xl font-black">
             N
@@ -36,9 +37,9 @@ export default function ProfilePage() {
             </div>
           ))}
         </div>
-      </div>
+      </GlassCard>
 
-      {/* ── Preferences ──────────────────────── */}
+      {/* -- Preferences -- */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-6">
           <h3 className="text-xl font-black mb-4">Music Preferences</h3>

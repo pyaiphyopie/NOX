@@ -1,18 +1,20 @@
 import { DASHBOARD_METRICS, PROMOTER_WORKFLOW } from '../data/events';
+import SectionHeader from '../components/SectionHeader';
+import FeatureGrid from '../components/FeatureGrid';
+import GlassCard from '../components/GlassCard';
+import ButtonPair from '../components/ButtonPair';
 
 export default function PromotersPage() {
   return (
     <>
-      {/* ── Promoter Console ─────────────────── */}
+      {/* -- Promoter Console -- */}
       <section className="px-8 py-24 border-b border-white/10 bg-gradient-to-b from-black to-[#0A0F1F]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
-              Organizer Dashboard
-            </p>
-            <h2 className="text-5xl font-black leading-tight">
-              Infrastructure for promoters and venues.
-            </h2>
+            <SectionHeader
+              label="Organizer Dashboard"
+              heading="Infrastructure for promoters and venues."
+            />
             <div className="mt-10 space-y-4">
               {PROMOTER_WORKFLOW.map(({ step, description }) => (
                 <div
@@ -31,8 +33,8 @@ export default function PromotersPage() {
             </div>
           </div>
 
-          {/* ── Live Dashboard Card ──────────── */}
-          <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl">
+          {/* -- Live Dashboard Card -- */}
+          <GlassCard>
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h3 className="text-2xl font-black">Promoter Console</h3>
@@ -65,60 +67,23 @@ export default function PromotersPage() {
               </h4>
             </div>
 
-            <div className="mt-6 flex gap-3">
-              <button className="flex-1 bg-cyan-500 text-black py-3 rounded-xl font-bold hover:bg-cyan-400 transition">
-                Create Event
-              </button>
-              <button className="flex-1 border border-white/20 py-3 rounded-xl font-semibold hover:bg-white/10 transition">
-                View Analytics
-              </button>
+            <div className="mt-6">
+              <ButtonPair primaryLabel="Create Event" secondaryLabel="View Analytics" />
             </div>
-          </div>
+          </GlassCard>
         </div>
       </section>
 
-      {/* ── Feature Cards ─────────────────────── */}
+      {/* -- Feature Cards -- */}
       <section className="px-8 py-24 max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">
-              Platform Features
-            </p>
-            <h2 className="text-5xl font-black max-w-2xl leading-tight">
-              Built for nightlife operators, creators, and urban audiences.
-            </h2>
-          </div>
+          <SectionHeader
+            label="Platform Features"
+            heading="Built for nightlife operators, creators, and urban audiences."
+          />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              title: 'Event Discovery',
-              desc: 'Real-time nightlife discovery optimized for mobile-first urban culture.',
-            },
-            {
-              title: 'QR Ticketing',
-              desc: 'Fraud-resistant digital entry infrastructure with instant validation.',
-            },
-            {
-              title: 'Promoter OS',
-              desc: 'Operational dashboards, analytics, attendance tracking, and guestlists.',
-            },
-            {
-              title: 'Venue Intelligence',
-              desc: 'Customer trends, forecasting, and nightlife behavioral insights.',
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-white/5 border border-white/10 rounded-3xl p-6 hover:border-cyan-400/40 transition"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500 mb-6" />
-              <h3 className="text-2xl font-black mb-4">{item.title}</h3>
-              <p className="text-white/60 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
+        <FeatureGrid />
       </section>
     </>
   );

@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { EVENTS } from '../data/events';
+import SectionHeader from '../components/SectionHeader';
+import GlassCard from '../components/GlassCard';
+import QrPlaceholder from '../components/QrPlaceholder';
+import ButtonPair from '../components/ButtonPair';
 
 export default function TicketsPage() {
   const [selectedEvent, setSelectedEvent] = useState(EVENTS[0]);
 
   return (
     <section className="px-8 py-24 max-w-7xl mx-auto">
-      <div className="mb-16">
-        <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">Digital Entry</p>
-        <h2 className="text-5xl font-black leading-tight max-w-2xl">
-          QR-powered tickets. Fraud-resistant. Instant validation.
-        </h2>
-      </div>
+      <SectionHeader
+        label="Digital Entry"
+        heading="QR-powered tickets. Fraud-resistant. Instant validation."
+        className="mb-16"
+      />
 
       <div className="grid lg:grid-cols-2 gap-16">
-        {/* ── Event Selector ─────────────────── */}
+        {/* -- Event Selector -- */}
         <div>
           <h3 className="text-xl font-semibold mb-6 text-white/70">
             Select an event to preview your ticket
@@ -43,8 +46,8 @@ export default function TicketsPage() {
           </div>
         </div>
 
-        {/* ── Ticket Preview ─────────────────── */}
-        <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl">
+        {/* -- Ticket Preview -- */}
+        <GlassCard>
           <div className="flex justify-between items-center mb-8">
             <div>
               <h3 className="text-2xl font-black">Digital Ticket</h3>
@@ -85,27 +88,12 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          {/* QR Code */}
-          <div className="bg-white rounded-3xl p-8 flex items-center justify-center">
-            <div className="grid grid-cols-8 gap-1">
-              {Array.from({ length: 64 }).map((_, i) => (
-                <span
-                  key={i}
-                  className={`h-4 w-4 ${(i * 7 + i * 3) % 11 < 5 ? 'bg-black' : 'bg-white'}`}
-                />
-              ))}
-            </div>
-          </div>
+          <QrPlaceholder />
 
-          <div className="flex gap-3 mt-6">
-            <button className="flex-1 bg-cyan-500 text-black py-3 rounded-xl font-bold hover:bg-cyan-400 transition">
-              Add to Wallet
-            </button>
-            <button className="flex-1 border border-white/20 py-3 rounded-xl font-semibold hover:bg-white/10 transition">
-              Share Ticket
-            </button>
+          <div className="mt-6">
+            <ButtonPair primaryLabel="Add to Wallet" secondaryLabel="Share Ticket" />
           </div>
-        </div>
+        </GlassCard>
       </div>
     </section>
   );
