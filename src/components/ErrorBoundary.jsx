@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export default class ErrorBoundary extends Component {
+class ErrorBoundaryInner extends Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -11,8 +11,16 @@ export default class ErrorBoundary extends Component {
     return { hasError: true, error };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (state.hasError && props.currentPath !== state.errorPath) {
+      return { hasError: false, error: null, errorPath: null };
+    }
+    return null;
+  }
+
   componentDidCatch(error, errorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
+    this.setState({ errorPath: this.props.currentPath });
   }
 
   render() {
@@ -29,7 +37,7 @@ export default class ErrorBoundary extends Component {
           <Link
             to="/"
             className="inline-block bg-cyan-500 text-black px-8 py-3 rounded-2xl font-bold hover:bg-cyan-400 transition no-underline"
-            onClick={() => this.setState({ hasError: false, error: null })}
+            onClick={() => this.setState({ hasError: false, error: null, errorPath: null })}
           >
             Back to Discover
           </Link>
@@ -39,4 +47,11 @@ export default class ErrorBoundary extends Component {
 
     return this.props.children;
   }
+}
+
+export default function ErrorBoundary({ children }) {
+  const location = useLocation();
+  return (
+    <ErrorBoundaryInner currentPath={location.pathname}>{children}</ErrorBoundaryInner>
+  );
 }
