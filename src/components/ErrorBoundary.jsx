@@ -12,7 +12,7 @@ class ErrorBoundaryInner extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (state.hasError && props.currentPath !== state.errorPath) {
+    if (state.hasError && state.errorPath && props.currentPath !== state.errorPath) {
       return { hasError: false, error: null, errorPath: null };
     }
     return null;
