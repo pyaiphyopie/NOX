@@ -36,6 +36,6 @@ This skill is for workspace-scoped code error remediation. Use it when the proje
 
 ## Suggested prompts
 - "Fix code errors in this workspace and rerun the build."
-- "Resolve the compile error in `nox_figma_clickable_prototype_spec_react.jsx`."
+- "Resolve the compile error in `src/App.jsx`."
 - "Diagnose the runtime exception and update the code."
 - "Repair failing tests and confirm the workspace build passes."

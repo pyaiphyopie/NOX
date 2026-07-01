@@ -17,7 +17,6 @@
     "check": "npm run format:check && npm run lint && npm test && npm run build"
   },
   "dependencies": {
-    "@vitest/coverage-v8": "^4.1.7",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1"
@@ -26,6 +25,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "^6.0.2",
+    "@vitest/coverage-v8": "^4.1.7",
     "autoprefixer": "^10.5.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.5",
@@ -38,8 +38,8 @@
     "vite": "^8.0.14",
     "vitest": "^4.1.7"
   },
-  "description": "Urban nightlife infrastructure prototype built with Flutter.",
-  "main": "postcss.config.js",
+  "description": "Urban nightlife infrastructure web prototype built with React, Vite, Tailwind CSS, and React Router.",
+  "main": "src/main.jsx",
   "directories": {
     "test": "test"
   },

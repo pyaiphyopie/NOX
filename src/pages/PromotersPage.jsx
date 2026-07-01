@@ -14,13 +14,13 @@ export default function PromotersPage() {
               Infrastructure for promoters and venues.
             </h2>
             <div className="mt-10 space-y-4">
-              {PROMOTER_WORKFLOW.map(({ step, description }) => (
+              {PROMOTER_WORKFLOW.map(({ step, description }, index) => (
                 <div
                   key={step}
                   className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition"
                 >
                   <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold shrink-0">
-                    {PROMOTER_WORKFLOW.indexOf({ step, description }) + 1}
+                    {index + 1}
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">{step}</h4>
