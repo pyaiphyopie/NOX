@@ -1,17 +1,15 @@
 import { afterEach, describe, it, expect } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 afterEach(() => cleanup());
 
 function renderApp(initialRoute = '/') {
-  return render(
-    <MemoryRouter initialEntries={[initialRoute]}>
-      <App />
-    </MemoryRouter>,
-  );
+  // App renders its own <BrowserRouter>, which reads from window.location.
+  // Set the URL before rendering instead of wrapping in another router.
+  window.history.pushState({}, '', initialRoute);
+  return render(<App />);
 }
 
 describe('App (with React Router)', () => {
