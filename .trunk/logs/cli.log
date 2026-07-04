@@ -20,3 +20,4 @@ report:
   - "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:55522: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.\r\n -- 10061)"
 [06-09 05:10:59] [login.cc:52] GetUserRequest failed with status 16: No session provided 
 [07-04 14:44:57] [client.cc:330] prettier - .trunk\trunk.yaml
+[07-04 15:42:10] [login.cc:52] GetUserRequest failed with status 16: Invalid session 

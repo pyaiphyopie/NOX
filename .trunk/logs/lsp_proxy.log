@@ -26,3 +26,6 @@
 [06-09 04:10:50] [client.cc:19] GRPC Failed (error code UNAVAILABLE): failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:64526: WSAGetOverlappedResult: Connection refused (No connection could be made because the target machine actively refused it.
  -- 10061)
 [06-09 04:11:04] [login.cc:52] GetUserRequest failed with status 16: No session provided 
+[07-04 14:45:31] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
+[07-04 15:22:18] [login.cc:52] GetUserRequest failed with status 14: errors resolving api.trunk.io:8443: [field:hostname lookup error:address lookup failed for api.trunk.io:8443: DNS query cancelled] 
+[07-04 17:52:06] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
