@@ -1,141 +1,69 @@
-[2026-06-09 11:37:55.601] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 11:37:55.691] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 11:37:55.691] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 11:37:55.694] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 11:37:55.698] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:53.464] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:00:53.467] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:00:53.475] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:53.475] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:53.479] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:53.483] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:55.039] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:00:55.040] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:00:55.046] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:55.046] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:55.049] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:55.055] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:57.454] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:00:57.455] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:00:57.459] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:57.459] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:57.462] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:00:57.465] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:12.615] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:12.616] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:12.629] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:12.629] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:12.632] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:12.635] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:17.632] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:17.633] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:17.775] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:17.775] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:17.779] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:17.783] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:21.040] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:21.131] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:21.148] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:21.148] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:21.152] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:21.165] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:22.031] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:22.032] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:22.093] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:22.093] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:22.096] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:22.100] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:29.458] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:29.458] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:29.604] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:29.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:29.607] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:29.610] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:55.889] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:01:55.889] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:01:55.893] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:55.893] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:55.898] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:01:55.901] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:08.564] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:02:08.564] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:02:08.622] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:08.622] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:08.627] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:08.629] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:27.749] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:02:27.750] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:02:27.759] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:27.760] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:27.763] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:27.767] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:29.207] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:02:29.208] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:02:29.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:29.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:29.234] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:02:29.241] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:05:38.471] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:05:38.471] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:05:38.485] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:05:38.485] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:05:38.488] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:05:38.501] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:10.961] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:06:10.961] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:06:10.971] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:10.972] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:10.975] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:10.980] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:38.600] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:06:38.601] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:06:38.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:38.605] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:38.608] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:06:38.614] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:07:16.227] [global] [info] [git_source_control.cc:517] Computing merge base between 39bafb99e07f0ed251bfebca42bb86dadeb31b43 and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-06-09 12:07:16.227] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-06-09 12:07:16.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:07:16.231] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:07:16.238] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:07:16.247] [global] [info] [app_context.cc:392] TryGetTrunkConfigPb failed
-[2026-06-09 12:10:57.162] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
-[2026-06-09 12:10:57.175] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
-[2026-06-09 12:10:57.179] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
-[2026-06-09 12:10:57.221] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 12:10:57.221] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 12:10:57.222] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.097] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
-[2026-06-09 13:10:57.110] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
-[2026-06-09 13:10:57.114] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
-[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.142] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 13:10:57.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.103] [global] [info] [runner.cc:154] Executing action trunk-upgrade-available.schedule.1h
-[2026-06-09 14:10:57.112] [global] [warning] [runtime.cc:149] 'git_bash' is not enabled but GetVersion() was called
-[2026-06-09 14:10:57.114] [global] [error] [runtime.cc:160] Prepare called on runtime that is not enabled. Will do nothing
-[2026-06-09 14:10:57.137] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.bat // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash // 3:The system cannot find the path specified.
-[2026-06-09 14:10:57.138] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\/usr/bin\bash.exe // 3:The system cannot find the path specified.
-[2026-06-09 15:07:16.823] [global] [info] [server.cc:96] Shutting down daemon due to inactivity
-[2026-06-09 15:07:16.840] [global] [info] [server.cc:136] Shutdown daemon
-[2026-06-09 15:07:18.154] [global] [info] [windows_monitor_impl.cc:182] Received cancel signal for monitor
-[2026-06-09 15:07:18.155] [global] [info] [windows_monitor_impl.cc:90] Closing monitor worker
-[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:224] Monitor shutdown complete. Closing handles
-[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:232] Closed monitor canceller handle
-[2026-06-09 15:07:18.549] [global] [info] [windows_monitor_impl.cc:237] Closed monitor overlap handle
-[2026-06-09 15:07:18.596] [global] [info] [windows_monitor_impl.cc:242] Closed monitor workspace handle
-[2026-06-09 15:07:19.439] [global] [warning] [windows_monitor_impl.cc:226] Unable to join thread on monitor shutdown
-[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:232] Closed monitor canceller handle
-[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:237] Closed monitor overlap handle
-[2026-06-09 15:07:19.439] [global] [info] [windows_monitor_impl.cc:242] Closed monitor workspace handle
-[2026-06-09 15:07:19.931] [global] [info] [service.cc:162] Writing notification state to file
+[2026-07-04 15:02:49.347] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.347] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.347] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/Scripts\python.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/Scripts\python // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/Scripts\python.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python // 3:The system cannot find the path specified.
+[2026-07-04 15:02:49.348] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:03:15.148] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:03:15.149] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python // 3:The system cannot find the path specified.
+[2026-07-04 15:03:15.149] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:04:23.965] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:04:23.966] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python // 3:The system cannot find the path specified.
+[2026-07-04 15:04:23.966] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\python.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:10.309] [global] [info] [download.cc:256] Downloading https://github.com/trufflesecurity/trufflehog/releases/download/v3.95.8/trufflehog_3.95.8_windows_amd64.tar.gz to C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802
+[2026-07-04 15:07:10.341] [global] [info] [download.cc:256] Downloading https://github.com/trufflesecurity/trufflehog/releases/download/v3.95.8/trufflehog_3.95.8_windows_amd64.tar.gz to C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802
+[2026-07-04 15:07:10.356] [global] [info] [download.cc:256] Downloading https://github.com/trufflesecurity/trufflehog/releases/download/v3.95.8/trufflehog_3.95.8_windows_amd64.tar.gz to C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802
+[2026-07-04 15:07:10.374] [global] [info] [download.cc:256] Downloading https://github.com/trufflesecurity/trufflehog/releases/download/v3.95.8/trufflehog_3.95.8_windows_amd64.tar.gz to C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802
+[2026-07-04 15:07:10.395] [global] [info] [download.cc:256] Downloading https://github.com/trufflesecurity/trufflehog/releases/download/v3.95.8/trufflehog_3.95.8_windows_amd64.tar.gz to C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802
+[2026-07-04 15:07:10.859] [global] [info] [runner.cc:106] Writing trufflehog predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\QguRs.yaml
+[2026-07-04 15:07:11.567] [global] [info] [service.cc:528] [user-agent= sid=9] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
+[2026-07-04 15:07:11.568] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=9] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
+[2026-07-04 15:07:11.571] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=9] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
+[2026-07-04 15:07:11.577] [global] [info] [service.cc:528] [user-agent= sid=12] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
+[2026-07-04 15:07:11.578] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=12] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
+[2026-07-04 15:07:11.582] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=12] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
+[2026-07-04 15:07:11.598] [global] [info] [service.cc:256] lint session ended sid=9
+[2026-07-04 15:07:11.598] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=9] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-04 15:07:11.601] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=9] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-04 15:07:11.601] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-04 15:07:11.624] [global] [info] [service.cc:256] lint session ended sid=12
+[2026-07-04 15:07:11.624] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=12] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-04 15:07:11.774] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-04 15:07:11.777] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=12] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-04 15:07:11.777] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-04 15:07:11.815] [global] [info] [cache.cc:974] [on-demand] [pinact:lint:.github\workflows\ci.yml:HEAD] running linter (cache-key:3259ec607f19f395ea4aea31b4487044)
+[2026-07-04 15:07:11.822] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-04 15:07:21.228] [global] [info] [cache.cc:1117] [on-demand] [pinact:lint:.github\workflows\ci.yml:HEAD] Linter ran in 9408ms
+[2026-07-04 15:07:21.301] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:30.956] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.957] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.958] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:30.958] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:31.449] [global] [info] [runner.cc:106] Writing prettier predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\ywg0k.yaml
+[2026-07-04 15:07:31.460] [global] [info] [cache.cc:978] [on-demand] [yamllint:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:31.517] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\yamllint\1.38.0-660682d783cf76ba864bf631359061b7/bin\yamllint.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:31.517] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\yamllint\1.38.0-660682d783cf76ba864bf631359061b7/bin\yamllint // 3:The system cannot find the path specified.
+[2026-07-04 15:07:31.518] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\yamllint\1.38.0-660682d783cf76ba864bf631359061b7/bin\yamllint.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:34.221] [global] [info] [cache.cc:1117] [on-demand] [yamllint:lint:.github\workflows\ci.yml:HEAD] Linter ran in 2712ms
+[2026-07-04 15:07:34.270] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:34.270] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:34.270] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:34.270] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-04 15:07:41.217] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.218] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.219] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.219] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-04 15:07:41.888] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:.vscode\c_cpp_properties.json... (4 files):HEAD] Linter ran in 7539ms
