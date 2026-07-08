@@ -29,3 +29,5 @@
 [07-04 14:45:31] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
 [07-04 15:22:18] [login.cc:52] GetUserRequest failed with status 14: errors resolving api.trunk.io:8443: [field:hostname lookup error:address lookup failed for api.trunk.io:8443: DNS query cancelled] 
 [07-04 17:52:06] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
+[07-04 18:22:07] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
+[07-04 19:53:38] [login.cc:52] GetUserRequest failed with status 16: Invalid session 

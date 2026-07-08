@@ -21,3 +21,46 @@ report:
 [06-09 05:10:59] [login.cc:52] GetUserRequest failed with status 16: No session provided 
 [07-04 14:44:57] [client.cc:330] prettier - .trunk\trunk.yaml
 [07-04 15:42:10] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
+[07-05 15:48:23] [login.cc:52] GetUserRequest failed with status 16: Invalid session 
+[07-05 16:48:58] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-05 17:48:38] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-05 18:50:59] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 01:49:51] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 03:49:54] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 04:49:50] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 06:49:51] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 13:49:48] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:49:51] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:55:25] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:55:29] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:57:21] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:57:25] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 14:57:35] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 15:48:26] [login.cc:52] GetUserRequest failed with status 14: errors resolving api.trunk.io:8443: [field:hostname lookup error:address lookup failed for api.trunk.io:8443: DNS query cancelled] 
+[07-06 15:49:51] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 16:49:50] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-06 17:49:49] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 06:54:24] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 07:54:21] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 08:54:21] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 09:54:22] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 10:54:21] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 11:54:33] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 12:54:22] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 13:54:21] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 14:54:34] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:01:38] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:03:48] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:10:04] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:10:05] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:10:05] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 15:50:21] [login.cc:52] GetUserRequest failed with status 14: errors resolving api.trunk.io:8443: [field:hostname lookup error:address lookup failed for api.trunk.io:8443: DNS query cancelled] 
+[07-07 15:54:22] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-07 16:54:22] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 14:51:26] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 14:51:26] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 15:01:35] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 15:03:47] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 15:10:02] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 15:10:02] [upgrade.cc:225] Error during upgrade --notify: cli: 1 linter: 0 plugin: 0 runtime: 0
+[07-08 15:48:23] [login.cc:52] GetUserRequest failed with status 16: Invalid session 

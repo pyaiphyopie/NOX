@@ -1,5 +1,0 @@
-[2026-07-04 17:53:55.937] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package-lock.json:HEAD] running linter (uncacheable)
-[2026-07-04 17:53:55.937] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package.json:HEAD] running linter (uncacheable)
-[2026-07-04 17:53:55.940] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
-[2026-07-04 17:53:55.940] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
-[2026-07-04 17:53:55.940] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
