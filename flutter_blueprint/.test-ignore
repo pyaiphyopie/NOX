@@ -1,0 +1,20 @@
+# Test File Placement Guidelines
+
+Test files should not be placed in the root directory
+This is a Flutter monorepo using Melos for package management
+
+Place tests in individual packages:
+
+- flutter_blueprint/packages/app/test/      # For app tests
+- flutter_blueprint/packages/core/test/     # For core tests  
+- flutter_blueprint/packages/features/test/ # For feature tests
+- flutter_blueprint/packages/shared/test/   # For shared tests
+
+To run tests:
+
+1. cd flutter_blueprint/packages/app
+2. flutter test
+
+Or use melos (if installed):
+
+melos run test

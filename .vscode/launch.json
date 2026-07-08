@@ -21,7 +21,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "c:/Users/pyaip/OneDrive/NOX",
-      "program": "c:/Users/pyaip/OneDrive/NOX/build/Debug/outDebug",
+      "program": "c:/Users/pyaip/OneDrive/NOX/build/Release/outRelease",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

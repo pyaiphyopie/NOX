@@ -5,6 +5,7 @@ analyzer:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gr.dart'
+    - test/**  # Exclude test directories from root analysis
   errors:
     deprecated_member_use: warning
     unused_import: warning
