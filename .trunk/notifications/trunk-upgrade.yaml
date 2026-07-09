@@ -4,11 +4,11 @@ commands:
   - run: trunk upgrade check
     title: Linters
 full_timestamp:
-  nanos: 306494000
-  seconds: 1783556163
+  nanos: 589334000
+  seconds: 1783559758
 id: trunk-upgrade
 message: " 1 linter upgrade\n"
 priority: low
 rendered: "\x1b[90mRun \x1b[0m\x1b[96mtrunk upgrade\x1b[0m\x1b[90m to upgrade \x1b[0m\x1b[90m1 linter\n\x1b[0m"
-timestamp: 1783556163
+timestamp: 1783559758
 title: Upgrade Available

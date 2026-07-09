@@ -1,80 +1,489 @@
-[2026-07-09 07:38:05.037] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:05.044] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:05.044] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:06.020] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
-[2026-07-09 07:38:06.039] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=201] RX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *)
-[2026-07-09 07:38:06.081] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=201] TX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *) status=OK
-[2026-07-09 07:38:06.116] [global] [info] [service.cc:528] [user-agent= sid=201] RX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *)
-[2026-07-09 07:38:06.203] [global] [info] [service.cc:528] [user-agent= sid=201] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
-[2026-07-09 07:38:06.203] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=201] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
-[2026-07-09 07:38:06.207] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=201] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
-[2026-07-09 07:38:06.215] [global] [info] [service.cc:256] lint session ended sid=201
-[2026-07-09 07:38:06.215] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=201] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:06.219] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=201] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:06.219] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:06.288] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:14.483] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *)
-[2026-07-09 07:38:14.717] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:14.719] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:14.719] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:14.956] [global] [info] [service.cc:227] [user-agent=lsp-proxy sid=n/a] lint session created sid=202 with the following options:
+[2026-07-09 07:50:19.269] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:19.269] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.053] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\trufflehog\3.95.8-453039f6cc5b041c3fa9fe6c1d72a802/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.054] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.054] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.054] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:28.453] [global] [info] [cache.cc:1117] [on-demand] [trufflehog:lint:.vscode\launch.json... (8 files):upstream] Linter ran in 24223ms
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.env.example:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\NOX.code-workspace:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\.test-ignore:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.531] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.532] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.532] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.532] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.532] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\index.html:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.532] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\index.css:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:28.582] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:29.555] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.env.example... (22 files):HEAD] Linter ran in 972ms
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:upstream] running linter (uncacheable)
+[2026-07-09 07:50:29.688] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:30.667] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.vscode\launch.json... (8 files):upstream] Linter ran in 979ms
+[2026-07-09 07:50:30.733] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.env.example:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\NOX.code-workspace:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\.test-ignore:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\index.html:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\index.css:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:30.734] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:31.302] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.env.example... (22 files):HEAD] Linter ran in 567ms
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:upstream] running linter (uncacheable)
+[2026-07-09 07:50:31.448] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:33.091] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.091] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.091] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.091] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.091] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.092] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.092] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.092] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:50:33.092] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:34.050] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.vscode\launch.json... (8 files):upstream] Linter ran in 2601ms
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.env.example:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\NOX.code-workspace:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.119] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\.test-ignore:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\index.html:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\index.css:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.120] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:34.632] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\src\App.jsx... (2 files):HEAD] Linter ran in 15292ms
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\launch.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\settings.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:.vscode\tasks.json:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\analysis_options.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\integration_test\app_test.dart:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.lock:upstream] running linter (uncacheable)
+[2026-07-09 07:50:34.690] [global] [info] [cache.cc:978] [on-demand] [git-diff-check:lint:flutter_blueprint\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:50:35.003] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.env.example... (22 files):HEAD] Linter ran in 882ms
+[2026-07-09 07:50:35.140] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:35.140] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:35.140] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:35.140] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:35.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:35.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:50:35.143] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:50:36.560] [global] [info] [cache.cc:1117] [on-demand] [git-diff-check:lint:.vscode\launch.json... (8 files):upstream] Linter ran in 1869ms
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package-lock.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.587] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:50:36.589] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:50:36.589] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:50:36.589] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:51:55.587] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:51:55.589] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:52:02.026] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:52:02.029] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:52:30.523] [global] [info] [cache.cc:1117] [on-demand] [checkov:lint:.vscode\c_cpp_properties.json... (6 files):HEAD] Linter ran in 113935ms
+[2026-07-09 07:52:30.533] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\launch.json:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.533] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\settings.json:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.534] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\tasks.json:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.535] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:52:30.536] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:52:30.536] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:52:30.782] [global] [info] [cache.cc:1117] [on-demand] [checkov:lint:.github\workflows\ci.yml... (4 files):HEAD] Linter ran in 115641ms
+[2026-07-09 07:52:30.792] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\analysis_options.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.793] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.793] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\pubspec.yaml:upstream] running linter (uncacheable)
+[2026-07-09 07:52:30.800] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:52:30.800] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:52:30.801] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:14.096] [global] [info] [cache.cc:1117] [on-demand] [checkov:lint:.vscode\launch.json... (3 files):upstream] Linter ran in 43561ms
+[2026-07-09 07:53:14.125] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.env.example:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.126] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\NOX.code-workspace:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.127] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\ci.yml:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.128] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\c_cpp_properties.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.129] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.130] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.131] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.132] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\.test-ignore:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.133] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.134] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.135] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.136] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.137] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.138] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.139] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\index.html:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.139] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package-lock.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.140] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.141] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\postcss.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.142] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\App.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.144] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\index.css:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.145] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\main.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.146] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\tailwind.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.147] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\vite.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:14.232] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:14.232] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:14.232] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:14.232] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:15.074] [global] [info] [cache.cc:1117] [on-demand] [checkov:lint:flutter_blueprint\analysis_options.yaml... (3 files):upstream] Linter ran in 44278ms
+[2026-07-09 07:53:15.115] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:15.115] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:15.116] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:15.116] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:15.116] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.186] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:28.187] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:29.759] [global] [info] [runner.cc:106] Writing prettier predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\oCYig.yaml
+[2026-07-09 07:53:29.774] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:upstream] already cached, not running linter
+[2026-07-09 07:53:29.775] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:upstream] already cached, not running linter
+[2026-07-09 07:53:29.776] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:upstream] already cached, not running linter
+[2026-07-09 07:53:29.777] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:29.778] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:upstream] already cached, not running linter
+[2026-07-09 07:53:29.779] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:29.780] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:upstream] already cached, not running linter
+[2026-07-09 07:53:29.781] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:29.806] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:29.806] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:29.806] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:29.951] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:.vscode\c_cpp_properties.json... (5 files):HEAD] Linter ran in 14634ms
+[2026-07-09 07:53:30.016] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:30.016] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:44.661] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:44.662] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.244] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\postcss.config.js... (3 files):HEAD] Linter ran in 15360ms
+[2026-07-09 07:53:45.302] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.env.example:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.303] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\NOX.code-workspace:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.304] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\ci.yml:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.305] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\c_cpp_properties.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.306] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.306] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.307] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.308] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\.test-ignore:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.308] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.309] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.310] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.310] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.311] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.312] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.313] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\index.html:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.314] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package-lock.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.314] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package.json:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.315] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\postcss.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.316] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\App.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.316] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\index.css:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.317] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\main.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.318] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\tailwind.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.319] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\vite.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:53:45.375] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:45.375] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:45.376] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:45.376] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.512] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:45.513] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:46.894] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\src\App.jsx... (2 files):HEAD] Linter ran in 16779ms
+[2026-07-09 07:53:46.990] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:46.990] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:46.990] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:46.990] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:46.990] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:58.573] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.573] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.573] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.573] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.573] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.574] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.574] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.574] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:58.574] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.289] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.289] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.289] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.289] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:53:59.295] [global] [info] [runner.cc:106] Writing prettier predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\8A4jW.yaml
+[2026-07-09 07:53:59.311] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:upstream] already cached, not running linter
+[2026-07-09 07:53:59.312] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:upstream] already cached, not running linter
+[2026-07-09 07:53:59.313] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:upstream] already cached, not running linter
+[2026-07-09 07:53:59.313] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:59.314] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:upstream] already cached, not running linter
+[2026-07-09 07:53:59.315] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:59.315] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:upstream] already cached, not running linter
+[2026-07-09 07:53:59.316] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:53:59.341] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:59.342] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:59.342] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:59.718] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:.vscode\c_cpp_properties.json... (5 files):HEAD] Linter ran in 12613ms
+[2026-07-09 07:53:59.768] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:53:59.768] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:14.200] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.201] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:14.539] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\postcss.config.js... (3 files):HEAD] Linter ran in 15142ms
+[2026-07-09 07:54:14.596] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.env.example:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.597] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\NOX.code-workspace:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.598] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.github\workflows\ci.yml:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.598] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\c_cpp_properties.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.599] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.600] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.601] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.601] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\.test-ignore:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.602] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.603] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.603] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\lib\src\logger.dart:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.604] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.605] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.606] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.606] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\index.html:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.607] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package-lock.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.607] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\package.json:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.608] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\postcss.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.609] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\App.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.609] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\index.css:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.610] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\src\main.jsx:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.611] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\tailwind.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.611] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:prototype\vite.config.js:HEAD] already cached, not running linter
+[2026-07-09 07:54:14.665] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:14.665] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:14.665] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:14.665] [global] [info] [cache.cc:978] [on-demand] [prettier:format:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.683] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.684] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.684] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:15.684] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:16.332] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\src\App.jsx... (2 files):HEAD] Linter ran in 16441ms
+[2026-07-09 07:54:16.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:16.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:16.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:16.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:16.404] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:30.720] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.720] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.720] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.720] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.720] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.721] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.721] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.721] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:30.721] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.005] [global] [info] [runner.cc:106] Writing prettier predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\Nw4kv.yaml
+[2026-07-09 07:54:31.023] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\launch.json:upstream] already cached, not running linter
+[2026-07-09 07:54:31.024] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\settings.json:upstream] already cached, not running linter
+[2026-07-09 07:54:31.024] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:.vscode\tasks.json:upstream] already cached, not running linter
+[2026-07-09 07:54:31.025] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\analysis_options.yaml:upstream] already cached, not running linter
+[2026-07-09 07:54:31.026] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\integration_test\app_test.dart:upstream] already cached, not running linter
+[2026-07-09 07:54:31.027] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\packages\core\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:54:31.027] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.lock:upstream] already cached, not running linter
+[2026-07-09 07:54:31.028] [global] [info] [cache.cc:934] [on-demand] [trufflehog:lint:flutter_blueprint\pubspec.yaml:upstream] already cached, not running linter
+[2026-07-09 07:54:31.078] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\postcss.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:31.078] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\tailwind.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:31.078] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\vite.config.js:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:31.722] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:33.362] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:.vscode\c_cpp_properties.json... (5 files):HEAD] Linter ran in 16784ms
+[2026-07-09 07:54:33.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\App.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:33.403] [global] [info] [cache.cc:978] [on-demand] [prettier:format:prototype\src\main.jsx:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:46.112] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.113] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.114] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.114] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:54:46.114] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:48.254] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\postcss.config.js... (3 files):HEAD] Linter ran in 17089ms
+[2026-07-09 07:54:48.288] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.github\workflows\ci.yml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:48.288] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\analysis_options.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:48.288] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\packages\core\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:48.288] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:flutter_blueprint\pubspec.yaml:HEAD] running linter (uncacheable)
+[2026-07-09 07:54:48.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:54:48.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:54:48.290] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:54:48.310] [global] [info] [runner.cc:106] Writing prettier predecessor error to C:\Users\pyaip\OneDrive\NOX\.trunk\out\KWAmW.yaml
+[2026-07-09 07:54:48.495] [global] [info] [service.cc:528] [user-agent= sid=209] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
+[2026-07-09 07:54:48.497] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=209] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
+[2026-07-09 07:54:48.503] [global] [info] [runner.cc:1128] Git-ignored path: .trunk\configs\.yamllint.yaml
+[2026-07-09 07:54:48.507] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=209] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
+[2026-07-09 07:54:48.803] [global] [info] [service.cc:256] lint session ended sid=209
+[2026-07-09 07:54:48.803] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=209] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:54:48.806] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=209] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:54:48.806] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:54:48.896] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:03.616] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:03.618] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:12.666] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *)
+[2026-07-09 07:55:13.156] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:13.161] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:13.176] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:13.178] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:13.178] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:14.048] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:14.051] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:14.352] [global] [info] [service.cc:227] [user-agent=lsp-proxy sid=n/a] lint session created sid=216 with the following options:
 cache_enabled: true, num_jobs: 2, session_type: 4, client_id: lsp-proxy, scope: 1
-[2026-07-09 07:38:15.160] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *) status=OK
-[2026-07-09 07:38:15.161] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *)
-[2026-07-09 07:38:15.285] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:15.288] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:15.288] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:15.691] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
-[2026-07-09 07:38:15.701] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=202] RX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *)
-[2026-07-09 07:38:15.706] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=202] TX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *) status=OK
-[2026-07-09 07:38:15.707] [global] [info] [service.cc:528] [user-agent= sid=202] RX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *)
-[2026-07-09 07:38:15.708] [global] [info] [service.cc:528] [user-agent= sid=202] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
-[2026-07-09 07:38:15.708] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=202] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
-[2026-07-09 07:38:15.711] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=202] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
-[2026-07-09 07:38:15.716] [global] [info] [service.cc:256] lint session ended sid=202
-[2026-07-09 07:38:15.717] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=202] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:15.719] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=202] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:15.719] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:15.772] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:17.840] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *)
-[2026-07-09 07:38:18.106] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:18.109] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:18.109] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:18.589] [global] [info] [service.cc:227] [user-agent=lsp-proxy sid=n/a] lint session created sid=203 with the following options:
+[2026-07-09 07:55:14.427] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *) status=OK
+[2026-07-09 07:55:14.429] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *)
+[2026-07-09 07:55:14.588] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *)
+[2026-07-09 07:55:15.426] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:15.429] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:15.429] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:16.035] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:16.040] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:16.041] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:16.734] [global] [info] [service.cc:227] [user-agent=lsp-proxy sid=n/a] lint session created sid=217 with the following options:
 cache_enabled: true, num_jobs: 2, session_type: 4, client_id: lsp-proxy, scope: 1
-[2026-07-09 07:38:18.808] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *) status=OK
-[2026-07-09 07:38:18.809] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *)
-[2026-07-09 07:38:18.977] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:18.979] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:18.979] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:19.301] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *)
-[2026-07-09 07:38:19.986] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
-[2026-07-09 07:38:20.002] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:20.002] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=203] RX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *)
-[2026-07-09 07:38:20.006] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:20.006] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:20.012] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=203] TX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *) status=OK
-[2026-07-09 07:38:20.537] [global] [info] [service.cc:227] [user-agent=lsp-proxy sid=n/a] lint session created sid=204 with the following options:
-cache_enabled: true, num_jobs: 2, session_type: 4, client_id: lsp-proxy, scope: 1
-[2026-07-09 07:38:20.539] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *) status=OK
-[2026-07-09 07:38:20.541] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *)
-[2026-07-09 07:38:20.594] [global] [info] [service.cc:335] [user-agent= sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *)
-[2026-07-09 07:38:20.609] [global] [info] [service.cc:335] [user-agent= sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *) status=OK
-[2026-07-09 07:38:20.609] [global] [info] [service.cc:528] [user-agent= sid=203] RX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *)
-[2026-07-09 07:38:20.731] [global] [info] [service.cc:528] [user-agent= sid=203] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
-[2026-07-09 07:38:20.734] [global] [info] [git_source_control.cc:517] Computing merge base between 8108c54770033e87b17d30ea047ad8dbe45eb94c and 21c6480d30042b923418b3bdbac852d5746a96b9
-[2026-07-09 07:38:20.736] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:20.736] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
-[2026-07-09 07:38:20.743] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=203] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
-[2026-07-09 07:38:20.883] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=203] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
-[2026-07-09 07:38:20.891] [global] [info] [service.cc:256] lint session ended sid=203
-[2026-07-09 07:38:20.891] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=203] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:20.894] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=203] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:20.894] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:20.957] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:21.553] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
-[2026-07-09 07:38:21.569] [global] [info] [service.cc:256] lint session ended sid=204
-[2026-07-09 07:38:21.569] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=204] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:21.573] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=204] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
-[2026-07-09 07:38:21.573] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
-[2026-07-09 07:38:21.658] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:16.752] [global] [info] [service.cc:145] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::Start(grpc::ServerContext *, const proto::v1::StartRequest *, grpc::ServerWriter<proto::v1::StartResponse> *) status=OK
+[2026-07-09 07:55:16.753] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *)
+[2026-07-09 07:55:16.829] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
+[2026-07-09 07:55:16.845] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=216] RX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *)
+[2026-07-09 07:55:17.133] [global] [info] [service.cc:409] [user-agent=lsp-proxy sid=216] TX:virtual grpc::Status trunk::cli::lint::Service::Queue(grpc::ServerContext *, const proto::v1::QueueRequest *, proto::v1::QueueResponse *) status=OK
+[2026-07-09 07:55:17.135] [global] [info] [service.cc:335] [user-agent= sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *)
+[2026-07-09 07:55:17.264] [global] [info] [service.cc:335] [user-agent= sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *) status=OK
+[2026-07-09 07:55:17.306] [global] [info] [service.cc:335] [user-agent= sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *)
+[2026-07-09 07:55:17.345] [global] [info] [service.cc:335] [user-agent= sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *) status=OK
+[2026-07-09 07:55:17.414] [global] [info] [service.cc:335] [user-agent= sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *)
+[2026-07-09 07:55:17.448] [global] [info] [service.cc:335] [user-agent= sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *) status=OK
+[2026-07-09 07:55:17.521] [global] [info] [service.cc:335] [user-agent= sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *)
+[2026-07-09 07:55:17.551] [global] [info] [service.cc:335] [user-agent= sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::CancelFiles(grpc::ServerContext *, const proto::v1::CancelFilesRequest *, proto::v1::CancelFilesResponse *) status=OK
+[2026-07-09 07:55:17.592] [global] [info] [git_source_control.cc:517] Computing merge base between 11f80f3efbde18e074ebb5cc9baebf2c3f846004 and 21c6480d30042b923418b3bdbac852d5746a96b9
+[2026-07-09 07:55:17.595] [global] [info] [git_source_control.cc:519] Resolved divergent commit as cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:17.595] [global] [info] [session_context.cc:167] Making commit info with id: cbfbf7a7de1b4008a503fe80ac360b62c5043800
+[2026-07-09 07:55:17.897] [global] [info] [service.cc:528] [user-agent= sid=216] RX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *)
+[2026-07-09 07:55:18.718] [global] [info] [service.cc:528] [user-agent= sid=216] TX:virtual grpc::Status trunk::cli::lint::Service::Lint(grpc::ServerContext *, const proto::v1::LintRequest *, grpc::ServerWriter<proto::v1::LintResponse> *) status=OK
+[2026-07-09 07:55:19.099] [global] [info] [service.cc:439] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::GetChangedFiles(grpc::ServerContext *, const proto::v1::GetChangedFilesRequest *, proto::v1::GetChangedFilesResponse *) status=OK
+[2026-07-09 07:55:20.444] [global] [info] [service.cc:256] lint session ended sid=217
+[2026-07-09 07:55:20.444] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=217] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:55:20.447] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=217] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:20.448] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:55:20.578] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:20.925] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=216] RX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *)
+[2026-07-09 07:55:20.930] [global] [info] [service.cc:585] [user-agent=lsp-proxy sid=216] TX:virtual grpc::Status trunk::cli::lint::Service::GetLandingState(grpc::ServerContext *, const proto::v1::GetLandingStateRequest *, proto::v1::GetLandingStateResponse *) status=OK
+[2026-07-09 07:55:21.774] [global] [info] [service.cc:256] lint session ended sid=216
+[2026-07-09 07:55:21.774] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=216] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:55:21.777] [global] [info] [service.cc:258] [user-agent=lsp-proxy sid=216] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:21.777] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] RX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *)
+[2026-07-09 07:55:21.859] [global] [info] [service.cc:325] [user-agent=lsp-proxy sid=n/a] TX:virtual grpc::Status trunk::cli::lint::Service::End(grpc::ServerContext *, const proto::v1::EndRequest *, proto::v1::EndResponse *) status=OK
+[2026-07-09 07:55:27.599] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.599] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.599] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.600] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.600] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.600] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\prettier\3.9.4-f0e2ee985ed0b5fa1145a6fe02dcf36f/Scripts\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.600] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.601] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3 // 3:The system cannot find the path specified.
+[2026-07-09 07:55:27.601] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\python\3.14.4-cb3a144a569cdde1b1583669bb421ff0/bin\python3.exe // 3:The system cannot find the path specified.
+[2026-07-09 07:55:28.748] [global] [info] [cache.cc:1117] [on-demand] [prettier:format:prototype\src\App.jsx... (2 files):HEAD] Linter ran in 55258ms
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\c_cpp_properties.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\launch.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\settings.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:.vscode\tasks.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package-lock.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.815] [global] [info] [cache.cc:978] [on-demand] [checkov:lint:prototype\package.json:HEAD] running linter (uncacheable)
+[2026-07-09 07:55:28.817] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.bat // 3:The system cannot find the path specified.
+[2026-07-09 07:55:28.817] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd // 3:The system cannot find the path specified.
+[2026-07-09 07:55:28.817] [global] [warning] [resolve_binary.cc:46] is_regular_file check failed for for C:\Users\pyaip\AppData\Local\trunk\tools\checkov\3.3.6-0d92aa9cd1abc7c7b09d11eb1e590144/bin\checkov.cmd.exe // 3:The system cannot find the path specified.
