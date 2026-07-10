@@ -1,14 +1,14 @@
 import { VENUES } from '../data/events';
+import SectionHeader from '../components/SectionHeader';
 
 export default function VenuesPage() {
   return (
     <section className="px-8 py-24 max-w-7xl mx-auto">
-      <div className="mb-16">
-        <p className="uppercase text-cyan-400 tracking-[0.3em] text-sm mb-4">Venue Network</p>
-        <h2 className="text-5xl font-black leading-tight max-w-2xl">
-          Partner venues powering the nightlife infrastructure.
-        </h2>
-      </div>
+      <SectionHeader
+        label="Venue Network"
+        heading="Partner venues powering the nightlife infrastructure."
+        className="mb-16"
+      />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {VENUES.map((venue) => (
