@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               decoration: BoxDecoration(
-                color: const Color(0xFF00AEEF).withOpacity(0.15),
+                color: const Color(0xFF00AEEF).withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
@@ -103,12 +103,12 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: ['Techno', 'EDM', 'Hip-Hop'].contains(g)
-                              ? const Color(0xFF00AEEF).withOpacity(0.15)
-                              : Colors.white.withOpacity(0.05),
+                              ? const Color(0xFF00AEEF).withValues(alpha: 0.15)
+                              : Colors.white.withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
                             color: ['Techno', 'EDM', 'Hip-Hop'].contains(g)
-                                ? const Color(0xFF00AEEF).withOpacity(0.4)
+                                ? const Color(0xFF00AEEF).withValues(alpha: 0.4)
                                 : Colors.white10,
                           ),
                         ),
@@ -167,7 +167,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 4),
-            Text(label, style: TextStyle(color: Colors.white38, fontSize: 11)),
+            Text(label, style: const TextStyle(color: Colors.white38, fontSize: 11)),
           ],
         ),
       ),
@@ -211,7 +211,7 @@ class ProfileScreen extends StatelessWidget {
                 Text(name, style: const TextStyle(fontWeight: FontWeight.w600)),
                 Text(
                   location,
-                  style: TextStyle(color: Colors.white38, fontSize: 12),
+                  style: const TextStyle(color: Colors.white38, fontSize: 12),
                 ),
               ],
             ),

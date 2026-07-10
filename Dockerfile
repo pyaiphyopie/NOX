@@ -1,5 +1,8 @@
 # ---- Stage 1: Build ----
-FROM node:22-alpine AS builder
+FROM node:lts-alpine AS builder
+
+# Update Alpine packages for security fixes and clean cache
+RUN apk update && apk upgrade --no-cache && rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
@@ -14,7 +17,10 @@ COPY . .
 RUN npm run build
 
 # ---- Stage 2: Production ----
-FROM nginx:1.27-alpine AS production
+FROM nginx:alpine AS production
+
+# Update Alpine packages for security fixes and clean cache
+RUN apk update && apk upgrade --no-cache && rm -rf /var/cache/apk/*
 
 # Security: run as non-root
 RUN addgroup -g 1001 -S nox && \

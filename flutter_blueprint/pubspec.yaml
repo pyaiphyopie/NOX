@@ -7,5 +7,17 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
   flutter: '>=3.10.0'
 
+dependencies:
+  flutter:
+    sdk: flutter
+  nox_flutter_app:
+    path: packages/app
+  qr_flutter: ^4.1.0
+
 dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
   melos: ^2.6.0
