@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 // ── Event Data ────────────────────────────────────
 export const EVENTS = [
   {
