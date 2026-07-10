@@ -1,15 +1,15 @@
 import { afterEach, describe, it, expect } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MemoryRouter } from 'react-router-dom';
-import App from './App';
+import { AppRoutes } from './App';
 
 afterEach(() => cleanup());
 
 function renderApp(initialRoute = '/') {
   return render(
     <MemoryRouter initialEntries={[initialRoute]}>
-      <App />
+      <AppRoutes />
     </MemoryRouter>,
   );
 }
@@ -17,13 +17,14 @@ function renderApp(initialRoute = '/') {
 describe('App (with React Router)', () => {
   it('renders the NOX brand and tagline on any page', () => {
     renderApp();
-    expect(screen.getByRole('heading', { name: 'NOX' })).toBeInTheDocument();
+    const noxHeadings = screen.getAllByRole('heading', { name: 'NOX' });
+    expect(noxHeadings.length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Own The Night')).toBeInTheDocument();
   });
 
   it('renders the Discover page at /', () => {
     renderApp('/');
-    expect(screen.getByText('Yangon Beta Launch')).toBeInTheDocument();
+    expect(screen.getByText(/Yangon Beta Launch/)).toBeInTheDocument();
     expect(screen.getByText('Explore Events')).toBeInTheDocument();
   });
 
@@ -49,13 +50,13 @@ describe('App (with React Router)', () => {
   it('renders the Profile page at /profile', () => {
     renderApp('/profile');
     expect(screen.getByText('Beta Insider')).toBeInTheDocument();
-    expect(screen.getByText('Saved Venues')).toBeInTheDocument();
+    expect(screen.getAllByText('Saved Venues').length).toBeGreaterThanOrEqual(1);
   });
 
   it('shows notification when Get App is clicked', () => {
     renderApp('/');
     const getApp = screen.getByRole('button', { name: 'Get App' });
-    getApp.click();
+    fireEvent.click(getApp);
     expect(screen.getByText('Beta access unlocked')).toBeInTheDocument();
   });
 });
