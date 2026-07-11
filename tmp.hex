@@ -1,0 +1,214 @@
+0000	23 20 52 65 73 69 7a 69  6e 67 20 69 6d 61 67 65   # Resizing image
+0010	73 20 75 70 6c 6f 61 64  65 64 20 74 6f 20 41 6d   s uploaded to Am
+0020	61 7a 6f 6e 20 53 33 20  77 69 74 68 20 41 57 53   azon S3 with AWS
+0030	20 4c 61 6d 62 64 61 20  28 50 79 74 68 6f 6e 29    Lambda (Python)
+0040	0a 0a 54 68 65 20 41 57  53 20 53 41 4d 20 74 65   ..The AWS SAM te
+0050	6d 70 6c 61 74 65 20 64  65 70 6c 6f 79 73 20 61   mplate deploys a
+0060	6e 20 41 57 53 20 4c 61  6d 62 64 61 20 66 75 6e   n AWS Lambda fun
+0070	63 74 69 6f 6e 2c 20 61  6e 20 41 6d 61 7a 6f 6e   ction, an Amazon
+0080	20 53 33 20 62 75 63 6b  65 74 2c 20 61 6e 64 20    S3 bucket, and 
+0090	74 68 65 20 49 41 4d 20  72 65 73 6f 75 72 63 65   the IAM resource
+00a0	73 20 72 65 71 75 69 72  65 64 20 74 6f 20 72 75   s required to ru
+00b0	6e 20 74 68 65 20 61 70  70 6c 69 63 61 74 69 6f   n the applicatio
+00c0	6e 2e 20 41 20 4c 61 6d  62 64 61 20 66 75 6e 63   n. A Lambda func
+00d0	74 69 6f 6e 20 63 6f 6e  73 75 6d 65 73 20 60 4f   tion consumes `O
+00e0	62 6a 65 63 74 43 72 65  61 74 65 64 60 20 65 76   bjectCreated` ev
+00f0	65 6e 74 73 20 66 72 6f  6d 20 61 6e 20 41 6d 61   ents from an Ama
+0100	7a 6f 6e 20 53 33 20 62  75 63 6b 65 74 2e 20 54   zon S3 bucket. T
+0110	68 65 20 4c 61 6d 62 64  61 20 63 6f 64 65 20 63   he Lambda code c
+0120	68 65 63 6b 73 20 69 66  20 74 68 65 20 75 70 6c   hecks if the upl
+0130	6f 61 64 65 64 20 66 69  6c 65 20 69 73 20 61 6e   oaded file is an
+0140	20 69 6d 61 67 65 20 61  6e 64 20 74 68 65 6e 20    image and then 
+0150	63 72 65 61 74 65 73 20  61 20 74 68 75 6d 62 6e   creates a thumbn
+0160	61 69 6c 20 76 65 72 73  69 6f 6e 20 6f 66 20 74   ail version of t
+0170	68 65 20 69 6d 61 67 65  20 69 6e 20 74 68 65 20   he image in the 
+0180	73 61 6d 65 20 62 75 63  6b 65 74 2e 0a 0a 49 6d   same bucket...Im
+0190	70 6f 72 74 61 6e 74 3a  20 74 68 69 73 20 61 70   portant: this ap
+01a0	70 6c 69 63 61 74 69 6f  6e 20 75 73 65 73 20 76   plication uses v
+01b0	61 72 69 6f 75 73 20 41  57 53 20 73 65 72 76 69   arious AWS servi
+01c0	63 65 73 20 61 6e 64 20  74 68 65 72 65 20 61 72   ces and there ar
+01d0	65 20 63 6f 73 74 73 20  61 73 73 6f 63 69 61 74   e costs associat
+01e0	65 64 20 77 69 74 68 20  74 68 65 73 65 20 73 65   ed with these se
+01f0	72 76 69 63 65 73 20 61  66 74 65 72 20 74 68 65   rvices after the
+0200	20 46 72 65 65 20 54 69  65 72 20 75 73 61 67 65    Free Tier usage
+0210	20 2d 20 70 6c 65 61 73  65 20 73 65 65 20 74 68    - please see th
+0220	65 20 5b 41 57 53 20 50  72 69 63 69 6e 67 20 70   e [AWS Pricing p
+0230	61 67 65 5d 28 68 74 74  70 73 3a 2f 2f 61 77 73   age](https://aws
+0240	2e 61 6d 61 7a 6f 6e 2e  63 6f 6d 2f 70 72 69 63   .amazon.com/pric
+0250	69 6e 67 2f 29 20 66 6f  72 20 64 65 74 61 69 6c   ing/) for detail
+0260	73 2e 20 59 6f 75 20 61  72 65 20 72 65 73 70 6f   s. You are respo
+0270	6e 73 69 62 6c 65 20 66  6f 72 20 61 6e 79 20 41   nsible for any A
+0280	57 53 20 63 6f 73 74 73  20 69 6e 63 75 72 72 65   WS costs incurre
+0290	64 2e 20 4e 6f 20 77 61  72 72 61 6e 74 79 20 69   d. No warranty i
+02a0	73 20 69 6d 70 6c 69 65  64 20 69 6e 20 74 68 69   s implied in thi
+02b0	73 20 65 78 61 6d 70 6c  65 2e 0a 0a 23 23 20 52   s example...## R
+02c0	65 71 75 69 72 65 6d 65  6e 74 73 0a 0a 2a 20 5b   equirements..* [
+02d0	43 72 65 61 74 65 20 61  6e 20 41 57 53 20 61 63   Create an AWS ac
+02e0	63 6f 75 6e 74 5d 28 68  74 74 70 73 3a 2f 2f 70   count](https://p
+02f0	6f 72 74 61 6c 2e 61 77  73 2e 61 6d 61 7a 6f 6e   ortal.aws.amazon
+0300	2e 63 6f 6d 2f 67 70 2f  61 77 73 2f 64 65 76 65   .com/gp/aws/deve
+0310	6c 6f 70 65 72 2f 72 65  67 69 73 74 72 61 74 69   loper/registrati
+0320	6f 6e 2f 69 6e 64 65 78  2e 68 74 6d 6c 29 20 69   on/index.html) i
+0330	66 20 79 6f 75 20 64 6f  20 6e 6f 74 20 61 6c 72   f you do not alr
+0340	65 61 64 79 20 68 61 76  65 20 6f 6e 65 20 61 6e   eady have one an
+0350	64 20 6c 6f 67 20 69 6e  2e 20 54 68 65 20 49 41   d log in. The IA
+0360	4d 20 75 73 65 72 20 74  68 61 74 20 79 6f 75 20   M user that you 
+0370	75 73 65 20 6d 75 73 74  20 68 61 76 65 20 73 75   use must have su
+0380	66 66 69 63 69 65 6e 74  20 70 65 72 6d 69 73 73   fficient permiss
+0390	69 6f 6e 73 20 74 6f 20  6d 61 6b 65 20 6e 65 63   ions to make nec
+03a0	65 73 73 61 72 79 20 41  57 53 20 73 65 72 76 69   essary AWS servi
+03b0	63 65 20 63 61 6c 6c 73  20 61 6e 64 20 6d 61 6e   ce calls and man
+03c0	61 67 65 20 41 57 53 20  72 65 73 6f 75 72 63 65   age AWS resource
+03d0	73 2e 0a 2a 20 5b 41 57  53 20 43 4c 49 5d 28 68   s..* [AWS CLI](h
+03e0	74 74 70 73 3a 2f 2f 64  6f 63 73 2e 61 77 73 2e   ttps://docs.aws.
+03f0	61 6d 61 7a 6f 6e 2e 63  6f 6d 2f 63 6c 69 2f 6c   amazon.com/cli/l
+0400	61 74 65 73 74 2f 75 73  65 72 67 75 69 64 65 2f   atest/userguide/
+0410	69 6e 73 74 61 6c 6c 2d  63 6c 69 76 32 2e 68 74   install-cliv2.ht
+0420	6d 6c 29 20 69 6e 73 74  61 6c 6c 65 64 20 61 6e   ml) installed an
+0430	64 20 63 6f 6e 66 69 67  75 72 65 64 0a 2a 20 5b   d configured.* [
+0440	47 69 74 20 49 6e 73 74  61 6c 6c 65 64 5d 28 68   Git Installed](h
+0450	74 74 70 73 3a 2f 2f 67  69 74 2d 73 63 6d 2e 63   ttps://git-scm.c
+0460	6f 6d 2f 62 6f 6f 6b 2f  65 6e 2f 76 32 2f 47 65   om/book/en/v2/Ge
+0470	74 74 69 6e 67 2d 53 74  61 72 74 65 64 2d 49 6e   tting-Started-In
+0480	73 74 61 6c 6c 69 6e 67  2d 47 69 74 29 0a 2a 20   stalling-Git).* 
+0490	5b 41 57 53 20 53 65 72  76 65 72 6c 65 73 73 20   [AWS Serverless 
+04a0	41 70 70 6c 69 63 61 74  69 6f 6e 20 4d 6f 64 65   Application Mode
+04b0	6c 5d 28 68 74 74 70 73  3a 2f 2f 64 6f 63 73 2e   l](https://docs.
+04c0	61 77 73 2e 61 6d 61 7a  6f 6e 2e 63 6f 6d 2f 73   aws.amazon.com/s
+04d0	65 72 76 65 72 6c 65 73  73 2d 61 70 70 6c 69 63   erverless-applic
+04e0	61 74 69 6f 6e 2d 6d 6f  64 65 6c 2f 6c 61 74 65   ation-model/late
+04f0	73 74 2f 64 65 76 65 6c  6f 70 65 72 67 75 69 64   st/developerguid
+0500	65 2f 73 65 72 76 65 72  6c 65 73 73 2d 73 61 6d   e/serverless-sam
+0510	2d 63 6c 69 2d 69 6e 73  74 61 6c 6c 2e 68 74 6d   -cli-install.htm
+0520	6c 29 20 28 41 57 53 20  53 41 4d 29 20 69 6e 73   l) (AWS SAM) ins
+0530	74 61 6c 6c 65 64 0a 0a  23 23 20 44 65 70 6c 6f   talled..## Deplo
+0540	79 6d 65 6e 74 20 49 6e  73 74 72 75 63 74 69 6f   yment Instructio
+0550	6e 73 0a 0a 31 2e 20 43  72 65 61 74 65 20 61 20   ns..1. Create a 
+0560	6e 65 77 20 64 69 72 65  63 74 6f 72 79 2c 20 6e   new directory, n
+0570	61 76 69 67 61 74 65 20  74 6f 20 74 68 61 74 20   avigate to that 
+0580	64 69 72 65 63 74 6f 72  79 20 69 6e 20 61 20 74   directory in a t
+0590	65 72 6d 69 6e 61 6c 20  61 6e 64 20 63 6c 6f 6e   erminal and clon
+05a0	65 20 74 68 65 20 47 69  74 48 75 62 20 72 65 70   e the GitHub rep
+05b0	6f 73 69 74 6f 72 79 3a  0a 0a 20 20 20 20 60 60   ository:..    ``
+05c0	60 62 61 73 68 0a 20 20  20 20 67 69 74 20 63 6c   `bash.    git cl
+05d0	6f 6e 65 20 68 74 74 70  73 3a 2f 2f 67 69 74 68   one https://gith
+05e0	75 62 2e 63 6f 6d 2f 61  77 73 2d 73 61 6d 70 6c   ub.com/aws-sampl
+05f0	65 73 2f 73 65 72 76 65  72 6c 65 73 73 2d 70 61   es/serverless-pa
+0600	74 74 65 72 6e 73 0a 20  20 20 20 60 60 60 0a 0a   tterns.    ```..
+0610	31 2e 20 43 68 61 6e 67  65 20 64 69 72 65 63 74   1. Change direct
+0620	6f 72 79 20 74 6f 20 74  68 65 20 70 61 74 74 65   ory to the patte
+0630	72 6e 20 64 69 72 65 63  74 6f 72 79 3a 0a 0a 20   rn directory:.. 
+0640	20 20 20 60 60 60 62 61  73 68 0a 20 20 20 20 63      ```bash.    c
+0650	64 20 73 33 2d 6c 61 6d  62 64 61 2d 72 65 73 69   d s3-lambda-resi
+0660	7a 69 6e 67 2d 70 79 74  68 6f 6e 0a 20 20 20 20   zing-python.    
+0670	60 60 60 0a 0a 31 2e 20  46 72 6f 6d 20 74 68 65   ```..1. From the
+0680	20 63 6f 6d 6d 61 6e 64  20 6c 69 6e 65 2c 20 75    command line, u
+0690	73 65 20 41 57 53 20 53  41 4d 20 74 6f 20 62 75   se AWS SAM to bu
+06a0	69 6c 64 20 61 6e 64 20  64 65 70 6c 6f 79 20 74   ild and deploy t
+06b0	68 65 20 41 57 53 20 72  65 73 6f 75 72 63 65 73   he AWS resources
+06c0	20 66 6f 72 20 74 68 65  20 70 61 74 74 65 72 6e    for the pattern
+06d0	20 61 73 20 73 70 65 63  69 66 69 65 64 20 69 6e    as specified in
+06e0	20 74 68 65 20 74 65 6d  70 6c 61 74 65 2e 79 6d    the template.ym
+06f0	6c 20 66 69 6c 65 3a 0a  0a 20 20 20 20 60 60 60   l file:..    ```
+0700	62 61 73 68 0a 20 20 20  20 73 61 6d 20 62 75 69   bash.    sam bui
+0710	6c 64 0a 20 20 20 20 73  61 6d 20 64 65 70 6c 6f   ld.    sam deplo
+0720	79 20 2d 2d 67 75 69 64  65 64 0a 20 20 20 20 60   y --guided.    `
+0730	60 60 0a 0a 31 2e 20 44  75 72 69 6e 67 20 74 68   ``..1. During th
+0740	65 20 70 72 6f 6d 70 74  73 3a 0a 20 20 20 20 2a   e prompts:.    *
+0750	20 45 6e 74 65 72 20 61  20 73 74 61 63 6b 20 6e    Enter a stack n
+0760	61 6d 65 0a 20 20 20 20  2a 20 45 6e 74 65 72 20   ame.    * Enter 
+0770	74 68 65 20 64 65 73 69  72 65 64 20 41 57 53 20   the desired AWS 
+0780	52 65 67 69 6f 6e 0a 20  20 20 20 2a 20 45 6e 74   Region.    * Ent
+0790	65 72 20 6e 61 6d 65 73  20 66 6f 72 20 79 6f 75   er names for you
+07a0	72 20 73 6f 75 72 63 65  20 61 6e 64 20 64 65 73   r source and des
+07b0	74 69 6e 61 74 69 6f 6e  20 53 33 20 62 75 63 6b   tination S3 buck
+07c0	65 74 73 2e 20 4d 61 6b  65 20 73 75 72 65 20 74   ets. Make sure t
+07d0	68 65 73 65 20 61 72 65  20 75 6e 69 71 75 65 20   hese are unique 
+07e0	61 73 20 53 33 20 62 75  63 6b 65 74 20 6e 61 6d   as S3 bucket nam
+07f0	65 73 20 73 68 61 72 65  20 61 20 67 6c 6f 62 61   es share a globa
+0800	6c 20 6e 61 6d 65 73 70  61 63 65 2e 0a 20 20 20   l namespace..   
+0810	20 2a 20 41 6c 6c 6f 77  20 53 41 4d 20 43 4c 49    * Allow SAM CLI
+0820	20 74 6f 20 63 72 65 61  74 65 20 49 41 4d 20 72    to create IAM r
+0830	6f 6c 65 73 20 77 69 74  68 20 74 68 65 20 72 65   oles with the re
+0840	71 75 69 72 65 64 20 70  65 72 6d 69 73 73 69 6f   quired permissio
+0850	6e 73 2e 0a 0a 20 20 20  20 4f 6e 63 65 20 79 6f   ns...    Once yo
+0860	75 20 68 61 76 65 20 72  75 6e 20 60 73 61 6d 20   u have run `sam 
+0870	64 65 70 6c 6f 79 20 2d  2d 67 75 69 64 65 64 60   deploy --guided`
+0880	20 6d 6f 64 65 20 6f 6e  63 65 20 61 6e 64 20 73    mode once and s
+0890	61 76 65 64 20 61 72 67  75 6d 65 6e 74 73 20 74   aved arguments t
+08a0	6f 20 61 20 63 6f 6e 66  69 67 75 72 61 74 69 6f   o a configuratio
+08b0	6e 20 66 69 6c 65 20 28  73 61 6d 63 6f 6e 66 69   n file (samconfi
+08c0	67 2e 74 6f 6d 6c 29 2c  20 79 6f 75 20 63 61 6e   g.toml), you can
+08d0	20 75 73 65 20 60 73 61  6d 20 64 65 70 6c 6f 79    use `sam deploy
+08e0	60 20 69 6e 20 66 75 74  75 72 65 20 74 6f 20 75   ` in future to u
+08f0	73 65 20 74 68 65 73 65  20 64 65 66 61 75 6c 74   se these default
+0900	73 2e 0a 0a 31 2e 20 4e  6f 74 65 20 74 68 65 20   s...1. Note the 
+0910	6f 75 74 70 75 74 73 20  66 72 6f 6d 20 74 68 65   outputs from the
+0920	20 53 41 4d 20 64 65 70  6c 6f 79 6d 65 6e 74 20    SAM deployment 
+0930	70 72 6f 63 65 73 73 2e  20 54 68 65 73 65 20 63   process. These c
+0940	6f 6e 74 61 69 6e 20 74  68 65 20 72 65 73 6f 75   ontain the resou
+0950	72 63 65 20 6e 61 6d 65  73 20 61 6e 64 2f 6f 72   rce names and/or
+0960	20 41 52 4e 73 20 77 68  69 63 68 20 61 72 65 20    ARNs which are 
+0970	75 73 65 64 20 66 6f 72  20 74 65 73 74 69 6e 67   used for testing
+0980	2e 0a 0a 23 23 20 48 6f  77 20 69 74 20 77 6f 72   ...## How it wor
+0990	6b 73 0a 0a 2a 20 55 73  65 20 74 68 65 20 41 57   ks..* Use the AW
+09a0	53 20 43 4c 49 20 75 70  6c 6f 61 64 20 61 6e 20   S CLI upload an 
+09b0	69 6d 61 67 65 20 74 6f  20 53 33 0a 2a 20 49 66   image to S3.* If
+09c0	20 74 68 65 20 6f 62 6a  65 63 74 20 69 73 20 61    the object is a
+09d0	20 2e 6a 70 65 67 20 6f  72 20 61 20 2e 70 6e 67    .jpeg or a .png
+09e0	2c 20 74 68 65 20 63 6f  64 65 20 63 72 65 61 74   , the code creat
+09f0	65 73 20 61 20 74 68 75  6d 62 6e 61 69 6c 20 61   es a thumbnail a
+0a00	6e 64 20 73 61 76 65 73  20 69 74 20 74 6f 20 74   nd saves it to t
+0a10	68 65 20 74 61 72 67 65  74 20 62 75 63 6b 65 74   he target bucket
+0a20	2e 0a 2a 20 54 68 65 20  63 6f 64 65 20 61 73 73   ..* The code ass
+0a30	75 6d 65 73 20 74 68 61  74 20 74 68 65 20 64 65   umes that the de
+0a40	73 74 69 6e 61 74 69 6f  6e 20 62 75 63 6b 65 74   stination bucket
+0a50	20 65 78 69 73 74 73 2e  0a 0a 3d 3d 3d 3d 3d 3d    exists...======
+0a60	3d 3d 3d 3d 3d 3d 3d 3d  3d 3d 3d 3d 3d 3d 3d 3d   ================
+0a70	3d 3d 3d 3d 3d 3d 3d 3d  3d 3d 3d 3d 3d 3d 3d 3d   ================
+0a80	3d 3d 3d 3d 3d 3d 3d 3d  0a 0a 23 23 20 54 65 73   ========..## Tes
+0a90	74 69 6e 67 0a 0a 52 75  6e 20 74 68 65 20 66 6f   ting..Run the fo
+0aa0	6c 6c 6f 77 69 6e 67 20  53 33 20 43 4c 49 20 63   llowing S3 CLI c
+0ab0	6f 6d 6d 61 6e 64 20 74  6f 20 75 70 6c 6f 61 64   ommand to upload
+0ac0	20 61 6e 20 69 6d 61 67  65 20 74 6f 20 74 68 65    an image to the
+0ad0	20 53 33 20 62 75 63 6b  65 74 2e 20 4e 6f 74 65    S3 bucket. Note
+0ae0	2c 20 79 6f 75 20 6d 75  73 74 20 65 64 69 74 20   , you must edit 
+0af0	74 68 65 20 7b 53 6f 75  72 63 65 42 75 63 6b 65   the {SourceBucke
+0b00	74 4e 61 6d 65 7d 20 70  6c 61 63 65 68 6f 6c 64   tName} placehold
+0b10	65 72 20 77 69 74 68 20  74 68 65 20 6e 61 6d 65   er with the name
+0b20	20 6f 66 20 74 68 65 20  53 33 20 42 75 63 6b 65    of the S3 Bucke
+0b30	74 2e 20 54 68 69 73 20  69 73 20 70 72 6f 76 69   t. This is provi
+0b40	64 65 64 20 69 6e 20 74  68 65 20 73 74 61 63 6b   ded in the stack
+0b50	20 6f 75 74 70 75 74 73  2e 0a 0a 60 60 60 62 61    outputs...```ba
+0b60	73 68 0a 61 77 73 20 73  33 20 63 70 20 27 2e 2f   sh.aws s3 cp './
+0b70	65 76 65 6e 74 73 2f 77  68 69 74 65 5f 64 6f 67   events/white_dog
+0b80	2e 6a 70 65 67 27 20 73  33 3a 2f 2f 7b 53 6f 75   .jpeg' s3://{Sou
+0b90	72 63 65 42 75 63 6b 65  74 4e 61 6d 65 7d 0a 60   rceBucketName}.`
+0ba0	60 60 0a 0a 52 75 6e 20  74 68 65 20 66 6f 6c 6c   ``..Run the foll
+0bb0	6f 77 69 6e 67 20 63 6f  6d 6d 61 6e 64 20 74 6f   owing command to
+0bc0	20 63 68 65 63 6b 20 74  68 61 74 20 61 20 6e 65    check that a ne
+0bd0	77 20 76 65 72 73 69 6f  6e 20 6f 66 20 74 68 65   w version of the
+0be0	20 69 6d 61 67 65 20 68  61 73 20 62 65 65 6e 20    image has been 
+0bf0	63 72 65 61 74 65 64 20  69 6e 20 74 68 65 20 64   created in the d
+0c00	65 73 74 69 6e 61 74 69  6f 6e 20 62 75 63 6b 65   estination bucke
+0c10	74 2e 0a 0a 60 60 60 62  61 73 68 0a 61 77 73 20   t...```bash.aws 
+0c20	73 33 20 6c 73 20 73 33  3a 2f 2f 7b 44 65 73 74   s3 ls s3://{Dest
+0c30	69 6e 61 74 69 6f 6e 42  75 63 6b 65 74 4e 61 6d   inationBucketNam
+0c40	65 7d 0a 60 60 60 0a 0a  23 23 20 43 6c 65 61 6e   e}.```..## Clean
+0c50	75 70 0a 0a 31 2e 20 44  65 6c 65 74 65 20 74 68   up..1. Delete th
+0c60	65 20 73 74 61 63 6b 0a  0a 20 20 20 20 60 60 60   e stack..    ```
+0c70	62 61 73 68 0a 20 20 20  20 73 61 6d 20 64 65 6c   bash.    sam del
+0c80	65 74 65 20 2d 2d 73 74  61 63 6b 2d 6e 61 6d 65   ete --stack-name
+0c90	20 53 54 41 43 4b 5f 4e  41 4d 45 0a 20 20 20 20    STACK_NAME.    
+0ca0	60 60 60 0a 0a 31 2e 20  43 6f 6e 66 69 72 6d 20   ```..1. Confirm 
+0cb0	74 68 65 20 73 74 61 63  6b 20 68 61 73 20 62 65   the stack has be
+0cc0	65 6e 20 64 65 6c 65 74  65 64 0a 0a 20 20 20 20   en deleted..    
+0cd0	60 60 60 62 61 73 68 0a  20 20 20 20 61 77 73 20   ```bash.    aws 
+0ce0	63 6c 6f 75 64 66 6f 72  6d 61 74 69 6f 6e 20 6c   cloudformation l
+0cf0	69 73 74 2d 73 74 61 63  6b 73 20 2d 2d 71 75 65   ist-stacks --que
+0d00	72 79 20 22 53 74 61 63  6b 53 75 6d 6d 61 72 69   ry "StackSummari
+0d10	65 73 5b 3f 63 6f 6e 74  61 69 6e 73 28 53 74 61   es[?contains(Sta
+0d20	63 6b 4e 61 6d 65 2c 27  53 54 41 43 4b 5f 4e 41   ckName,'STACK_NA
+0d30	4d 45 27 29 5d 2e 53 74  61 63 6b 53 74 61 74 75   ME')].StackStatu
+0d40	73 22 0a 20 20 20 20 60  60 60 0a 0a 2d 2d 2d 2d   s".    ```..----
+0d50	0a                                                 .

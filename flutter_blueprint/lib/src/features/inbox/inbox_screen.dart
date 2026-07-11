@@ -44,12 +44,12 @@ class InboxScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: unread
-            ? const Color(0xFF00AEEF).withOpacity(0.08)
+            ? const Color(0xFF00AEEF).withValues(alpha: 0.08)
             : const Color(0xFF141414),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: unread
-              ? const Color(0xFF00AEEF).withOpacity(0.3)
+              ? const Color(0xFF00AEEF).withValues(alpha: 0.3)
               : Colors.white10,
         ),
       ),
@@ -84,14 +84,14 @@ class InboxScreen extends StatelessWidget {
                     ),
                     Text(
                       time,
-                      style: TextStyle(color: Colors.white38, fontSize: 12),
+                      style: const TextStyle(color: Colors.white38, fontSize: 12),
                     ),
                   ],
                 ),
                 const SizedBox(height: 6),
                 Text(
                   body,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white54,
                     fontSize: 13,
                     height: 1.4,

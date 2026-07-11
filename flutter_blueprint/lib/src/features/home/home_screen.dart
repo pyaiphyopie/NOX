@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../shared/widgets/bottom_nav.dart';
 import '../home/discover_screen.dart';
 import '../tickets/my_tickets_screen.dart';

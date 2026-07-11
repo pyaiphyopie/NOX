@@ -20,8 +20,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/pyaip/OneDrive/NOX",
-      "program": "c:/Users/pyaip/OneDrive/NOX/build/Debug/outDebug",
+      "cwd": "c:/Users/pyaip/.codex/worktrees/76a6/NOX",
+      "program": "c:/Users/pyaip/.codex/worktrees/76a6/NOX/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

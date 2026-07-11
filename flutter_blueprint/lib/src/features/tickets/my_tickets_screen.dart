@@ -60,7 +60,7 @@ class MyTicketsScreen extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         event.timeLabel,
-                        style: TextStyle(color: Colors.white38, fontSize: 12),
+                        style: const TextStyle(color: Colors.white38, fontSize: 12),
                       ),
                     ],
                   ),
@@ -82,7 +82,7 @@ class MyTicketsScreen extends StatelessWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF00D68F).withOpacity(0.2),
+                        color: const Color(0xFF00D68F).withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text(

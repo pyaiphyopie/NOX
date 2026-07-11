@@ -43,7 +43,7 @@ class TicketPurchaseScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Capacity',
                   style: TextStyle(color: Colors.white54, fontSize: 13),
                 ),
@@ -66,7 +66,7 @@ class TicketPurchaseScreen extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               '$sold% sold',
-              style: TextStyle(color: Colors.white38, fontSize: 12),
+              style: const TextStyle(color: Colors.white38, fontSize: 12),
             ),
             const SizedBox(height: 28),
             Container(
@@ -90,7 +90,6 @@ class TicketPurchaseScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   QrImageView(
                     data: 'NOX-${event.id.padLeft(6, '0')}',
-                    version: QrVersions.auto,
                     size: 180,
                     backgroundColor: Colors.white,
                   ),
@@ -103,7 +102,7 @@ class TicketPurchaseScreen extends StatelessWidget {
                         children: [
                           Text(
                             event.timeLabel,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white54,
                               fontSize: 13,
                             ),
@@ -124,7 +123,7 @@ class TicketPurchaseScreen extends StatelessWidget {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF00D68F).withOpacity(0.2),
+                          color: const Color(0xFF00D68F).withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Text(

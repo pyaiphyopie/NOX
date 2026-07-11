@@ -58,7 +58,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   Text(
                     'Find where the city comes alive.',
                     style: TextStyle(
-                      color: Colors.black.withOpacity(0.7),
+                      color: Colors.black.withValues(alpha: 0.7),
                       fontSize: 15,
                     ),
                   ),
@@ -202,7 +202,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 const SizedBox(height: 8),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.schedule,
                                       size: 14,
                                       color: Colors.white38,
@@ -210,7 +210,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     const SizedBox(width: 4),
                                     Text(
                                       e.timeLabel,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white38,
                                         fontSize: 12,
                                       ),
@@ -218,7 +218,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     const Spacer(),
                                     Text(
                                       '$sold% filled',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white38,
                                         fontSize: 12,
                                       ),
@@ -257,7 +257,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
         Text(
           label,
-          style: TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 12),
+          style: TextStyle(color: Colors.black.withValues(alpha: 0.6), fontSize: 12),
         ),
       ],
     );
