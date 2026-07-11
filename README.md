@@ -1,6 +1,6 @@
 # NOX Mobile V2
 
-Urban nightlife infrastructure prototype built with Flutter.
+Urban nightlife infrastructure platform built with React.
 
 ## Run
 

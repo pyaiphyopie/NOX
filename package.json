@@ -1,5 +1,5 @@
 {
-  "name": "nox-prototype",
+  "name": "nox-platform",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -38,7 +38,7 @@
     "vite": "^8.0.14",
     "vitest": "^4.1.7"
   },
-  "description": "Urban nightlife infrastructure prototype built with Flutter.",
+  "description": "Urban nightlife infrastructure platform built with React.",
   "main": "postcss.config.js",
   "directories": {
     "test": "test"

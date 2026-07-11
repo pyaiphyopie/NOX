@@ -1,3 +1,0 @@
-name: nox_flutter_monorepo
-packages:
-  - packages/*

@@ -1,4 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import PreferencePanel from './PreferencePanel';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Discover' },
@@ -9,36 +11,51 @@ const NAV_ITEMS = [
 
 export default function Navbar({ onGetApp }) {
   const location = useLocation();
+  const [showPreferences, setShowPreferences] = useState(false);
 
   return (
-    <nav className="relative z-10 flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-xl">
-      <Link to="/" className="no-underline">
-        <div>
-          <h1 className="text-3xl font-black tracking-[0.3em] text-white">NOX</h1>
-          <p className="text-xs text-white/50 tracking-[0.2em] uppercase">Own The Night</p>
+    <>
+      <nav className="relative z-10 flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-xl">
+        <Link to="/" className="no-underline">
+          <div>
+            <h1 className="text-3xl font-black tracking-[0.3em] text-white">NOX</h1>
+            <p className="text-xs text-white/50 tracking-[0.2em] uppercase">Own The Night</p>
+          </div>
+        </Link>
+
+        <div className="hidden md:flex gap-8 text-sm text-white/70">
+          {NAV_ITEMS.map(({ path, label }) => (
+            <Link
+              key={path}
+              to={path}
+              className={`hover:text-cyan-400 transition no-underline ${location.pathname === path ? 'text-cyan-400' : 'text-white/70'
+                }`}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
-      </Link>
 
-      <div className="hidden md:flex gap-8 text-sm text-white/70">
-        {NAV_ITEMS.map(({ path, label }) => (
-          <Link
-            key={path}
-            to={path}
-            className={`hover:text-cyan-400 transition no-underline ${
-              location.pathname === path ? 'text-cyan-400' : 'text-white/70'
-            }`}
+        <div className="flex items-center gap-3">
+          <button
+            className="p-2 rounded-full border border-white/20 text-white/70 hover:border-cyan-400 hover:text-cyan-300 transition"
+            onClick={() => setShowPreferences(true)}
+            title="Preferences"
           >
-            {label}
-          </Link>
-        ))}
-      </div>
+            ⚙️
+          </button>
+          <button
+            className="bg-cyan-500 hover:bg-cyan-400 transition px-5 py-2 rounded-full text-black font-semibold"
+            onClick={onGetApp}
+          >
+            Get App
+          </button>
+        </div>
+      </nav>
 
-      <button
-        className="bg-cyan-500 hover:bg-cyan-400 transition px-5 py-2 rounded-full text-black font-semibold"
-        onClick={onGetApp}
-      >
-        Get App
-      </button>
-    </nav>
+      {showPreferences && (
+        <PreferencePanel onClose={() => setShowPreferences(false)} />
+      )}
+    </>
   );
 }

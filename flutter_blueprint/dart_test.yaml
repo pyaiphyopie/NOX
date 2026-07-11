@@ -1,5 +1,0 @@
-# Separate integration tests from unit and widget tests.
-# Use `flutter test --exclude-tags=integration` to run standard tests.
-
-tags:
-  integration: "Integration tests are excluded by default."

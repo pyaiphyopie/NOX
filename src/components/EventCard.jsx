@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
 export default function EventCard({ event }) {
+  const compatibilityScore = event.compatibilityScore;
+
   return (
     <Link
       to={`/event/${event.id}`}
@@ -13,8 +15,18 @@ export default function EventCard({ event }) {
             <h4 className="text-xl font-black text-white">{event.title}</h4>
             <p className="text-cyan-400 text-sm mt-1">{event.venue}</p>
           </div>
-          <div className="bg-cyan-500 text-black text-sm font-black px-3 py-1 rounded-full">
-            ${event.price}
+          <div className="flex flex-col items-end gap-2">
+            <div className="bg-cyan-500 text-black text-sm font-black px-3 py-1 rounded-full">
+              ${event.price}
+            </div>
+            {compatibilityScore !== undefined && (
+              <div className={`text-xs px-2 py-1 rounded-full ${compatibilityScore >= 7 ? 'bg-emerald-500/20 text-emerald-300' :
+                  compatibilityScore >= 4 ? 'bg-yellow-500/20 text-yellow-300' :
+                    'bg-white/10 text-white/50'
+                }`}>
+                {Math.round(compatibilityScore * 10)}% match
+              </div>
+            )}
           </div>
         </div>
         <p className="text-white/60 text-sm mt-3">{event.genre}</p>
