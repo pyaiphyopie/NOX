@@ -30,6 +30,13 @@
 			"problemMatcher": [],
 			"label": "npm: dev",
 			"detail": "vite"
+		},
+		{
+			"type": "npm",
+			"script": "check",
+			"problemMatcher": [],
+			"label": "npm: check",
+			"detail": "npm run format:check && npm run lint && npm test && npm run build"
 		}
 	]
 }
