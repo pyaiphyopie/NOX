@@ -1,57 +1,36 @@
 {
-  "name": "nox-prototype",
+  "name": "nox-platform",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "lint": "eslint . --ext .js,.jsx",
-    "lint:fix": "eslint . --ext .js,.jsx --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css,json}\"",
-    "audit": "npm audit --audit-level=high",
-    "check": "npm run format:check && npm run lint && npm test && npm run build"
+  "description": "NOX — Urban Entertainment Infrastructure Platform. Own The Night.",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
   },
-  "dependencies": {
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.1"
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "db:migrate": "supabase db push",
+    "db:reset": "supabase db reset",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@vitejs/plugin-react": "^6.0.2",
-    "@vitest/coverage-v8": "^4.1.7",
-    "autoprefixer": "^10.5.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "jsdom": "^29.1.1",
-    "postcss": "^8.5.15",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^3.4.19",
-    "vite": "^8.0.14",
-    "vitest": "^4.1.7"
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2",
+    "prettier": "^3.4.2",
+    "eslint": "^9.17.0",
+    "husky": "^9.1.7",
+    "@types/node": "^22.10.2"
   },
-  "description": "Urban nightlife infrastructure web prototype built with React, Vite, Tailwind CSS, and React Router.",
-  "main": "src/main.jsx",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pyaiphyopie/NOX.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pyaiphyopie/NOX/issues"
-  },
-  "homepage": "https://github.com/pyaiphyopie/NOX#readme"
+  "workspaces": [
+    "apps/*",
+    "backend/*",
+    "packages/*"
+  ]
 }
