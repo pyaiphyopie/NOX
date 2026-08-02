@@ -1,34 +1,52 @@
-<<<<<<< ours
-<<<<<<< ours
-node_modules/
-dist/
-.DS_Store
-.env
-vite-dev*.log
-=======
-=======
->>>>>>> theirs
 # Dependencies
-node_modules/
+node_modules
+.pnp
+.pnp.js
 
-# Turborepo cache
-.turbo/
+# Build
+dist
+build
+.next
+.turbo
+out
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+
+# Flutter
+**/ios/Pods
+**/ios/.symlinks
+**/android/.gradle
+**/android/app/build
+**/.dart_tool
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/pubspec.lock
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
 
-# Environment files
-.env
-.env.*
+# Testing
+coverage
+.nyc_output
 
-# OS/editor files
-.DS_Store
-.vscode/
-.idea/
-<<<<<<< ours
->>>>>>> theirs
-=======
->>>>>>> theirs
+# Misc
+*.pem
+.cache
+tmp
+temp
+.supabase
