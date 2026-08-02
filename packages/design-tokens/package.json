@@ -1,0 +1,26 @@
+{
+  "name": "@nox/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./css": "./dist/tokens.css",
+    "./flutter": "./flutter/nox_tokens.dart"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts && node scripts/generate-css.js && node scripts/generate-flutter.js",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}
