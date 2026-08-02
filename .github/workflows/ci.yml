@@ -32,22 +32,29 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           # cache: npm
 
-      - name: Node / npm diagnostics
+      - name: Setup pnpm
         run: |
-          echo "== Node / npm diagnostics =="
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+
+      - name: Node / pnpm diagnostics
+        run: |
+          echo "== Node / pnpm diagnostics =="
           node -v
           npm -v
+          pnpm -v || true
           npm config get package-lock || true
           echo "Top of package-lock.json (if present):"
           head -n 40 package-lock.json || true
 
-      - run: npm ci
+      - name: Install (pnpm)
+        run: pnpm install --frozen-lockfile
 
       - name: ESLint
-        run: npx eslint . --ext .js,.jsx --max-warnings 0
+        run: pnpm -w exec eslint . --ext .js,.jsx --max-warnings 0
 
       - name: Prettier Check
-        run: npx prettier --check "src/**/*.{js,jsx,css,json}"
+        run: pnpm -w exec prettier --check "src/**/*.{js,jsx,css,json}"
 
   # ── Type / Build Check ──────────────────────────────────────
   build:
@@ -61,17 +68,26 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           # cache: npm
 
-      - name: Node / npm diagnostics
+      - name: Setup pnpm
         run: |
-          echo "== Node / npm diagnostics =="
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+
+      - name: Node / pnpm diagnostics
+        run: |
+          echo "== Node / pnpm diagnostics =="
           node -v
           npm -v
+          pnpm -v || true
           npm config get package-lock || true
           echo "Top of package-lock.json (if present):"
           head -n 40 package-lock.json || true
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install (pnpm)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (workspace)
+        run: pnpm -w run build
 
   # ── Unit & Component Tests ──────────────────────────────────
   test:
@@ -85,21 +101,30 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           # cache: npm
 
-      - name: Node / npm diagnostics
+      - name: Setup pnpm
         run: |
-          echo "== Node / npm diagnostics =="
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+
+      - name: Node / pnpm diagnostics
+        run: |
+          echo "== Node / pnpm diagnostics =="
           node -v
           npm -v
+          pnpm -v || true
           npm config get package-lock || true
           echo "Top of package-lock.json (if present):"
           head -n 40 package-lock.json || true
 
-      - run: npm ci
-      - run: npm test -- --coverage
+      - name: Install (pnpm)
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tests
+        run: pnpm -w test -- --coverage
 
   # ── Security: Dependency Audit ──────────────────────────────
   audit:
-    name: Security Audit (npm + SAST)
+    name: Security Audit (pnpm + SAST)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
@@ -108,18 +133,26 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Node / npm diagnostics
+      - name: Setup pnpm
         run: |
-          echo "== Node / npm diagnostics =="
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+
+      - name: Node / pnpm diagnostics
+        run: |
+          echo "== Node / pnpm diagnostics =="
           node -v
           npm -v
+          pnpm -v || true
           npm config get package-lock || true
           echo "Top of package-lock.json (if present):"
           head -n 40 package-lock.json || true
 
-      - name: npm audit
-        run: npm audit --audit-level=high
-        continue-on-error: true # soft-fail — review findings manually
+      - name: Install (pnpm)
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit
+        run: pnpm audit || true
 
   # ── Docker Build (Validate, don't push) ─────────────────────
   docker:
