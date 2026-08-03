@@ -13,6 +13,145 @@ services:
       interval: 5s
       timeout: 3s
       retries: 5
+    networks:
+      - nox
+
+  auth-service:
+    build:
+      context: ../../backend/auth-service
+      dockerfile: ../../infrastructure/docker/Dockerfile.nest
+    working_dir: /app
+    command: sh -c "pnpm install && pnpm dev"
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - AUTH_SERVICE_PORT=3001
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me-at-least-32-chars}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../../backend/auth-service:/app
+      - /app/node_modules
+    networks:
+      - nox
+
+  event-service:
+    build:
+      context: ../../backend/event-service
+      dockerfile: ../../infrastructure/docker/Dockerfile.nest
+    working_dir: /app
+    command: sh -c "pnpm install && pnpm dev"
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - EVENT_SERVICE_PORT=3002
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me-at-least-32-chars}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../../backend/event-service:/app
+      - /app/node_modules
+    networks:
+      - nox
+
+  ticket-service:
+    build:
+      context: ../../backend/ticket-service
+      dockerfile: ../../infrastructure/docker/Dockerfile.nest
+    working_dir: /app
+    command: sh -c "pnpm install && pnpm dev"
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - TICKET_SERVICE_PORT=3003
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me-at-least-32-chars}
+      - TICKET_SIGNING_SECRET=${TICKET_SIGNING_SECRET:-dev-signing-secret}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../../backend/ticket-service:/app
+      - /app/node_modules
+    networks:
+      - nox
+
+  payment-service:
+    build:
+      context: ../../backend/payment-service
+      dockerfile: ../../infrastructure/docker/Dockerfile.nest
+    working_dir: /app
+    command: sh -c "pnpm install && pnpm dev"
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - PAYMENT_SERVICE_PORT=3004
+      - REDIS_URL=redis://redis:6379
+      - TICKET_SERVICE_URL=http://ticket-service:3003
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me-at-least-32-chars}
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - KBZPAY_MERCHANT_ID=${KBZPAY_MERCHANT_ID:-}
+      - KBZPAY_API_KEY=${KBZPAY_API_KEY:-}
+      - KBZPAY_WEBHOOK_SECRET=${KBZPAY_WEBHOOK_SECRET:-}
+      - WAVEPAY_MERCHANT_ID=${WAVEPAY_MERCHANT_ID:-}
+      - WAVEPAY_API_KEY=${WAVEPAY_API_KEY:-}
+      - WAVEPAY_WEBHOOK_SECRET=${WAVEPAY_WEBHOOK_SECRET:-}
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+      ticket-service:
+        condition: service_started
+    volumes:
+      - ../../backend/payment-service:/app
+      - /app/node_modules
+    networks:
+      - nox
+
+  api-gateway:
+    build:
+      context: ../../backend/api-gateway
+      dockerfile: ../../infrastructure/docker/Dockerfile.nest
+    working_dir: /app
+    command: sh -c "pnpm install && pnpm dev"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - GATEWAY_PORT=3000
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me-at-least-32-chars}
+      - CORS_ORIGINS=*
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../../backend/api-gateway:/app
+      - /app/node_modules
+    networks:
+      - nox
 
 volumes:
   redis_data:
+
+networks:
+  nox:
+    driver: bridge
