@@ -30,24 +30,21 @@ class DigitalTicket {
   });
 
   bool get isActive => status == TicketStatus.active;
-  bool get isUsable => status == TicketStatus.active;
 
-  DigitalTicket copyWith({TicketStatus? status}) {
-    return DigitalTicket(
-      id: id,
-      eventId: eventId,
-      eventTitle: eventTitle,
-      venueName: venueName,
-      tierName: tierName,
-      price: price,
-      eventStart: eventStart,
-      qrPayload: qrPayload,
-      userName: userName,
-      status: status ?? this.status,
-      coverUrl: coverUrl,
-      seatInfo: seatInfo,
-    );
-  }
+  DigitalTicket copyWith({TicketStatus? status}) => DigitalTicket(
+        id: id,
+        eventId: eventId,
+        eventTitle: eventTitle,
+        venueName: venueName,
+        tierName: tierName,
+        price: price,
+        eventStart: eventStart,
+        qrPayload: qrPayload,
+        userName: userName,
+        status: status ?? this.status,
+        coverUrl: coverUrl,
+        seatInfo: seatInfo,
+      );
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -64,20 +61,18 @@ class DigitalTicket {
         'seatInfo': seatInfo,
       };
 
-  factory DigitalTicket.fromJson(Map<String, dynamic> json) {
-    return DigitalTicket(
-      id: json['id'] as String,
-      eventId: json['eventId'] as String,
-      eventTitle: json['eventTitle'] as String,
-      venueName: json['venueName'] as String,
-      tierName: json['tierName'] as String,
-      price: (json['price'] as num).toDouble(),
-      eventStart: DateTime.parse(json['eventStart'] as String),
-      qrPayload: json['qrPayload'] as String,
-      userName: json['userName'] as String,
-      status: TicketStatus.values.byName(json['status'] as String),
-      coverUrl: json['coverUrl'] as String?,
-      seatInfo: json['seatInfo'] as String?,
-    );
-  }
+  factory DigitalTicket.fromJson(Map<String, dynamic> json) => DigitalTicket(
+        id: json['id'] as String,
+        eventId: json['eventId'] as String,
+        eventTitle: json['eventTitle'] as String,
+        venueName: json['venueName'] as String,
+        tierName: json['tierName'] as String,
+        price: (json['price'] as num).toDouble(),
+        eventStart: DateTime.parse(json['eventStart'] as String),
+        qrPayload: json['qrPayload'] as String,
+        userName: json['userName'] as String,
+        status: TicketStatus.values.byName(json['status'] as String),
+        coverUrl: json['coverUrl'] as String?,
+        seatInfo: json['seatInfo'] as String?,
+      );
 }
