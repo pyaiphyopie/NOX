@@ -14,7 +14,7 @@ Future<void> main() async {
   ));
 
   await Hive.initFlutter();
-  // TODO: open ticket cache box for offline
+  // await NoxSupabase.init(); // enable with real keys
 
   runApp(const ProviderScope(child: NoxApp()));
 }

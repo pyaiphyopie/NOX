@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// NOX Design System — Dark Luxury Minimalism
 class NoxColors {
   static const Color noxBlack = Color(0xFF070707);
   static const Color deepGraphite = Color(0xFF141414);
@@ -16,9 +15,5 @@ class NoxColors {
     colors: [electricCyan, neonViolet],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-  );
-
-  static const LinearGradient cyanPulse = LinearGradient(
-    colors: [Color(0xFF00AEEF), Color(0xFF0088CC)],
   );
 }
