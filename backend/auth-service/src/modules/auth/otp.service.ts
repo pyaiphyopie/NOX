@@ -1,7 +1,8 @@
 import {
   Injectable,
-  TooManyRequestsException,
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -49,8 +50,9 @@ export class OtpService {
       await this.redis.expire(this.phoneRateKey(phone), RATE_LIMIT_PHONE_WINDOW);
     }
     if (phoneCount > RATE_LIMIT_PHONE_MAX) {
-      throw new TooManyRequestsException(
+      throw new HttpException(
         'Too many OTP requests for this number. Try again later.',
+        HttpStatus.TOO_MANY_REQUESTS,
       );
     }
 
@@ -59,8 +61,9 @@ export class OtpService {
       await this.redis.expire(this.ipRateKey(ip), RATE_LIMIT_IP_WINDOW);
     }
     if (ipCount > RATE_LIMIT_IP_MAX) {
-      throw new TooManyRequestsException(
+      throw new HttpException(
         'Too many OTP requests from this network. Try again later.',
+        HttpStatus.TOO_MANY_REQUESTS,
       );
     }
 
@@ -92,8 +95,9 @@ export class OtpService {
     }
     if (attempts > OTP_MAX_ATTEMPTS) {
       await this.redis.del(this.otpKey(phone));
-      throw new TooManyRequestsException(
+      throw new HttpException(
         'Too many failed attempts. Request a new OTP.',
+        HttpStatus.TOO_MANY_REQUESTS,
       );
     }
 
