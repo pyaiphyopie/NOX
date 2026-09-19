@@ -12,16 +12,18 @@ Treat the following documents as the source of truth:
 3. NOX Mobile UI Design System
 4. Nightlife Platform Brand Identity System
 5. NOX Investor Pitch Deck V2
+6. docs/adr (repository decisions win on architecture conflicts)
 
 If documents conflict:
 
 Priority Order:
 
-1. Technical Architecture Repository
-2. MVP Blueprint
-3. UI Design System
-4. Brand Identity
-5. Investor Deck
+1. docs/adr (ADR-001 modular monolith, ADR-002 agent job/evidence)
+2. Technical Architecture Repository
+3. MVP Blueprint
+4. UI Design System
+5. Brand Identity
+6. Investor Deck
 
 --------------------------------------------------
 
@@ -95,7 +97,7 @@ PRODUCTS TO BUILD
 3. Venue Dashboard
 4. Admin Console
 5. QR Scanner Application
-6. Backend API Platform
+6. Backend API Platform (modular monolith)
 7. Analytics Platform
 8. Notification Infrastructure
 
@@ -119,6 +121,7 @@ Backend
 
 NestJS
 TypeScript
+Modular monolith under backend/api
 
 Database
 
@@ -170,39 +173,57 @@ REPOSITORY STRUCTURE
 
 --------------------------------------------------
 
-Create a Turborepo Monorepo.
+Authoritative layout is ADR-001. Do NOT create new microservices under services/.
+Do NOT scaffold a new NestJS app for auth, events, tickets, payments, or notifications.
 
-nox/
+nox-platform/
 
 apps/
-consumer-mobile
-organizer-dashboard
-venue-dashboard
-admin-console
-qr-scanner
+  mobile-app
+  organizer-dashboard
+  venue-dashboard
+  admin-panel
+  qr-scanner
 
-services/
-api-gateway
-auth-service
-event-service
-ticket-service
-payment-service
-notification-service
-analytics-service
+backend/
+  api/                 # modular monolith — all domain modules live here
+  auth-service/        # legacy scaffold; migrate into backend/api; do not grow
 
 packages/
-ui-kit
-design-tokens
-shared-types
-shared-utils
+  ui-kit
+  design-tokens
+  shared-types         # domain types + 0X Alpha job/evidence contracts (ADR-002)
+  shared-utils
 
 infrastructure/
-docker
-terraform
-kubernetes
-github-actions
+  docker
+  supabase/migrations
+  github-actions
 
 docs/
+  adr/
+
+When generating backend code, add a domain module under backend/api.
+
+--------------------------------------------------
+
+AGENT JOB + EVIDENCE (ADR-002)
+
+--------------------------------------------------
+
+Contracts: packages/shared-types/src/agent-job.ts
+Schema: 0x-alpha.job.v1
+
+A code task is not done because an agent said so.
+Accepted requires RuntimeEvidence (real command + exit_code) and CheckerVerdict pass
+with used_codegen_transcript: false.
+
+If no sandbox is bound: sandbox_available=false, runs=[]. Do not invent logs.
+prod mutate/deploy requires a Governance policy_token.
+
+Frozen invariants include: server-side ticket record is source of truth; QR is a
+credential; payment adapters only; webhook verify + idempotency; no secrets in
+git/logs/sandbox env; do not disable RLS/RBAC for tests.
 
 --------------------------------------------------
 
@@ -362,6 +383,8 @@ Replay Protection
 Ownership Validation
 Expiration Validation
 
+Server-side ticket row is source of truth. QR is a credential only.
+
 --------------------------------------------------
 
 QR SCANNER
@@ -408,12 +431,15 @@ Architecture:
 Redirect Payments
 Deep Links
 Webhook Verification
+Idempotent webhook processing via adapters
 
 DO NOT BUILD:
 
 Wallet
 Stored Balance
 Custody Infrastructure
+
+Never invent undocumented payment provider APIs.
 
 --------------------------------------------------
 
@@ -582,6 +608,8 @@ Deployment Strategy:
 Blue-Green Preferred
 Canary Supported
 
+prod deploy is a Governance high-risk action.
+
 --------------------------------------------------
 
 TESTING
@@ -633,6 +661,8 @@ Make architectural decisions when necessary.
 
 Do not ask for approval for routine engineering decisions.
 
+Do ask for approval for prod mutate/deploy, payment provider changes, and destructive migrations.
+
 Build production-ready implementations.
 
 Avoid placeholders.
@@ -660,22 +690,12 @@ At the end of every phase produce:
 5. Technical debt register
 6. Next phase plan
 
-Begin with Phase 1 immediately.
+Do not restart Phase 1 if the monorepo foundation already exists. Inspect the repo first.
+Preserve working functionality. Prefer additive changes.
 
-Phase 1:
-Repository Foundation
-Monorepo Setup
-Design Tokens
-Shared Packages
-CI/CD
-Docker
-Environment Strategy
-Architecture Documentation
+Current backend direction: migrate backend/auth-service into backend/api modules.
+Never add services/event-service, services/ticket-service, or similar new deployables
+unless an ADR supersedes ADR-001.
 
-Then continue autonomously through all phases until MVP completion.
-# applyTo: 'Describe when these instructions should be loaded by the agent based on task context' # when provided, instructions will automatically be added to the request context when the pattern matches an attached file
+# applyTo: '**'
 ---
-
-<!-- Tip: Use /create-instructions in chat to generate content with agent assistance -->
-
-Provide project context and coding guidelines that AI should follow when generating code, answering questions, or reviewing changes.
