@@ -74,7 +74,8 @@ A change is not accepted without runtime evidence and an independent checker ver
 - [x] Flutter consumer app foundation (Discovery, Auth, Event Detail, Tickets, Profile)
 - [ ] Organizer / Venue / Admin dashboards (Phase 4)
 - [ ] Ticket engine + QR generation + offline validation (Phase 5)
-- [ ] Payment webhooks (Phase 2)
+- [x] Payment adapter P0 (backend/api PaymentsModule, ADR-004) — 2026-09-27
+- [ ] Live Wave/KBZ webhooks in production
 - [ ] Migrate auth-service into backend/api
 
 ## Getting Started
@@ -97,6 +98,9 @@ cp .env.example .env
 
 # Start auth service (dev)
 cd backend/auth-service && pnpm dev
+
+# Payments API (P0, PAYMENTS_MODE=fake)
+cd backend/api && pnpm install && pnpm test && pnpm dev
 
 # Flutter
 cd apps/mobile-app
