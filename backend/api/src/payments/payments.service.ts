@@ -76,19 +76,20 @@ export interface IssuedTicket {
 }
 
 export interface PaymentsStore {
-  getTicketType(id: string): TicketTypeRow | undefined;
-  reserve(ticketTypeId: string, qty: number): boolean;
-  release(ticketTypeId: string, qty: number): void;
-  convertReserveToSold(ticketTypeId: string, qty: number): void;
-  findOrderByIdempotency(key: string): OrderRow | undefined;
-  findOrder(id: string): OrderRow | undefined;
-  saveOrder(order: OrderRow): void;
-  findPayment(id: string): PaymentRow | undefined;
-  findPaymentByProviderRef(provider: PaymentProvider, ref: string): PaymentRow | undefined;
-  savePayment(payment: PaymentRow): void;
-  insertWebhook(row: WebhookRow): { inserted: boolean };
-  ticketsForOrder(orderId: string): IssuedTicket[];
-  saveTickets(tickets: IssuedTicket[]): void;
+  getTicketType(id: string): Promise<TicketTypeRow | undefined> | TicketTypeRow | undefined;
+  reserve(ticketTypeId: string, qty: number): Promise<boolean> | boolean;
+  release(ticketTypeId: string, qty: number): Promise<void> | void;
+  convertReserveToSold(ticketTypeId: string, qty: number): Promise<void> | void;
+  findOrderByIdempotency(key: string): Promise<OrderRow | undefined> | OrderRow | undefined;
+  findOrder(id: string): Promise<OrderRow | undefined> | OrderRow | undefined;
+  saveOrder(order: OrderRow): Promise<void> | void;
+  findPayment(id: string): Promise<PaymentRow | undefined> | PaymentRow | undefined;
+  findPaymentByProviderRef(provider: PaymentProvider, ref: string): Promise<PaymentRow | undefined> | PaymentRow | undefined;
+  savePayment(payment: PaymentRow): Promise<void> | void;
+  insertWebhook(row: WebhookRow): Promise<{ inserted: boolean }> | { inserted: boolean };
+  ticketsForOrder(orderId: string): Promise<IssuedTicket[]> | IssuedTicket[];
+  saveTickets(tickets: IssuedTicket[]): Promise<void> | void;
+  listExpirableOrders?(now: Date): Promise<OrderRow[]> | OrderRow[];
 }
 
 export class InMemoryPaymentsStore implements PaymentsStore {
@@ -185,10 +186,10 @@ export class PaymentsService {
       cmd.idempotencyKey ??
       defaultIdempotency(cmd.userId, cmd.eventId, cmd.items, cmd.method);
 
-    const existing = this.store.findOrderByIdempotency(idempotencyKey);
+    const existing = await this.store.findOrderByIdempotency(idempotencyKey);
     if (existing) {
       const payment = existing.paymentId
-        ? this.store.findPayment(existing.paymentId)
+        ? await this.store.findPayment(existing.paymentId)
         : undefined;
       if (!payment) throw new Error('Existing order missing payment');
       return {
@@ -208,7 +209,7 @@ export class PaymentsService {
     const priced: OrderRow['items'] = [];
 
     for (const item of cmd.items) {
-      const tt = this.store.getTicketType(item.ticketTypeId);
+      const tt = await this.store.getTicketType(item.ticketTypeId);
       if (!tt || !tt.isActive || tt.eventId !== cmd.eventId) {
         throw Object.assign(new Error('Invalid ticket type'), { status: 400 });
       }
@@ -222,7 +223,7 @@ export class PaymentsService {
       if (tt.salesEndAt && now > tt.salesEndAt) {
         throw Object.assign(new Error('Sales closed'), { status: 400 });
       }
-      if (!this.store.reserve(item.ticketTypeId, item.qty)) {
+      if (!(await this.store.reserve(item.ticketTypeId, item.qty))) {
         throw Object.assign(new Error('Sold out'), { status: 409 });
       }
       total += tt.price * item.qty;
@@ -293,17 +294,17 @@ export class PaymentsService {
         payment.status = 'processing';
       }
     } catch (err) {
-      for (const item of priced) this.store.release(item.ticketTypeId, item.qty);
+      for (const item of priced) await this.store.release(item.ticketTypeId, item.qty);
       order.status = 'failed';
       payment.status = 'failed';
       payment.failureMessage = err instanceof Error ? err.message : 'create_failed';
-      this.store.saveOrder(order);
-      this.store.savePayment(payment);
+      await this.store.saveOrder(order);
+      await this.store.savePayment(payment);
       throw err;
     }
 
-    this.store.saveOrder(order);
-    this.store.savePayment(payment);
+    await this.store.saveOrder(order);
+    await this.store.savePayment(payment);
     return { order, payment, instruction: payment.instruction! };
   }
 
@@ -341,30 +342,30 @@ export class PaymentsService {
     },
   ): Promise<{ duplicate: boolean; paymentId?: string; issued: number }> {
     const parsed = await parse(req);
-    const inserted = this.store.insertWebhook({
+    const inserted = await this.store.insertWebhook({
       provider,
       providerEventId: parsed.providerEventId,
     });
     if (!inserted.inserted) {
-      const existing = this.store.findPaymentByProviderRef(provider, parsed.providerRef);
+      const existing = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
       return {
         duplicate: true,
         paymentId: existing?.id,
-        issued: existing ? this.store.ticketsForOrder(existing.orderId).length : 0,
+        issued: existing ? (await this.store.ticketsForOrder(existing.orderId)).length : 0,
       };
     }
     if (parsed.status === 'ignored') {
       return { duplicate: false, issued: 0 };
     }
 
-    const payment = this.store.findPaymentByProviderRef(provider, parsed.providerRef);
+    const payment = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
     if (!payment) {
       throw Object.assign(new Error('Payment not found for providerRef'), { status: 404 });
     }
     if (parsed.status === 'completed') {
       if (parsed.amountMinor !== payment.amount || parsed.currency !== payment.currency) {
         payment.failureCode = 'amount_mismatch';
-        this.store.savePayment(payment);
+        await this.store.savePayment(payment);
         throw new AmountMismatchError();
       }
     }
@@ -382,92 +383,92 @@ export class PaymentsService {
       return { duplicate: false, paymentId: payment.id, issued: 0 };
     }
 
-    const order = this.store.findOrder(payment.orderId);
+    const order = await this.store.findOrder(payment.orderId);
     if (!order) throw new Error('Order missing');
 
     payment.status = nextPayment;
-    this.store.savePayment(payment);
+    await this.store.savePayment(payment);
 
     if (nextPayment === 'completed') {
       if (!canTransition(ORDER_TRANSITIONS, order.status, 'paid')) {
-        return { duplicate: false, paymentId: payment.id, issued: this.store.ticketsForOrder(order.id).length };
+        return { duplicate: false, paymentId: payment.id, issued: (await this.store.ticketsForOrder(order.id)).length };
       }
       order.status = 'paid';
-      this.store.saveOrder(order);
-      const issued = this.issueTickets(order);
+      await this.store.saveOrder(order);
+      const issued = await this.issueTickets(order);
       return { duplicate: false, paymentId: payment.id, issued: issued.length };
     }
 
     if (nextPayment === 'failed' || nextPayment === 'expired') {
       if (canTransition(ORDER_TRANSITIONS, order.status, nextPayment === 'expired' ? 'cancelled' : 'failed')) {
         order.status = nextPayment === 'expired' ? 'cancelled' : 'failed';
-        this.store.saveOrder(order);
+        await this.store.saveOrder(order);
       }
-      for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
+      for (const item of order.items) await this.store.release(item.ticketTypeId, item.qty);
     }
 
     return { duplicate: false, paymentId: payment.id, issued: 0 };
   }
 
-  expireReservations(now = new Date()): number {
+  async expireReservations(now = new Date()): Promise<number> {
     let n = 0;
-    // store implementations other than memory are responsible for querying expiry
-    if (this.store instanceof InMemoryPaymentsStore) {
-      for (const order of this.store.orders.values()) {
-        if (
-          (order.status === 'pending' || order.status === 'payment_processing') &&
-          order.reservationExpiresAt <= now
-        ) {
-          order.status = 'cancelled';
-          this.store.saveOrder(order);
-          if (order.paymentId) {
-            const payment = this.store.findPayment(order.paymentId);
-            if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
-              payment.status = 'expired';
-              this.store.savePayment(payment);
-            }
-          }
-          for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
-          n += 1;
+    const candidates = this.store.listExpirableOrders
+      ? await this.store.listExpirableOrders(now)
+      : this.store instanceof InMemoryPaymentsStore
+        ? [...this.store.orders.values()].filter(
+            (order) =>
+              (order.status === 'pending' || order.status === 'payment_processing') &&
+              order.reservationExpiresAt <= now,
+          )
+        : [];
+    for (const order of candidates) {
+      order.status = 'cancelled';
+      await this.store.saveOrder(order);
+      if (order.paymentId) {
+        const payment = await this.store.findPayment(order.paymentId);
+        if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
+          payment.status = 'expired';
+          await this.store.savePayment(payment);
         }
       }
+      for (const item of order.items) await this.store.release(item.ticketTypeId, item.qty);
+      n += 1;
     }
     return n;
   }
 
-  getOrder(id: string, userId: string): OrderRow {
-    const order = this.store.findOrder(id);
+  async getOrder(id: string, userId: string): Promise<OrderRow> {
+    const order = await this.store.findOrder(id);
     if (!order || order.userId !== userId) {
       throw Object.assign(new Error('Order not found'), { status: 404 });
     }
     return order;
   }
 
-  cancel(orderId: string, userId: string): OrderRow {
-    const order = this.getOrder(orderId, userId);
+  async cancel(orderId: string, userId: string): Promise<OrderRow> {
+    const order = await this.getOrder(orderId, userId);
     if (!canTransition(ORDER_TRANSITIONS, order.status, 'cancelled')) {
       throw Object.assign(new Error('Order cannot be cancelled'), { status: 409 });
     }
     order.status = 'cancelled';
-    this.store.saveOrder(order);
+    await this.store.saveOrder(order);
     if (order.paymentId) {
-      const payment = this.store.findPayment(order.paymentId);
+      const payment = await this.store.findPayment(order.paymentId);
       if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
         payment.status = 'expired';
-        this.store.savePayment(payment);
+        await this.store.savePayment(payment);
       }
     }
-    for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
+    for (const item of order.items) await this.store.release(item.ticketTypeId, item.qty);
     return order;
   }
 
-  private issueTickets(order: OrderRow): IssuedTicket[] {
-    if (this.store.ticketsForOrder(order.id).length > 0) {
-      return this.store.ticketsForOrder(order.id);
-    }
+  private async issueTickets(order: OrderRow): Promise<IssuedTicket[]> {
+    const existing = await this.store.ticketsForOrder(order.id);
+    if (existing.length > 0) return existing;
     const tickets: IssuedTicket[] = [];
     for (const item of order.items) {
-      this.store.convertReserveToSold(item.ticketTypeId, item.qty);
+      await this.store.convertReserveToSold(item.ticketTypeId, item.qty);
       for (let i = 0; i < item.qty; i++) {
         const id = randomUUID();
         const payload = JSON.stringify({
@@ -487,7 +488,7 @@ export class PaymentsService {
         });
       }
     }
-    this.store.saveTickets(tickets);
+    await this.store.saveTickets(tickets);
     return tickets;
   }
 }

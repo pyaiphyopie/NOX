@@ -208,7 +208,7 @@ describe('PaymentsService', () => {
       idempotencyKey: 'ttl',
     });
     created.order.reservationExpiresAt = new Date(Date.now() - 1000);
-    const n = service.expireReservations(new Date());
+    const n = await service.expireReservations(new Date());
     expect(n).toBe(1);
     expect(store.findOrder(created.order.id)?.status).toBe('cancelled');
     expect(store.getTicketType('ga')?.quantityReserved).toBe(0);
