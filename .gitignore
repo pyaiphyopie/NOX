@@ -50,3 +50,7 @@ coverage
 tmp
 temp
 .supabase
+
+# Local nektos/act junk
+.github/act-history.json
+.github/act-payloads/
