@@ -50,3 +50,7 @@ coverage
 tmp
 temp
 .supabase
+
+# Local agent memory (do not commit)
+.claude/
+.amazonq/
