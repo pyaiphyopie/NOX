@@ -11,27 +11,21 @@ Modular monolith (ADR-001). Do not add a `services/` microservice tree.
 
 ```
 nox-platform/
-├── apps/
-│   ├── mobile-app/          # Flutter consumer app (Riverpod + GoRouter)
-│   ├── organizer-dashboard/ # Next.js
-│   ├── venue-dashboard/     # Next.js
-│   ├── admin-panel/         # Next.js
-│   └── qr-scanner/          # Flutter offline-capable scanner
+├── flutter_blueprint/       # Flutter consumer app (Riverpod + GoRouter)
 ├── backend/
 │   ├── api/                 # NestJS modular monolith (target)
 │   └── auth-service/        # legacy scaffold — migrate into api/
 ├── packages/
-│   ├── design-tokens/       # NOX Black / Electric Cyan / Neon Violet
-│   ├── shared-types/        # domain + 0X Alpha job/evidence (ADR-002)
-│   ├── shared-utils/
-│   └── ui-kit/
+│   └── shared-types/        # domain + 0X Alpha job/evidence (ADR-002)
 ├── infrastructure/
 │   ├── supabase/migrations/ # Production schema + RLS
 │   ├── docker/
-│   └── github-actions/
+│   └── github-actions/      # reference copy; live CI is .github/workflows/
 └── docs/
     └── adr/
 ```
+
+**Planned / not present yet:** organizer, venue, and admin dashboards; QR scanner app; `packages/shared-utils`, `packages/ui-kit`. Design-tokens stub is not part of the tree (removal tracked separately).
 
 ## Design System
 
@@ -52,7 +46,7 @@ Dark mode first · Cinematic · Luxury minimalism
 | Layer      | Technology                          |
 |------------|-------------------------------------|
 | Mobile     | Flutter + Riverpod + GoRouter + Hive |
-| Web        | Next.js + TypeScript + Tailwind     |
+| Web        | Next.js + TypeScript + Tailwind (dashboards planned) |
 | Backend    | NestJS + TypeScript (modular monolith) |
 | Database   | PostgreSQL (Supabase) + RLS         |
 | Auth       | Phone OTP (primary) + JWT rotation  |
@@ -67,11 +61,10 @@ A change is not accepted without runtime evidence and an independent checker ver
 ## Phase 1 Status (Foundation)
 
 - [x] Turborepo monorepo root
-- [x] Design tokens package
 - [x] Shared types package (job/evidence contracts added 2026-09-20)
 - [x] Supabase initial schema (users, venues, organizers, events, tickets, orders, payments, checkins, RLS)
 - [x] Auth Service (NestJS) — Phone OTP + JWT + refresh rotation (legacy location)
-- [x] Flutter consumer app foundation (Discovery, Auth, Event Detail, Tickets, Profile)
+- [x] Flutter consumer app foundation (`flutter_blueprint/`: Discovery, Auth, Event Detail, Tickets, Profile)
 - [ ] Organizer / Venue / Admin dashboards (Phase 4)
 - [ ] Ticket engine + QR generation + offline validation (Phase 5)
 - [x] Payment adapter P0 (backend/api PaymentsModule, ADR-004) — 2026-09-27
@@ -103,7 +96,7 @@ cd backend/auth-service && pnpm dev
 cd backend/api && pnpm install && pnpm test && pnpm dev
 
 # Flutter
-cd apps/mobile-app
+cd flutter_blueprint
 flutter pub get
 flutter run
 ```
