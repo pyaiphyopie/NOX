@@ -1,7 +1,7 @@
 name: nox_flutter_workspace
-description: Root workspace manifest for the NOX Flutter multi-package monorepo blueprint.
+description: NOX Flutter consumer app blueprint (single-package lib/ tree).
 publish_to: none
-version: 0.0.0
+version: 0.1.0+1
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  nox_flutter_app:
-    path: packages/app
+  flutter_riverpod: ^2.4.0
+  go_router: ^17.2.3
   qr_flutter: ^4.1.0
 
 dev_dependencies:
@@ -20,4 +20,6 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  melos: ^2.6.0
+
+flutter:
+  uses-material-design: true
