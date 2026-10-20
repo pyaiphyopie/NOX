@@ -19,8 +19,16 @@ jobs:
         with:
           node-version: '22'
 
-      - name: npm audit (block on critical)
-        run: npm audit --audit-level=critical
+      - name: Enable pnpm via corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.15.0 --activate
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit (block on critical)
+        run: pnpm audit --audit-level=critical
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
