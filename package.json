@@ -29,7 +29,6 @@
     "@types/node": "^22.10.2"
   },
   "workspaces": [
-    "apps/*",
     "backend/*",
     "packages/*"
   ]
