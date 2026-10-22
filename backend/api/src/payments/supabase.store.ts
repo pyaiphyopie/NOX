@@ -11,16 +11,23 @@ import { PaymentMethod, PaymentProvider, PaymentStatus, OrderStatus } from './ty
 
 type Db = SupabaseClient;
 
+function requireInt(value: unknown, field: string): number {
+  const n = Number(value);
+  if (!Number.isSafeInteger(n)) throw new Error(`Invalid integer for ${field}`);
+  return n;
+}
+
 function mapTicket(row: Record<string, unknown>): TicketTypeRow {
   return {
     id: String(row.id),
     eventId: String(row.event_id),
-    price: Number(row.price),
+    // INTEGER minor units (MMK)
+    price: requireInt(row.price, 'price'),
     currency: String(row.currency),
-    quantityTotal: Number(row.quantity_total),
-    quantitySold: Number(row.quantity_sold),
-    quantityReserved: Number(row.quantity_reserved),
-    maxPerOrder: Number(row.max_per_order),
+    quantityTotal: requireInt(row.quantity_total, 'quantity_total'),
+    quantitySold: requireInt(row.quantity_sold, 'quantity_sold'),
+    quantityReserved: requireInt(row.quantity_reserved, 'quantity_reserved'),
+    maxPerOrder: requireInt(row.max_per_order, 'max_per_order'),
     salesStartAt: row.sales_start_at ? new Date(String(row.sales_start_at)) : undefined,
     salesEndAt: row.sales_end_at ? new Date(String(row.sales_end_at)) : undefined,
     isActive: Boolean(row.is_active),
@@ -31,36 +38,53 @@ export class SupabasePaymentsStore implements PaymentsStore {
   constructor(private readonly db: Db) {}
 
   static fromEnv(url: string, serviceRoleKey: string): SupabasePaymentsStore {
-    return new SupabasePaymentsStore(createClient(url, serviceRoleKey, { auth: { persistSession: false } }));
+    return new SupabasePaymentsStore(
+      createClient(url, serviceRoleKey, { auth: { persistSession: false } }),
+    );
   }
 
   async getTicketType(id: string): Promise<TicketTypeRow | undefined> {
-    const { data, error } = await this.db.from('ticket_types').select('*').eq('id', id).is('deleted_at', null).maybeSingle();
+    const { data, error } = await this.db
+      .from('ticket_types')
+      .select('*')
+      .eq('id', id)
+      .is('deleted_at', null)
+      .maybeSingle();
     if (error) throw error;
     return data ? mapTicket(data) : undefined;
   }
 
   async reserve(ticketTypeId: string, qty: number): Promise<boolean> {
-    const { data, error } = await this.db.rpc('reserve_ticket_type', { p_id: ticketTypeId, p_qty: qty });
+    const { data, error } = await this.db.rpc('reserve_ticket_type', {
+      p_id: ticketTypeId,
+      p_qty: qty,
+    });
     if (error) throw error;
     return Boolean(data);
   }
 
   async release(ticketTypeId: string, qty: number): Promise<void> {
-    const { error } = await this.db.rpc('release_ticket_type', { p_id: ticketTypeId, p_qty: qty });
+    const { error } = await this.db.rpc('release_ticket_type', {
+      p_id: ticketTypeId,
+      p_qty: qty,
+    });
     if (error) throw error;
   }
 
   async convertReserveToSold(ticketTypeId: string, qty: number): Promise<void> {
-    const { error } = await this.db.rpc('convert_reserve_to_sold', { p_id: ticketTypeId, p_qty: qty });
+    const { error } = await this.db.rpc('convert_reserve_to_sold', {
+      p_id: ticketTypeId,
+      p_qty: qty,
+    });
     if (error) throw error;
   }
 
-  async findOrderByIdempotency(key: string): Promise<OrderRow | undefined> {
+  async findOrderByIdempotency(key: string, userId: string): Promise<OrderRow | undefined> {
     const { data, error } = await this.db
       .from('orders')
       .select('*')
       .eq('idempotency_key', key)
+      .eq('user_id', userId)
       .is('deleted_at', null)
       .maybeSingle();
     if (error) throw error;
@@ -68,38 +92,75 @@ export class SupabasePaymentsStore implements PaymentsStore {
   }
 
   async findOrder(id: string): Promise<OrderRow | undefined> {
-    const { data, error } = await this.db.from('orders').select('*').eq('id', id).is('deleted_at', null).maybeSingle();
+    const { data, error } = await this.db
+      .from('orders')
+      .select('*')
+      .eq('id', id)
+      .is('deleted_at', null)
+      .maybeSingle();
     if (error) throw error;
     return data ? this.hydrateOrder(data) : undefined;
   }
 
+  async claimOrder(order: OrderRow): Promise<'inserted' | 'duplicate'> {
+    const { error } = await this.db.rpc('save_order_with_items', {
+      p_id: order.id,
+      p_user_id: order.userId,
+      p_event_id: order.eventId,
+      p_status: order.status,
+      p_total_amount: order.totalAmount,
+      p_currency: order.currency,
+      p_ticket_count: order.ticketCount,
+      p_payment_id: order.paymentId ?? null,
+      p_idempotency_key: order.idempotencyKey,
+      p_reservation_expires_at: order.reservationExpiresAt.toISOString(),
+      p_items: order.items.map((item) => ({
+        ticket_type_id: item.ticketTypeId,
+        qty: item.qty,
+        unit_price: item.unitPrice,
+      })),
+      p_mode: 'insert',
+    });
+    if (error && (error as { code?: string }).code === '23505') return 'duplicate';
+    if (error) throw error;
+    return 'inserted';
+  }
+
   async saveOrder(order: OrderRow): Promise<void> {
-    const { error } = await this.db.from('orders').upsert({
-      id: order.id,
-      user_id: order.userId,
-      event_id: order.eventId,
-      status: order.status,
-      total_amount: order.totalAmount,
-      currency: order.currency,
-      ticket_count: order.ticketCount,
-      payment_id: order.paymentId ?? null,
-      idempotency_key: order.idempotencyKey,
-      reservation_expires_at: order.reservationExpiresAt.toISOString(),
-      metadata: { items: order.items },
+    const { error } = await this.db.rpc('save_order_with_items', {
+      p_id: order.id,
+      p_user_id: order.userId,
+      p_event_id: order.eventId,
+      p_status: order.status,
+      p_total_amount: order.totalAmount,
+      p_currency: order.currency,
+      p_ticket_count: order.ticketCount,
+      p_payment_id: order.paymentId ?? null,
+      p_idempotency_key: order.idempotencyKey,
+      p_reservation_expires_at: order.reservationExpiresAt.toISOString(),
+      p_items: order.items.map((item) => ({
+        ticket_type_id: item.ticketTypeId,
+        qty: item.qty,
+        unit_price: item.unitPrice,
+      })),
+      p_mode: 'upsert',
     });
     if (error) throw error;
-    await this.db.from('order_items').delete().eq('order_id', order.id);
-    if (order.items.length) {
-      const { error: itemError } = await this.db.from('order_items').insert(
-        order.items.map((item) => ({
-          order_id: order.id,
-          ticket_type_id: item.ticketTypeId,
-          qty: item.qty,
-          unit_price: item.unitPrice,
-        })),
-      );
-      if (itemError) throw itemError;
-    }
+  }
+
+  async transitionOrder(
+    id: string,
+    from: OrderStatus[],
+    to: OrderStatus,
+  ): Promise<OrderRow | undefined> {
+    const { data, error } = await this.db.rpc('transition_order_status', {
+      p_id: id,
+      p_from: from,
+      p_to: to,
+    });
+    if (error) throw error;
+    if (!data) return undefined;
+    return this.hydrateOrder(data as Record<string, unknown>);
   }
 
   async findPayment(id: string): Promise<PaymentRow | undefined> {
@@ -108,7 +169,10 @@ export class SupabasePaymentsStore implements PaymentsStore {
     return data ? mapPayment(data) : undefined;
   }
 
-  async findPaymentByProviderRef(provider: PaymentProvider, ref: string): Promise<PaymentRow | undefined> {
+  async findPaymentByProviderRef(
+    provider: PaymentProvider,
+    ref: string,
+  ): Promise<PaymentRow | undefined> {
     const { data, error } = await this.db
       .from('payments')
       .select('*')
@@ -154,7 +218,11 @@ export class SupabasePaymentsStore implements PaymentsStore {
   }
 
   async ticketsForOrder(orderId: string): Promise<IssuedTicket[]> {
-    const { data, error } = await this.db.from('tickets').select('*').eq('order_id', orderId).is('deleted_at', null);
+    const { data, error } = await this.db
+      .from('tickets')
+      .select('*')
+      .eq('order_id', orderId)
+      .is('deleted_at', null);
     if (error) throw error;
     return (data ?? []).map(mapTicketIssued);
   }
@@ -190,24 +258,22 @@ export class SupabasePaymentsStore implements PaymentsStore {
   }
 
   private async hydrateOrder(row: Record<string, unknown>): Promise<OrderRow> {
-    const meta = (row.metadata ?? {}) as { items?: OrderRow['items'] };
-    let items = meta.items ?? [];
-    if (!items.length) {
-      const { data } = await this.db.from('order_items').select('*').eq('order_id', row.id);
-      items = (data ?? []).map((item) => ({
-        ticketTypeId: String(item.ticket_type_id),
-        qty: Number(item.qty),
-        unitPrice: Number(item.unit_price),
-      }));
-    }
+    // Single source of truth: order_items (not metadata.items)
+    const { data, error } = await this.db.from('order_items').select('*').eq('order_id', row.id);
+    if (error) throw error;
+    const items = (data ?? []).map((item) => ({
+      ticketTypeId: String(item.ticket_type_id),
+      qty: requireInt(item.qty, 'qty'),
+      unitPrice: requireInt(item.unit_price, 'unit_price'),
+    }));
     return {
       id: String(row.id),
       userId: String(row.user_id),
       eventId: String(row.event_id),
       status: row.status as OrderStatus,
-      totalAmount: Number(row.total_amount),
+      totalAmount: requireInt(row.total_amount, 'total_amount'),
       currency: String(row.currency),
-      ticketCount: Number(row.ticket_count),
+      ticketCount: requireInt(row.ticket_count, 'ticket_count'),
       paymentId: row.payment_id ? String(row.payment_id) : undefined,
       idempotencyKey: String(row.idempotency_key ?? ''),
       reservationExpiresAt: new Date(String(row.reservation_expires_at ?? row.created_at)),
@@ -224,7 +290,8 @@ function mapPayment(row: Record<string, unknown>): PaymentRow {
     providerRef: row.provider_ref ? String(row.provider_ref) : undefined,
     method: (row.method as PaymentMethod) ?? 'fake',
     market: String(row.market ?? 'MM'),
-    amount: Number(row.amount),
+    // INTEGER minor units (MMK)
+    amount: requireInt(row.amount, 'amount'),
     currency: String(row.currency),
     status: row.status as PaymentStatus,
     idempotencyKey: String(row.idempotency_key ?? ''),
