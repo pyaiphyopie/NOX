@@ -1,77 +1,43 @@
-# NOX Platform - Product Overview
+# NOX — Product Overview
 
-## Project Purpose and Value Proposition
+## What it is
 
-NOX is a comprehensive nightlife and entertainment platform designed to connect event-goers, promoters, and venues in a unified ecosystem. The platform serves as a digital hub for discovering events, purchasing tickets, managing profiles, and engaging with the local nightlife scene.
+NOX is the operating layer for a night. Find the door, hold the ticket, get in, and give the venue one ledger. It is not a discovery marketplace and not a listing site.
 
-**Core Value Proposition:**
-- Centralized discovery platform for nightlife events and venues
-- Seamless ticket purchasing and management system
-- Community-driven event promotion and engagement
-- Mobile-first experience for on-the-go entertainment planning
+Pierre Computer Company is the studio. NOX is the public brand. Night-goers meet NOX. Venues, promoters, and payment partners meet the studio.
 
-## Key Features and Capabilities
+**Own the Night.**
 
-### Event Discovery & Management
-- Browse curated events with detailed information
-- Filter events by category, date, location, and popularity
-- Save favorite events and receive notifications
-- Interactive event cards with visual previews
+## The job
 
-### Ticketing System
-- Secure ticket purchasing flow
-- Digital ticket storage and management
-- QR code-based entry validation
-- Purchase history and receipts
+A night fails if the scan fails, the ticket double-issues, or the payout leaves the country. NOX exists to keep those three things boring.
 
-### User Engagement
-- User profiles with preferences and history
-- Notification system for event updates
-- Social features for event sharing
-- Rating and review capabilities
+- One city at a time. Yangon is the first door.
+- A ticket is issued only after payment is confirmed. The client “paid” screen never mints one.
+- The door still validates when the network drops.
+- Payouts stay in local currency. Myanmar money stays onshore.
+- Rails are a studio concern. They do not appear on the consumer surface.
 
-### Promoter & Venue Tools
-- Event creation and management dashboard
-- Analytics and attendance tracking
-- Promotional tools and marketing integration
-- Venue profile management
+## Two surfaces
 
-## Target Users and Use Cases
+| Surface | Who | Says | Never says |
+|---|---|---|---|
+| Consumer | Someone going out | One city, one ticket, the wordmark | Payouts, merchant services, rail tables |
+| Studio | Venue, promoter, partner | The operating layer, the door, settlement | A feed of parties |
 
-### Primary User Segments
+## Who it is for
 
-**Event-Goers (Consumers)**
-- Young adults (21-35) seeking nightlife entertainment
-- Tourists looking for local events
-- Social groups planning outings
-- Music and entertainment enthusiasts
+- **Night-goers** in the city that is live. One ticket, not a catalog.
+- **Venues and promoters** who need inventory, a door list, and a scan that works offline.
+- **Payment partners** who settle locally. Cards are a fallback, not the product.
 
-**Promoters & Event Organizers**
-- Nightclub promoters
-- Concert organizers
-- Festival producers
-- Private event planners
+## What ships
 
-**Venue Owners & Managers**
-- Nightclubs and bars
-- Concert halls and theaters
-- Event spaces and venues
-- Restaurant owners with entertainment offerings
+- Consumer: Yangon, one ticket, the wordmark.
+- Studio: the operating story. A door, not a directory. Ticketing, venue tools, offline validation, analytics, local settlement.
+- Platform: Flutter consumer app, NestJS modular monolith, Supabase. Phone OTP where accounts exist.
 
-### Key Use Cases
+## Type and color (locked)
 
-1. **Event Discovery**: Users browse upcoming events, filter by preferences, and discover new venues
-2. **Ticket Purchase**: Secure, streamlined ticket buying with digital delivery
-3. **Event Management**: Promoters create, update, and manage event listings
-4. **Profile Management**: Users maintain preferences, purchase history, and saved events
-5. **Social Engagement**: Share events, invite friends, and participate in event communities
-6. **Analytics & Insights**: Promoters access attendance data and performance metrics
-
-## Platform Architecture
-
-The NOX platform consists of two main components:
-
-1. **Web Prototype (React/Vite)**: Modern web application for desktop and mobile web access
-2. **Flutter Blueprint**: Cross-platform mobile application framework for iOS and Android
-
-This dual-architecture approach ensures maximum reach across web and mobile platforms while maintaining consistent user experience and functionality.
+- Room `#070707`. Ice type. Cyan `#00AEEF` is the one action. Violet `#8B5CF6` is rare.
+- Type is **Syne** for display and **Outfit** for text. Satoshi is not in use. Do not add a third family.
