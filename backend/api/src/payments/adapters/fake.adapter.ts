@@ -1,10 +1,9 @@
-import { createHmac, timingSafeEqual } from 'crypto';
+import { timingSafeEqual } from 'crypto';
 import { PaymentProviderAdapter } from './adapter';
 import {
   CreatePaymentInput,
   ParsedWebhook,
   PaymentInstruction,
-  PaymentMethod,
 } from '../types';
 
 /**
@@ -14,8 +13,6 @@ import {
  */
 export class FakePaymentAdapter implements PaymentProviderAdapter {
   readonly provider = 'fake' as const;
-  readonly markets = ['MM', 'TH', 'ID', 'PH', 'VN', 'MY', 'SG'];
-  readonly methods: PaymentMethod[] = ['fake'];
 
   constructor(
     private readonly secret: string,
@@ -74,10 +71,6 @@ export class FakePaymentAdapter implements PaymentProviderAdapter {
   async queryPayment(providerRef: string) {
     return { status: 'processing' as const, raw: { providerRef } };
   }
-}
-
-export function fakeWebhookSignature(secret: string, rawBody: string): string {
-  return createHmac('sha256', secret).update(rawBody).digest('hex');
 }
 
 function headerValue(
