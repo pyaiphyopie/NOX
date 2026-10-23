@@ -2,14 +2,11 @@ import {
   CreatePaymentInput,
   ParsedWebhook,
   PaymentInstruction,
-  PaymentMethod,
   PaymentProvider,
 } from '../types';
 
 export interface PaymentProviderAdapter {
   readonly provider: PaymentProvider;
-  readonly markets: string[];
-  readonly methods: PaymentMethod[];
 
   createPayment(input: CreatePaymentInput): Promise<{
     providerRef: string;
