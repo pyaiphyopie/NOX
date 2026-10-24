@@ -76,19 +76,43 @@ export interface IssuedTicket {
 }
 
 export interface PaymentsStore {
-  getTicketType(id: string): TicketTypeRow | undefined;
-  reserve(ticketTypeId: string, qty: number): boolean;
-  release(ticketTypeId: string, qty: number): void;
-  convertReserveToSold(ticketTypeId: string, qty: number): void;
-  findOrderByIdempotency(key: string): OrderRow | undefined;
-  findOrder(id: string): OrderRow | undefined;
-  saveOrder(order: OrderRow): void;
-  findPayment(id: string): PaymentRow | undefined;
-  findPaymentByProviderRef(provider: PaymentProvider, ref: string): PaymentRow | undefined;
-  savePayment(payment: PaymentRow): void;
-  insertWebhook(row: WebhookRow): { inserted: boolean };
-  ticketsForOrder(orderId: string): IssuedTicket[];
-  saveTickets(tickets: IssuedTicket[]): void;
+  getTicketType(id: string): Promise<TicketTypeRow | undefined> | TicketTypeRow | undefined;
+  reserve(ticketTypeId: string, qty: number): Promise<boolean> | boolean;
+  release(ticketTypeId: string, qty: number): Promise<void> | void;
+  convertReserveToSold(ticketTypeId: string, qty: number): Promise<void> | void;
+  /** Lookup by scoped idempotency key; implementations must also filter by userId. */
+  findOrderByIdempotency(
+    key: string,
+    userId: string,
+  ): Promise<OrderRow | undefined> | OrderRow | undefined;
+  findOrder(id: string): Promise<OrderRow | undefined> | OrderRow | undefined;
+  /** Insert-only claim of the idempotency key. Returns duplicate on unique conflict. */
+  claimOrder(order: OrderRow): Promise<'inserted' | 'duplicate'> | 'inserted' | 'duplicate';
+  saveOrder(order: OrderRow): Promise<void> | void;
+  /**
+   * Compare-and-set order status. Returns the updated row when the update hit;
+   * undefined when the row was missing or status was not in `from`.
+   */
+  transitionOrder(
+    id: string,
+    from: OrderStatus[],
+    to: OrderStatus,
+  ): Promise<OrderRow | undefined> | OrderRow | undefined;
+  findPayment(id: string): Promise<PaymentRow | undefined> | PaymentRow | undefined;
+  findPaymentByProviderRef(
+    provider: PaymentProvider,
+    ref: string,
+  ): Promise<PaymentRow | undefined> | PaymentRow | undefined;
+  savePayment(payment: PaymentRow): Promise<void> | void;
+  insertWebhook(row: WebhookRow): Promise<{ inserted: boolean }> | { inserted: boolean };
+  ticketsForOrder(orderId: string): Promise<IssuedTicket[]> | IssuedTicket[];
+  saveTickets(tickets: IssuedTicket[]): Promise<void> | void;
+  listExpirableOrders?(now: Date): Promise<OrderRow[]> | OrderRow[];
+}
+
+/** Scope client idempotency keys to the authenticated buyer. */
+export function scopeIdempotencyKey(userId: string, clientKey: string): string {
+  return `${userId}:${clientKey}`;
 }
 
 export class InMemoryPaymentsStore implements PaymentsStore {
@@ -119,22 +143,33 @@ export class InMemoryPaymentsStore implements PaymentsStore {
     tt.quantityReserved = Math.max(0, tt.quantityReserved - qty);
     tt.quantitySold += qty;
   }
-  findOrderByIdempotency(key: string) {
-    return [...this.orders.values()].find((o) => o.idempotencyKey === key);
+  findOrderByIdempotency(key: string, userId: string) {
+    return [...this.orders.values()].find((o) => o.idempotencyKey === key && o.userId === userId);
   }
   findOrder(id: string) {
     return this.orders.get(id);
   }
+  claimOrder(order: OrderRow): 'inserted' | 'duplicate' {
+    const clash = [...this.orders.values()].find((o) => o.idempotencyKey === order.idempotencyKey);
+    if (clash) return 'duplicate';
+    this.orders.set(order.id, { ...order, items: [...order.items] });
+    return 'inserted';
+  }
   saveOrder(order: OrderRow) {
-    this.orders.set(order.id, order);
+    this.orders.set(order.id, { ...order, items: [...order.items] });
+  }
+  transitionOrder(id: string, from: OrderStatus[], to: OrderStatus): OrderRow | undefined {
+    const order = this.orders.get(id);
+    if (!order || !from.includes(order.status)) return undefined;
+    order.status = to;
+    this.orders.set(id, order);
+    return order;
   }
   findPayment(id: string) {
     return this.payments.get(id);
   }
   findPaymentByProviderRef(provider: PaymentProvider, ref: string) {
-    return [...this.payments.values()].find(
-      (p) => p.provider === provider && p.providerRef === ref,
-    );
+    return [...this.payments.values()].find((p) => p.provider === provider && p.providerRef === ref);
   }
   savePayment(payment: PaymentRow) {
     this.payments.set(payment.id, payment);
@@ -181,21 +216,14 @@ export class PaymentsService {
     payment: PaymentRow;
     instruction: PaymentInstruction;
   }> {
-    const idempotencyKey =
+    const clientKey =
       cmd.idempotencyKey ??
       defaultIdempotency(cmd.userId, cmd.eventId, cmd.items, cmd.method);
+    const idempotencyKey = scopeIdempotencyKey(cmd.userId, clientKey);
 
-    const existing = this.store.findOrderByIdempotency(idempotencyKey);
+    const existing = await this.store.findOrderByIdempotency(idempotencyKey, cmd.userId);
     if (existing) {
-      const payment = existing.paymentId
-        ? this.store.findPayment(existing.paymentId)
-        : undefined;
-      if (!payment) throw new Error('Existing order missing payment');
-      return {
-        order: existing,
-        payment,
-        instruction: payment.instruction ?? { kind: 'pin_wait', message: 'pending' },
-      };
+      return this.existingOrderResult(existing);
     }
 
     if (!this.listMethods(cmd.market).includes(cmd.method) && this.registry.mode !== 'fake') {
@@ -206,105 +234,148 @@ export class PaymentsService {
     let currency = 'MMK';
     let ticketCount = 0;
     const priced: OrderRow['items'] = [];
-
-    for (const item of cmd.items) {
-      const tt = this.store.getTicketType(item.ticketTypeId);
-      if (!tt || !tt.isActive || tt.eventId !== cmd.eventId) {
-        throw Object.assign(new Error('Invalid ticket type'), { status: 400 });
-      }
-      if (item.qty < 1 || item.qty > tt.maxPerOrder) {
-        throw Object.assign(new Error('Quantity not allowed'), { status: 400 });
-      }
-      const now = new Date();
-      if (tt.salesStartAt && now < tt.salesStartAt) {
-        throw Object.assign(new Error('Sales not open'), { status: 400 });
-      }
-      if (tt.salesEndAt && now > tt.salesEndAt) {
-        throw Object.assign(new Error('Sales closed'), { status: 400 });
-      }
-      if (!this.store.reserve(item.ticketTypeId, item.qty)) {
-        throw Object.assign(new Error('Sold out'), { status: 409 });
-      }
-      total += tt.price * item.qty;
-      currency = tt.currency;
-      ticketCount += item.qty;
-      priced.push({ ticketTypeId: item.ticketTypeId, qty: item.qty, unitPrice: tt.price });
-    }
-
-    const orderId = randomUUID();
-    const paymentId = randomUUID();
-    const expiresAt = new Date(Date.now() + this.reservationTtlSec * 1000);
-
-    const order: OrderRow = {
-      id: orderId,
-      userId: cmd.userId,
-      eventId: cmd.eventId,
-      status: 'payment_processing',
-      totalAmount: total,
-      currency,
-      ticketCount,
-      paymentId,
-      idempotencyKey,
-      reservationExpiresAt: expiresAt,
-      items: priced,
-    };
-
-    const adapter = this.registry.resolve(cmd.method);
-    const payment: PaymentRow = {
-      id: paymentId,
-      orderId,
-      provider: adapter.provider,
-      method: this.registry.mode === 'fake' ? 'fake' : cmd.method,
-      market: cmd.market,
-      amount: total,
-      currency,
-      status: 'pending',
-      idempotencyKey: `${idempotencyKey}:pay`,
-      expiresAt,
-    };
-
-    const notifyUrl = `${this.publicApiUrl}/webhooks/payment/${adapter.provider}`;
-    const input: CreatePaymentInput = {
-      paymentId,
-      orderId,
-      amountMinor: total,
-      currency,
-      market: cmd.market,
-      method: payment.method,
-      buyer: cmd.buyer ?? {},
-      description: `NOX tickets ${cmd.eventId}`,
-      returnUrl: `${this.publicApiUrl}/orders/${orderId}`,
-      notifyUrl,
-      expiresAt,
-      idempotencyKey,
-    };
+    let reserved = false;
 
     try {
-      if (total === 0) {
-        payment.status = 'completed';
-        payment.providerRef = `free_${paymentId}`;
-        payment.instruction = { kind: 'pin_wait', message: 'free' };
-        order.status = 'paid';
-        this.issueTickets(order);
-      } else {
-        const created = await adapter.createPayment(input);
-        payment.providerRef = created.providerRef;
-        payment.instruction = created.instruction;
-        payment.status = 'processing';
+      for (const item of cmd.items) {
+        const tt = await this.store.getTicketType(item.ticketTypeId);
+        if (!tt || !tt.isActive || tt.eventId !== cmd.eventId) {
+          throw Object.assign(new Error('Invalid ticket type'), { status: 400 });
+        }
+        if (item.qty < 1 || item.qty > tt.maxPerOrder) {
+          throw Object.assign(new Error('Quantity not allowed'), { status: 400 });
+        }
+        const now = new Date();
+        if (tt.salesStartAt && now < tt.salesStartAt) {
+          throw Object.assign(new Error('Sales not open'), { status: 400 });
+        }
+        if (tt.salesEndAt && now > tt.salesEndAt) {
+          throw Object.assign(new Error('Sales closed'), { status: 400 });
+        }
+        if (!(await this.store.reserve(item.ticketTypeId, item.qty))) {
+          throw Object.assign(new Error('Sold out'), { status: 409 });
+        }
+        reserved = true;
+        total += tt.price * item.qty;
+        currency = tt.currency;
+        ticketCount += item.qty;
+        priced.push({ ticketTypeId: item.ticketTypeId, qty: item.qty, unitPrice: tt.price });
       }
-    } catch (err) {
-      for (const item of priced) this.store.release(item.ticketTypeId, item.qty);
-      order.status = 'failed';
-      payment.status = 'failed';
-      payment.failureMessage = err instanceof Error ? err.message : 'create_failed';
-      this.store.saveOrder(order);
-      this.store.savePayment(payment);
-      throw err;
-    }
 
-    this.store.saveOrder(order);
-    this.store.savePayment(payment);
-    return { order, payment, instruction: payment.instruction! };
+      const orderId = randomUUID();
+      const paymentId = randomUUID();
+      const expiresAt = new Date(Date.now() + this.reservationTtlSec * 1000);
+
+      const order: OrderRow = {
+        id: orderId,
+        userId: cmd.userId,
+        eventId: cmd.eventId,
+        status: 'payment_processing',
+        totalAmount: total,
+        currency,
+        ticketCount,
+        paymentId,
+        idempotencyKey,
+        reservationExpiresAt: expiresAt,
+        items: priced,
+      };
+
+      const claim = await this.store.claimOrder(order);
+      if (claim === 'duplicate') {
+        for (const item of priced) await this.store.release(item.ticketTypeId, item.qty);
+        reserved = false;
+        const again = await this.store.findOrderByIdempotency(idempotencyKey, cmd.userId);
+        if (!again) {
+          throw Object.assign(new Error('Idempotency key conflict'), { status: 409 });
+        }
+        if (again.userId !== cmd.userId) {
+          throw Object.assign(new Error('Idempotency key conflict'), { status: 409 });
+        }
+        return this.existingOrderResult(again);
+      }
+
+      const adapter = this.registry.resolve(cmd.method);
+      const payment: PaymentRow = {
+        id: paymentId,
+        orderId,
+        provider: adapter.provider,
+        method: this.registry.mode === 'fake' ? 'fake' : cmd.method,
+        market: cmd.market,
+        amount: total,
+        currency,
+        status: 'pending',
+        idempotencyKey: `${idempotencyKey}:pay`,
+        expiresAt,
+      };
+
+      const notifyUrl = `${this.publicApiUrl}/webhooks/payment/${adapter.provider}`;
+      const input: CreatePaymentInput = {
+        paymentId,
+        orderId,
+        amountMinor: total,
+        currency,
+        market: cmd.market,
+        method: payment.method,
+        buyer: cmd.buyer ?? {},
+        description: `NOX tickets ${cmd.eventId}`,
+        returnUrl: `${this.publicApiUrl}/orders/${orderId}`,
+        notifyUrl,
+        expiresAt,
+        idempotencyKey,
+      };
+
+      try {
+        if (total === 0) {
+          payment.status = 'completed';
+          payment.providerRef = `free_${paymentId}`;
+          payment.instruction = { kind: 'pin_wait', message: 'free' };
+          order.status = 'paid';
+          await this.store.saveOrder(order);
+          await this.store.savePayment(payment);
+          await this.issueTickets(order);
+          reserved = false;
+        } else {
+          const created = await adapter.createPayment(input);
+          payment.providerRef = created.providerRef;
+          payment.instruction = created.instruction;
+          payment.status = 'processing';
+          await this.store.saveOrder(order);
+          await this.store.savePayment(payment);
+          reserved = false;
+        }
+      } catch (err) {
+        for (const item of priced) await this.store.release(item.ticketTypeId, item.qty);
+        reserved = false;
+        order.status = 'failed';
+        payment.status = 'failed';
+        payment.failureMessage = err instanceof Error ? err.message : 'create_failed';
+        await this.store.saveOrder(order);
+        await this.store.savePayment(payment);
+        throw err;
+      }
+
+      return { order, payment, instruction: payment.instruction! };
+    } finally {
+      if (reserved) {
+        for (const item of priced) await this.store.release(item.ticketTypeId, item.qty);
+      }
+    }
+  }
+
+  private async existingOrderResult(existing: OrderRow): Promise<{
+    order: OrderRow;
+    payment: PaymentRow;
+    instruction: PaymentInstruction;
+  }> {
+    const payment = existing.paymentId
+      ? await this.store.findPayment(existing.paymentId)
+      : undefined;
+    if (!payment) throw new Error('Existing order missing payment');
+    return {
+      order: existing,
+      payment,
+      instruction: payment.instruction ?? { kind: 'pin_wait', message: 'pending' },
+    };
   }
 
   async handleWebhook(args: {
@@ -341,30 +412,30 @@ export class PaymentsService {
     },
   ): Promise<{ duplicate: boolean; paymentId?: string; issued: number }> {
     const parsed = await parse(req);
-    const inserted = this.store.insertWebhook({
+    const inserted = await this.store.insertWebhook({
       provider,
       providerEventId: parsed.providerEventId,
     });
     if (!inserted.inserted) {
-      const existing = this.store.findPaymentByProviderRef(provider, parsed.providerRef);
+      const existing = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
       return {
         duplicate: true,
         paymentId: existing?.id,
-        issued: existing ? this.store.ticketsForOrder(existing.orderId).length : 0,
+        issued: existing ? (await this.store.ticketsForOrder(existing.orderId)).length : 0,
       };
     }
     if (parsed.status === 'ignored') {
       return { duplicate: false, issued: 0 };
     }
 
-    const payment = this.store.findPaymentByProviderRef(provider, parsed.providerRef);
+    const payment = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
     if (!payment) {
       throw Object.assign(new Error('Payment not found for providerRef'), { status: 404 });
     }
     if (parsed.status === 'completed') {
       if (parsed.amountMinor !== payment.amount || parsed.currency !== payment.currency) {
         payment.failureCode = 'amount_mismatch';
-        this.store.savePayment(payment);
+        await this.store.savePayment(payment);
         throw new AmountMismatchError();
       }
     }
@@ -382,92 +453,111 @@ export class PaymentsService {
       return { duplicate: false, paymentId: payment.id, issued: 0 };
     }
 
-    const order = this.store.findOrder(payment.orderId);
+    const order = await this.store.findOrder(payment.orderId);
     if (!order) throw new Error('Order missing');
 
     payment.status = nextPayment;
-    this.store.savePayment(payment);
+    await this.store.savePayment(payment);
 
     if (nextPayment === 'completed') {
-      if (!canTransition(ORDER_TRANSITIONS, order.status, 'paid')) {
-        return { duplicate: false, paymentId: payment.id, issued: this.store.ticketsForOrder(order.id).length };
+      const paid = await this.store.transitionOrder(
+        order.id,
+        ['pending', 'payment_processing'],
+        'paid',
+      );
+      if (!paid) {
+        return {
+          duplicate: false,
+          paymentId: payment.id,
+          issued: (await this.store.ticketsForOrder(order.id)).length,
+        };
       }
-      order.status = 'paid';
-      this.store.saveOrder(order);
-      const issued = this.issueTickets(order);
+      const issued = await this.issueTickets(paid);
       return { duplicate: false, paymentId: payment.id, issued: issued.length };
     }
 
     if (nextPayment === 'failed' || nextPayment === 'expired') {
-      if (canTransition(ORDER_TRANSITIONS, order.status, nextPayment === 'expired' ? 'cancelled' : 'failed')) {
-        order.status = nextPayment === 'expired' ? 'cancelled' : 'failed';
-        this.store.saveOrder(order);
+      const nextOrder: OrderStatus = nextPayment === 'expired' ? 'cancelled' : 'failed';
+      const transitioned = await this.store.transitionOrder(
+        order.id,
+        ['pending', 'payment_processing'],
+        nextOrder,
+      );
+      if (transitioned) {
+        for (const item of transitioned.items) {
+          await this.store.release(item.ticketTypeId, item.qty);
+        }
       }
-      for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
     }
 
     return { duplicate: false, paymentId: payment.id, issued: 0 };
   }
 
-  expireReservations(now = new Date()): number {
+  async expireReservations(now = new Date()): Promise<number> {
     let n = 0;
-    // store implementations other than memory are responsible for querying expiry
-    if (this.store instanceof InMemoryPaymentsStore) {
-      for (const order of this.store.orders.values()) {
-        if (
-          (order.status === 'pending' || order.status === 'payment_processing') &&
-          order.reservationExpiresAt <= now
-        ) {
-          order.status = 'cancelled';
-          this.store.saveOrder(order);
-          if (order.paymentId) {
-            const payment = this.store.findPayment(order.paymentId);
-            if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
-              payment.status = 'expired';
-              this.store.savePayment(payment);
-            }
-          }
-          for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
-          n += 1;
+    const candidates = this.store.listExpirableOrders
+      ? await this.store.listExpirableOrders(now)
+      : this.store instanceof InMemoryPaymentsStore
+        ? [...this.store.orders.values()].filter(
+            (order) =>
+              (order.status === 'pending' || order.status === 'payment_processing') &&
+              order.reservationExpiresAt <= now,
+          )
+        : [];
+    for (const order of candidates) {
+      const cancelled = await this.store.transitionOrder(
+        order.id,
+        ['pending', 'payment_processing'],
+        'cancelled',
+      );
+      if (!cancelled) continue;
+      if (cancelled.paymentId) {
+        const payment = await this.store.findPayment(cancelled.paymentId);
+        if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
+          payment.status = 'expired';
+          await this.store.savePayment(payment);
         }
       }
+      for (const item of cancelled.items) await this.store.release(item.ticketTypeId, item.qty);
+      n += 1;
     }
     return n;
   }
 
-  getOrder(id: string, userId: string): OrderRow {
-    const order = this.store.findOrder(id);
+  async getOrder(id: string, userId: string): Promise<OrderRow> {
+    const order = await this.store.findOrder(id);
     if (!order || order.userId !== userId) {
       throw Object.assign(new Error('Order not found'), { status: 404 });
     }
     return order;
   }
 
-  cancel(orderId: string, userId: string): OrderRow {
-    const order = this.getOrder(orderId, userId);
+  async cancel(orderId: string, userId: string): Promise<OrderRow> {
+    const order = await this.getOrder(orderId, userId);
     if (!canTransition(ORDER_TRANSITIONS, order.status, 'cancelled')) {
       throw Object.assign(new Error('Order cannot be cancelled'), { status: 409 });
     }
-    order.status = 'cancelled';
-    this.store.saveOrder(order);
-    if (order.paymentId) {
-      const payment = this.store.findPayment(order.paymentId);
+    const cancelled = await this.store.transitionOrder(orderId, [order.status], 'cancelled');
+    if (!cancelled) {
+      throw Object.assign(new Error('Order cannot be cancelled'), { status: 409 });
+    }
+    if (cancelled.paymentId) {
+      const payment = await this.store.findPayment(cancelled.paymentId);
       if (payment && canTransition(PAYMENT_TRANSITIONS, payment.status, 'expired')) {
         payment.status = 'expired';
-        this.store.savePayment(payment);
+        await this.store.savePayment(payment);
       }
     }
-    for (const item of order.items) this.store.release(item.ticketTypeId, item.qty);
-    return order;
+    for (const item of cancelled.items) await this.store.release(item.ticketTypeId, item.qty);
+    return cancelled;
   }
 
-  private issueTickets(order: OrderRow): IssuedTicket[] {
-    if (this.store.ticketsForOrder(order.id).length > 0) {
-      return this.store.ticketsForOrder(order.id);
-    }
+  private async issueTickets(order: OrderRow): Promise<IssuedTicket[]> {
+    const existing = await this.store.ticketsForOrder(order.id);
+    if (existing.length > 0) return existing;
     const tickets: IssuedTicket[] = [];
     for (const item of order.items) {
-      this.store.convertReserveToSold(item.ticketTypeId, item.qty);
+      await this.store.convertReserveToSold(item.ticketTypeId, item.qty);
       for (let i = 0; i < item.qty; i++) {
         const id = randomUUID();
         const payload = JSON.stringify({
@@ -487,7 +577,7 @@ export class PaymentsService {
         });
       }
     }
-    this.store.saveTickets(tickets);
+    await this.store.saveTickets(tickets);
     return tickets;
   }
 }
