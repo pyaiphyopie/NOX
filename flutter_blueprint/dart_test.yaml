@@ -2,4 +2,5 @@
 # Use `flutter test --exclude-tags=integration` to run standard tests.
 
 tags:
-  integration: "Integration tests are excluded by default."
+  integration:
+    description: "Integration tests are excluded by default."
