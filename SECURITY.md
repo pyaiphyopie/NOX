@@ -1,21 +1,17 @@
 # Security Policy
 
-## Supported Versions
+## Supported versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Security fixes are considered for the `main` branch of this repository only.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## Reporting a vulnerability
 
-## Reporting a Vulnerability
+Please report security issues privately via GitHub Security Advisories for this repository:
+https://github.com/pyaiphyopie/NOX/security/advisories/new
 
-Use this section to tell people how to report a vulnerability.
+Do not open a public issue for vulnerabilities. Include steps to reproduce, affected paths, and impact. You can expect an acknowledgment after maintainers review the report.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+## Scope notes
+
+- Never commit secrets, tokens, or production `PAYMENTS_MODE=fake` credentials.
+- Payment webhooks must verify signatures; see ADR-004 under `docs/adr/`.
