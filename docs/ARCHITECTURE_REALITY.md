@@ -1,7 +1,7 @@
 # NOX Architecture Reality
 
 **Status:** CURRENT LAW (living)  
-**Last verified:** 2026-10-24 Asia/Rangoon  
+**Last verified:** 2026-10-31 Asia/Rangoon  
 **Scope:** What exists on `main` today — not product aspiration.
 
 Copyright in this work and related NOX materials is held personally by **Pyai Phyo Pie / ပြည့်ဖြိုးပိုင်**. Do not list trading names as the copyright holder.
@@ -26,6 +26,8 @@ If an ADR and this page disagree on *intent*, update the ADR. If they disagree o
 | Google Drive PDF **Nox Technical Architecture Repository.pdf** (file id `1RymbKiAeQdsQIgLMOKqpKaHtbqqWhVmI`, modified **2026-05-12**) | **ARCHIVED INTENT** |
 
 The May PDF remains a good **product thesis** (lean MVP, mobile-first nightlife OS, external MM wallets, path to scale). It is **not** an accurate map of this repository. Planning from it without this page will invent services and apps that are not on `main`.
+
+Local root PDF/DOCX copies are untracked (`gitignore` `/*.pdf` `/*.docx`); Google Drive remains the archive.
 
 ---
 
