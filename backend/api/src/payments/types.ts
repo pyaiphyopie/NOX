@@ -116,16 +116,6 @@ export class AmountMismatchError extends Error {
   }
 }
 
-export const MM_METHODS: PaymentMethod[] = [
-  'kbzpay_pwa',
-  'kbzpay_qr',
-  'wavepay_pin',
-  'mmqr_dynamic',
-  'ayapay',
-  'cbpay',
-  'fake',
-];
-
 export function methodsForMarket(market: string, mode: string): PaymentMethod[] {
   if (mode === 'fake') return ['fake'];
   switch (market.toUpperCase()) {
