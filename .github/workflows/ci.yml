@@ -45,8 +45,8 @@ jobs:
           node -v
           pnpm -v
 
-      - name: Install (no frozen lock — pnpm-lock.yaml not committed yet)
-        run: pnpm install
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
 
       - name: Workspace scripts if present
         run: |
