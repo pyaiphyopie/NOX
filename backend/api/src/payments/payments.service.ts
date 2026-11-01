@@ -207,28 +207,35 @@ export class PaymentsService {
     let ticketCount = 0;
     const priced: OrderRow['items'] = [];
 
-    for (const item of cmd.items) {
-      const tt = this.store.getTicketType(item.ticketTypeId);
-      if (!tt || !tt.isActive || tt.eventId !== cmd.eventId) {
-        throw Object.assign(new Error('Invalid ticket type'), { status: 400 });
+    try {
+      for (const item of cmd.items) {
+        const tt = this.store.getTicketType(item.ticketTypeId);
+        if (!tt || !tt.isActive || tt.eventId !== cmd.eventId) {
+          throw Object.assign(new Error('Invalid ticket type'), { status: 400 });
+        }
+        if (item.qty < 1 || item.qty > tt.maxPerOrder) {
+          throw Object.assign(new Error('Quantity not allowed'), { status: 400 });
+        }
+        const now = new Date();
+        if (tt.salesStartAt && now < tt.salesStartAt) {
+          throw Object.assign(new Error('Sales not open'), { status: 400 });
+        }
+        if (tt.salesEndAt && now > tt.salesEndAt) {
+          throw Object.assign(new Error('Sales closed'), { status: 400 });
+        }
+        if (!this.store.reserve(item.ticketTypeId, item.qty)) {
+          throw Object.assign(new Error('Sold out'), { status: 409 });
+        }
+        total += tt.price * item.qty;
+        currency = tt.currency;
+        ticketCount += item.qty;
+        priced.push({ ticketTypeId: item.ticketTypeId, qty: item.qty, unitPrice: tt.price });
       }
-      if (item.qty < 1 || item.qty > tt.maxPerOrder) {
-        throw Object.assign(new Error('Quantity not allowed'), { status: 400 });
-      }
-      const now = new Date();
-      if (tt.salesStartAt && now < tt.salesStartAt) {
-        throw Object.assign(new Error('Sales not open'), { status: 400 });
-      }
-      if (tt.salesEndAt && now > tt.salesEndAt) {
-        throw Object.assign(new Error('Sales closed'), { status: 400 });
-      }
-      if (!this.store.reserve(item.ticketTypeId, item.qty)) {
-        throw Object.assign(new Error('Sold out'), { status: 409 });
-      }
-      total += tt.price * item.qty;
-      currency = tt.currency;
-      ticketCount += item.qty;
-      priced.push({ ticketTypeId: item.ticketTypeId, qty: item.qty, unitPrice: tt.price });
+    } catch (err) {
+      // Atomic reserve/rollback: any throw after partial reserves must release
+      // seats already held in this attempt (adapter-catch release remains below).
+      for (const item of priced) this.store.release(item.ticketTypeId, item.qty);
+      throw err;
     }
 
     const orderId = randomUUID();

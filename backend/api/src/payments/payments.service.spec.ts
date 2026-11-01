@@ -214,7 +214,38 @@ describe('PaymentsService', () => {
     expect(store.getTicketType('ga')?.quantityReserved).toBe(0);
   });
 
-  it('skips adapter for free tickets and issues immediately', async () => {
+  it('releases prior reserves when a later multi-item line is sold out', async () => {
+    const { store, service } = seed();
+    store.ticketTypes.set('vip', {
+      id: 'vip',
+      eventId: 'evt-1',
+      price: 50000,
+      currency: 'MMK',
+      quantityTotal: 0,
+      quantitySold: 0,
+      quantityReserved: 0,
+      maxPerOrder: 2,
+      isActive: true,
+    });
+    await expect(
+      service.createOrder({
+        userId: 'u1',
+        eventId: 'evt-1',
+        market: 'MM',
+        method: 'fake',
+        items: [
+          { ticketTypeId: 'ga', qty: 1 },
+          { ticketTypeId: 'vip', qty: 1 },
+        ],
+        idempotencyKey: 'multi-partial',
+      }),
+    ).rejects.toMatchObject({ status: 409 });
+    expect(store.getTicketType('ga')?.quantityReserved).toBe(0);
+    expect(store.getTicketType('vip')?.quantityReserved).toBe(0);
+    expect(store.orders.size).toBe(0);
+  });
+
+    it('skips adapter for free tickets and issues immediately', async () => {
     const { store, service } = seed();
     store.ticketTypes.set('free', {
       id: 'free',
