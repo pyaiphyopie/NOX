@@ -30,11 +30,11 @@ class MyTicketsScreen extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    event.coverUrl,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Color(event.coverColor),
+                    ),
+                    child: const SizedBox(width: 80, height: 80),
                   ),
                 ),
                 const SizedBox(width: 16),
