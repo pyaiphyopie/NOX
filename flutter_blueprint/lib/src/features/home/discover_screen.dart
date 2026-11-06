@@ -146,11 +146,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(24),
                             ),
-                            child: Image.network(
-                              e.coverUrl,
-                              height: 180,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: Color(e.coverColor),
+                              ),
+                              child: const SizedBox(
+                                height: 180,
+                                width: double.infinity,
+                              ),
                             ),
                           ),
                           Padding(
