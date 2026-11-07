@@ -1,11 +1,11 @@
 {
-    "name": "nox_flutter_workspace",
-    "short_name": "nox_flutter_workspace",
+    "name": "NOX",
+    "short_name": "NOX",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "NOX — nightlife discovery. Own The Night.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
