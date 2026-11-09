@@ -22,7 +22,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       backgroundColor: const Color(0xFF070707),
       body: CustomScrollView(
         slivers: [
-          // Hero banner
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.fromLTRB(20, 60, 20, 0),
@@ -77,7 +76,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
           ),
 
-          // Category chips
           SliverToBoxAdapter(
             child: SizedBox(
               height: 48,
@@ -122,7 +120,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
           ),
 
-          // Event cards
           SliverPadding(
             padding: const EdgeInsets.all(20),
             sliver: SliverList(
