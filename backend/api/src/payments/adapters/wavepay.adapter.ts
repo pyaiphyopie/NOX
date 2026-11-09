@@ -23,8 +23,6 @@ import {
  */
 export class WavePayAdapter implements PaymentProviderAdapter {
   readonly provider = 'wavepay' as const;
-  readonly markets = ['MM'];
-  readonly methods = ['wavepay_pin' as const];
 
   constructor(
     private readonly merchantId: string,
