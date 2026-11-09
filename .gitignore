@@ -50,3 +50,6 @@ coverage
 tmp
 temp
 .supabase
+
+# Unused Trunk.io local config (removed in audit)
+.trunk/
