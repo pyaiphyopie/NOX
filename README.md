@@ -9,6 +9,8 @@ NOX is the digital operating system for nightlife economies — connecting consu
 
 Modular monolith (ADR-001). Do not add a `services/` microservice tree.
 
+**Living map of what is actually on `main`:** [`docs/ARCHITECTURE_REALITY.md`](docs/ARCHITECTURE_REALITY.md) (CURRENT LAW). The tree below is aspirational in places — `apps/` was removed in #34.
+
 ```
 nox-platform/
 ├── apps/
