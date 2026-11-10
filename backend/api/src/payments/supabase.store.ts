@@ -64,19 +64,21 @@ export class SupabasePaymentsStore implements PaymentsStore {
   }
 
   async release(ticketTypeId: string, qty: number): Promise<void> {
-    const { error } = await this.db.rpc('release_ticket_type', {
+    const { data, error } = await this.db.rpc('release_ticket_type', {
       p_id: ticketTypeId,
       p_qty: qty,
     });
     if (error) throw error;
+    if (data === false) throw new Error('Release exceeds reserved inventory');
   }
 
   async convertReserveToSold(ticketTypeId: string, qty: number): Promise<void> {
-    const { error } = await this.db.rpc('convert_reserve_to_sold', {
+    const { data, error } = await this.db.rpc('convert_reserve_to_sold', {
       p_id: ticketTypeId,
       p_qty: qty,
     });
     if (error) throw error;
+    if (data === false) throw new Error('Convert exceeds reserved inventory');
   }
 
   async findOrderByIdempotency(key: string, userId: string): Promise<OrderRow | undefined> {
@@ -185,21 +187,21 @@ export class SupabasePaymentsStore implements PaymentsStore {
   }
 
   async savePayment(payment: PaymentRow): Promise<void> {
-    const { error } = await this.db.from('payments').upsert({
-      id: payment.id,
-      order_id: payment.orderId,
-      provider: payment.provider,
-      provider_ref: payment.providerRef ?? null,
-      method: payment.method,
-      market: payment.market,
-      amount: payment.amount,
-      currency: payment.currency,
-      status: payment.status,
-      idempotency_key: payment.idempotencyKey,
-      instruction: payment.instruction ?? null,
-      expires_at: payment.expiresAt.toISOString(),
-      failure_code: payment.failureCode ?? null,
-      failure_message: payment.failureMessage ?? null,
+    const { error } = await this.db.rpc('save_payment', {
+      p_id: payment.id,
+      p_order_id: payment.orderId,
+      p_provider: payment.provider,
+      p_provider_ref: payment.providerRef ?? null,
+      p_method: payment.method,
+      p_market: payment.market,
+      p_amount: payment.amount,
+      p_currency: payment.currency,
+      p_status: payment.status,
+      p_idempotency_key: payment.idempotencyKey,
+      p_instruction: payment.instruction ?? null,
+      p_expires_at: payment.expiresAt.toISOString(),
+      p_failure_code: payment.failureCode ?? null,
+      p_failure_message: payment.failureMessage ?? null,
     });
     if (error) throw error;
   }
@@ -263,7 +265,8 @@ export class SupabasePaymentsStore implements PaymentsStore {
     if (error) throw error;
     const items = (data ?? []).map((item) => ({
       ticketTypeId: String(item.ticket_type_id),
-      qty: requireInt(item.qty, 'qty'),
+      // Existing gap-fill schema uses `quantity`; older draft used `qty`.
+      qty: requireInt(item.quantity ?? item.qty, 'quantity'),
       unitPrice: requireInt(item.unit_price, 'unit_price'),
     }));
     return {

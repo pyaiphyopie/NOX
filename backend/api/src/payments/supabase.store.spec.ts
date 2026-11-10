@@ -106,4 +106,98 @@ describe('SupabasePaymentsStore', () => {
       store.insertWebhook({ provider: 'fake', providerEventId: 'evt-1' }),
     ).resolves.toEqual({ inserted: false });
   });
+
+  it('hydrateOrder reads quantity from the gap-fill schema', async () => {
+    const orderId = sampleOrder.id;
+    const store = new SupabasePaymentsStore(
+      createFakeDb({
+        from: (table: string) => {
+          if (table === 'orders') {
+            return {
+              select: () => ({
+                eq: () => ({
+                  is: () => ({
+                    maybeSingle: async () => ({
+                      data: {
+                        id: orderId,
+                        user_id: sampleOrder.userId,
+                        event_id: sampleOrder.eventId,
+                        status: 'payment_processing',
+                        total_amount: 15000,
+                        currency: 'MMK',
+                        ticket_count: 1,
+                        payment_id: sampleOrder.paymentId,
+                        idempotency_key: 'u1:k1',
+                        reservation_expires_at: '2026-10-22T00:00:00Z',
+                      },
+                      error: null,
+                    }),
+                  }),
+                }),
+              }),
+            };
+          }
+          if (table === 'order_items') {
+            return {
+              select: () => ({
+                eq: async () => ({
+                  data: [
+                    {
+                      ticket_type_id: sampleOrder.items[0].ticketTypeId,
+                      quantity: 2,
+                      unit_price: 15000,
+                      total_price: 30000,
+                      currency: 'MMK',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            };
+          }
+          throw new Error(`unexpected table ${table}`);
+        },
+      }) as never,
+    );
+    const order = await store.findOrder(orderId);
+    expect(order?.items).toEqual([
+      { ticketTypeId: sampleOrder.items[0].ticketTypeId, qty: 2, unitPrice: 15000 },
+    ]);
+  });
+
+  it('savePayment uses the save_payment RPC', async () => {
+    let seen: { fn?: string } = {};
+    const store = new SupabasePaymentsStore(
+      createFakeDb({
+        rpc: async (fn) => {
+          seen.fn = fn;
+          return { data: null, error: null };
+        },
+      }) as never,
+    );
+    await store.savePayment({
+      id: sampleOrder.paymentId!,
+      orderId: sampleOrder.id,
+      provider: 'fake',
+      method: 'fake',
+      market: 'MM',
+      amount: 15000,
+      currency: 'MMK',
+      status: 'processing',
+      idempotencyKey: 'u1:k1:pay',
+      expiresAt: new Date('2026-10-22T00:00:00Z'),
+    });
+    expect(seen.fn).toBe('save_payment');
+  });
+
+  it('release throws when the RPC reports no row updated', async () => {
+    const store = new SupabasePaymentsStore(
+      createFakeDb({
+        rpc: async () => ({ data: false, error: null }),
+      }) as never,
+    );
+    await expect(store.release(sampleOrder.items[0].ticketTypeId, 1)).rejects.toThrow(
+      /Release exceeds reserved inventory/,
+    );
+  });
 });

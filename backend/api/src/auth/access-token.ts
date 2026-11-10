@@ -71,7 +71,7 @@ export async function verifyAccessToken(token: string, secret: string): Promise<
       throw new AccessTokenError('Missing exp');
     }
     const typ = typeof payload.typ === 'string' ? payload.typ : undefined;
-    if (typ !== undefined && typ !== ACCESS_TOKEN_TYP) {
+    if (typ !== ACCESS_TOKEN_TYP) {
       throw new AccessTokenError('Invalid token typ');
     }
     return {

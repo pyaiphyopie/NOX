@@ -99,6 +99,28 @@ describe('access token', () => {
     await expect(verifyAccessToken(token, secret)).rejects.toBeInstanceOf(AccessTokenError);
   });
 
+
+  it('rejects a token with no typ', async () => {
+    const token = await new SignJWT({})
+      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+      .setSubject('user-1')
+      .setIssuer(ACCESS_TOKEN_ISS)
+      .setAudience(ACCESS_TOKEN_AUD)
+      .setExpirationTime(Math.floor(Date.now() / 1000) + 60)
+      .sign(new TextEncoder().encode(secret));
+    await expect(verifyAccessToken(token, secret)).rejects.toBeInstanceOf(AccessTokenError);
+  });
+
+  it('rejects a refresh typ', async () => {
+    const token = await new SignJWT({ typ: 'refresh' })
+      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+      .setSubject('user-1')
+      .setIssuer(ACCESS_TOKEN_ISS)
+      .setAudience(ACCESS_TOKEN_AUD)
+      .setExpirationTime(Math.floor(Date.now() / 1000) + 60)
+      .sign(new TextEncoder().encode(secret));
+    await expect(verifyAccessToken(token, secret)).rejects.toBeInstanceOf(AccessTokenError);
+  });
   it('fail-fast on short secret', () => {
     expect(() => assertJwtAccessSecret('short')).toThrow(/32/);
   });

@@ -115,6 +115,36 @@ export function scopeIdempotencyKey(userId: string, clientKey: string): string {
   return `${userId}:${clientKey}`;
 }
 
+
+export function retainOrderStatus(current: OrderStatus | undefined, next: OrderStatus): OrderStatus {
+  if (
+    current &&
+    current !== next &&
+    (current === 'paid' ||
+      current === 'cancelled' ||
+      current === 'failed' ||
+      current === 'refunded' ||
+      current === 'partially_refunded')
+  ) {
+    return current;
+  }
+  return next;
+}
+
+export function retainPaymentStatus(
+  current: PaymentStatus | undefined,
+  next: PaymentStatus,
+): PaymentStatus {
+  if (!current || current === next) return next;
+  if (current === 'completed' || current === 'refunded' || current === 'partially_refunded') {
+    return current;
+  }
+  if ((current === 'failed' || current === 'expired') && (next === 'pending' || next === 'processing')) {
+    return current;
+  }
+  return next;
+}
+
 export class InMemoryPaymentsStore implements PaymentsStore {
   ticketTypes = new Map<string, TicketTypeRow>();
   orders = new Map<string, OrderRow>();
@@ -135,12 +165,18 @@ export class InMemoryPaymentsStore implements PaymentsStore {
   release(ticketTypeId: string, qty: number): void {
     const tt = this.ticketTypes.get(ticketTypeId);
     if (!tt) return;
-    tt.quantityReserved = Math.max(0, tt.quantityReserved - qty);
+    if (tt.quantityReserved < qty) {
+      throw new Error('Release exceeds reserved inventory');
+    }
+    tt.quantityReserved -= qty;
   }
   convertReserveToSold(ticketTypeId: string, qty: number): void {
     const tt = this.ticketTypes.get(ticketTypeId);
     if (!tt) return;
-    tt.quantityReserved = Math.max(0, tt.quantityReserved - qty);
+    if (tt.quantityReserved < qty) {
+      throw new Error('Convert exceeds reserved inventory');
+    }
+    tt.quantityReserved -= qty;
     tt.quantitySold += qty;
   }
   findOrderByIdempotency(key: string, userId: string) {
@@ -156,7 +192,9 @@ export class InMemoryPaymentsStore implements PaymentsStore {
     return 'inserted';
   }
   saveOrder(order: OrderRow) {
-    this.orders.set(order.id, { ...order, items: [...order.items] });
+    const existing = this.orders.get(order.id);
+    const status = retainOrderStatus(existing?.status, order.status);
+    this.orders.set(order.id, { ...order, status, items: [...order.items] });
   }
   transitionOrder(id: string, from: OrderStatus[], to: OrderStatus): OrderRow | undefined {
     const order = this.orders.get(id);
@@ -172,7 +210,14 @@ export class InMemoryPaymentsStore implements PaymentsStore {
     return [...this.payments.values()].find((p) => p.provider === provider && p.providerRef === ref);
   }
   savePayment(payment: PaymentRow) {
-    this.payments.set(payment.id, payment);
+    const existing = this.payments.get(payment.id);
+    const status = retainPaymentStatus(existing?.status, payment.status);
+    this.payments.set(payment.id, {
+      ...payment,
+      status,
+      providerRef: payment.providerRef ?? existing?.providerRef,
+      instruction: payment.instruction ?? existing?.instruction,
+    });
   }
   insertWebhook(row: WebhookRow) {
     const key = `${row.provider}:${row.providerEventId}`;
@@ -324,33 +369,51 @@ export class PaymentsService {
         idempotencyKey,
       };
 
+      // Persist the payment row before the provider call so a webhook can
+      // be retried against a real payment. Never upsert order status here:
+      // a webhook may already have marked the order paid.
+      await this.store.savePayment(payment);
       try {
         if (total === 0) {
           payment.status = 'completed';
           payment.providerRef = `free_${paymentId}`;
           payment.instruction = { kind: 'pin_wait', message: 'free' };
-          order.status = 'paid';
-          await this.store.saveOrder(order);
           await this.store.savePayment(payment);
-          await this.issueTickets(order);
+          const paid = await this.store.transitionOrder(
+            order.id,
+            ['pending', 'payment_processing'],
+            'paid',
+          );
+          if (!paid) {
+            throw Object.assign(new Error('Order could not be marked paid'), { status: 409 });
+          }
+          order.status = paid.status;
+          await this.issueTickets(paid);
           reserved = false;
         } else {
           const created = await adapter.createPayment(input);
           payment.providerRef = created.providerRef;
           payment.instruction = created.instruction;
           payment.status = 'processing';
-          await this.store.saveOrder(order);
           await this.store.savePayment(payment);
           reserved = false;
         }
       } catch (err) {
-        for (const item of priced) await this.store.release(item.ticketTypeId, item.qty);
-        reserved = false;
-        order.status = 'failed';
-        payment.status = 'failed';
         payment.failureMessage = err instanceof Error ? err.message : 'create_failed';
-        await this.store.saveOrder(order);
-        await this.store.savePayment(payment);
+        const failed = await this.store.transitionOrder(
+          order.id,
+          ['pending', 'payment_processing'],
+          'failed',
+        );
+        if (failed) {
+          order.status = failed.status;
+          payment.status = 'failed';
+          await this.store.savePayment(payment);
+          // reserved stays true so finally releases inventory
+        } else {
+          // Webhook already moved the order to a terminal status; do not release.
+          reserved = false;
+        }
         throw err;
       }
 
@@ -412,25 +475,31 @@ export class PaymentsService {
     },
   ): Promise<{ duplicate: boolean; paymentId?: string; issued: number }> {
     const parsed = await parse(req);
-    const inserted = await this.store.insertWebhook({
-      provider,
-      providerEventId: parsed.providerEventId,
-    });
-    if (!inserted.inserted) {
-      const existing = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
-      return {
-        duplicate: true,
-        paymentId: existing?.id,
-        issued: existing ? (await this.store.ticketsForOrder(existing.orderId)).length : 0,
-      };
-    }
     if (parsed.status === 'ignored') {
-      return { duplicate: false, issued: 0 };
+      const ignored = await this.store.insertWebhook({
+        provider,
+        providerEventId: parsed.providerEventId,
+      });
+      return { duplicate: !ignored.inserted, issued: 0 };
     }
 
     const payment = await this.store.findPaymentByProviderRef(provider, parsed.providerRef);
     if (!payment) {
+      // Do not record the event id; the provider can retry after savePayment.
       throw Object.assign(new Error('Payment not found for providerRef'), { status: 404 });
+    }
+
+    const inserted = await this.store.insertWebhook({
+      provider,
+      providerEventId: parsed.providerEventId,
+      paymentId: payment.id,
+    });
+    if (!inserted.inserted) {
+      return {
+        duplicate: true,
+        paymentId: payment.id,
+        issued: (await this.store.ticketsForOrder(payment.orderId)).length,
+      };
     }
     if (parsed.status === 'completed') {
       if (parsed.amountMinor !== payment.amount || parsed.currency !== payment.currency) {

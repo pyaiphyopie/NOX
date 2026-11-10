@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import {
   InMemoryPaymentsStore,
   PaymentsService,
+  retainOrderStatus,
+  retainPaymentStatus,
 } from './payments.service';
 import { AmountMismatchError } from './types';
 
@@ -384,5 +386,134 @@ describe('PaymentsService integrity fixes', () => {
     store.transitionOrder(created.order.id, ['payment_processing'], 'paid');
     await expect(service.cancel(created.order.id, 'u1')).rejects.toMatchObject({ status: 409 });
     expect(store.getTicketType('ga')?.quantityReserved).toBe(1);
+  });
+
+  it('does not consume a webhook event when the payment is missing so a retry can issue tickets', async () => {
+    const { service, store } = seed();
+    await expect(
+      service.handleWebhook({
+        provider: 'fake',
+        headers: { 'x-nox-fake-secret': 'dev-fake-secret' },
+        rawBody: Buffer.from(
+          JSON.stringify({
+            providerRef: 'fake_not_yet',
+            paymentId: 'not-yet',
+            status: 'completed',
+            amountMinor: 15000,
+            currency: 'MMK',
+            eventId: 'evt-early-1',
+          }),
+        ),
+      }),
+    ).rejects.toMatchObject({ status: 404 });
+    expect(store.webhooks.size).toBe(0);
+
+    const created = await service.createOrder({
+      userId: 'u1',
+      eventId: 'evt-1',
+      market: 'MM',
+      method: 'fake',
+      items: [{ ticketTypeId: 'ga', qty: 1 }],
+      idempotencyKey: 'early-wh',
+    });
+    const result = await service.handleWebhook({
+      provider: 'fake',
+      headers: { 'x-nox-fake-secret': 'dev-fake-secret' },
+      rawBody: Buffer.from(
+        JSON.stringify({
+          providerRef: created.payment.providerRef,
+          paymentId: created.payment.id,
+          status: 'completed',
+          amountMinor: 15000,
+          currency: 'MMK',
+          eventId: 'evt-early-1',
+        }),
+      ),
+    });
+    expect(result.duplicate).toBe(false);
+    expect(result.issued).toBe(1);
+    expect(store.findOrder(created.order.id)?.status).toBe('paid');
+    expect(store.tickets.length).toBe(1);
+  });
+
+  it('does not let saveOrder downgrade a paid order to payment_processing', async () => {
+    const { service, store } = seed();
+    const created = await service.createOrder({
+      userId: 'u1',
+      eventId: 'evt-1',
+      market: 'MM',
+      method: 'fake',
+      items: [{ ticketTypeId: 'ga', qty: 1 }],
+      idempotencyKey: 'no-downgrade',
+    });
+    store.transitionOrder(created.order.id, ['payment_processing'], 'paid');
+    store.saveOrder({ ...created.order, status: 'payment_processing' });
+    expect(store.findOrder(created.order.id)?.status).toBe('paid');
+    expect(retainOrderStatus('paid', 'payment_processing')).toBe('paid');
+  });
+
+  it('does not let savePayment downgrade a completed payment to processing', async () => {
+    const { service, store } = seed();
+    const created = await service.createOrder({
+      userId: 'u1',
+      eventId: 'evt-1',
+      market: 'MM',
+      method: 'fake',
+      items: [{ ticketTypeId: 'ga', qty: 1 }],
+      idempotencyKey: 'pay-no-downgrade',
+    });
+    const payment = store.findPayment(created.payment.id)!;
+    payment.status = 'completed';
+    store.savePayment(payment);
+    store.savePayment({ ...payment, status: 'processing' });
+    expect(store.findPayment(created.payment.id)?.status).toBe('completed');
+    expect(retainPaymentStatus('completed', 'processing')).toBe('completed');
+  });
+
+  it('does not release inventory when the provider fails after a webhook has already paid', async () => {
+    const store = new InMemoryPaymentsStore();
+    store.ticketTypes.set('ga', {
+      id: 'ga',
+      eventId: 'evt-1',
+      price: 15000,
+      currency: 'MMK',
+      quantityTotal: 2,
+      quantitySold: 0,
+      quantityReserved: 0,
+      maxPerOrder: 2,
+      isActive: true,
+    });
+    const originalSave = store.savePayment.bind(store);
+    store.savePayment = (payment) => {
+      originalSave(payment);
+      if (payment.status === 'pending') {
+        store.transitionOrder(payment.orderId, ['payment_processing'], 'paid');
+        originalSave({ ...payment, status: 'completed' });
+      }
+    };
+    const registry = {
+      mode: 'fake',
+      resolve: () => ({
+        provider: 'fake',
+        createPayment: async () => {
+          throw new Error('provider timeout');
+        },
+      }),
+    } as unknown as AdapterRegistry;
+    const service = new PaymentsService(store, registry, 'ticket-secret', 'http://localhost:3002', 60);
+    await expect(
+      service.createOrder({
+        userId: 'u1',
+        eventId: 'evt-1',
+        market: 'MM',
+        method: 'fake',
+        items: [{ ticketTypeId: 'ga', qty: 1 }],
+        idempotencyKey: 'paid-then-timeout',
+      }),
+    ).rejects.toThrow(/provider timeout/);
+    expect(store.findOrder([...store.orders.keys()][0])?.status).toBe('paid');
+    expect(store.getTicketType('ga')?.quantityReserved).toBe(1);
+    expect(store.getTicketType('ga')?.quantitySold).toBe(0);
+    expect(store.findPayment([...store.payments.keys()][0])?.status).toBe('completed');
   });
 });
