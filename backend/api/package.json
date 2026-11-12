@@ -18,6 +18,7 @@
     "@supabase/supabase-js": "^2.47.10",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "jose": "^5.9.6",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "uuid": "^11.0.3"
@@ -34,10 +35,16 @@
     "typescript": "^5.7.2"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "json", "ts"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
-    "transform": { "^.+\\.ts$": "ts-jest" },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
     "testEnvironment": "node"
   }
 }

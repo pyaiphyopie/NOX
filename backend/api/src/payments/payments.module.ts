@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AdapterRegistry } from './registry';
 import { PaymentsController, WebhooksController } from './payments.controller';
 import { InMemoryPaymentsStore, PaymentsService, PaymentsStore } from './payments.service';
+import { SupabasePaymentsStore } from './supabase.store';
+import { JwtAuthGuard } from '../auth/jwt.guard';
 
 export const PAYMENTS_STORE = 'PAYMENTS_STORE';
 
@@ -11,9 +13,19 @@ export const PAYMENTS_STORE = 'PAYMENTS_STORE';
   controllers: [PaymentsController, WebhooksController],
   providers: [
     AdapterRegistry,
+    JwtAuthGuard,
     {
       provide: PAYMENTS_STORE,
-      useFactory: () => new InMemoryPaymentsStore(),
+      useFactory: (config: ConfigService) => {
+        if (config.get<string>('PAYMENTS_STORE') === 'supabase') {
+          const url = config.get<string>('SUPABASE_URL');
+          const key = config.get<string>('SUPABASE_SERVICE_ROLE_KEY');
+          if (!url || !key) throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY required');
+          return SupabasePaymentsStore.fromEnv(url, key);
+        }
+        return new InMemoryPaymentsStore();
+      },
+      inject: [ConfigService],
     },
     {
       provide: PaymentsService,

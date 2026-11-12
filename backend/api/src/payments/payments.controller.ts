@@ -6,12 +6,13 @@ import {
   Param,
   Post,
   Req,
-  UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { IsArray, IsInt, IsOptional, IsString, Min, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PaymentsService } from './payments.service';
 import { PaymentMethod } from './types';
+import { JwtAuthGuard } from '../auth/jwt.guard';
 
 class OrderItemDto {
   @IsString()
@@ -48,15 +49,15 @@ export class PaymentsController {
     return { market: market ?? 'MM', methods: this.payments.listMethods(market ?? 'MM') };
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('orders')
   async create(
     @Body() body: CreateOrderDto,
     @Headers('idempotency-key') idempotencyKey?: string,
-    @Headers('x-user-id') userId?: string,
+    @Req() req?: { userId?: string },
   ) {
-    if (!userId) throw new UnauthorizedException('Missing user');
     const result = await this.payments.createOrder({
-      userId,
+      userId: req?.userId as string,
       eventId: body.eventId,
       market: body.market ?? 'MM',
       items: body.items,
@@ -74,17 +75,16 @@ export class PaymentsController {
     };
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('orders/:id')
-  get(@Param('id') id: string, @Headers('x-user-id') userId?: string) {
-    if (!userId) throw new UnauthorizedException('Missing user');
-    const order = this.payments.getOrder(id, userId);
-    return order;
+  get(@Param('id') id: string, @Req() req: { userId: string }) {
+    return this.payments.getOrder(id, req.userId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('orders/:id/cancel')
-  cancel(@Param('id') id: string, @Headers('x-user-id') userId?: string) {
-    if (!userId) throw new UnauthorizedException('Missing user');
-    return this.payments.cancel(id, userId);
+  cancel(@Param('id') id: string, @Req() req: { userId: string }) {
+    return this.payments.cancel(id, req.userId);
   }
 }
 
