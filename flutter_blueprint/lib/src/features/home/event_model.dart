@@ -1,12 +1,12 @@
 class Event {
   final String id,
       title,
-      coverUrl,
       venue,
       category,
       genre,
       description,
       timeLabel;
+  final int coverColor;
   final DateTime dateTime;
   final double price;
   final int attendance, capacity;
@@ -15,7 +15,7 @@ class Event {
   const Event({
     required this.id,
     required this.title,
-    required this.coverUrl,
+    required this.coverColor,
     required this.venue,
     required this.category,
     required this.genre,
@@ -34,8 +34,7 @@ final List<Event> mockEvents = [
   Event(
     id: '1',
     title: 'NEON DISTRICT',
-    coverUrl:
-        'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop',
+    coverColor: 0xFF1A0A2E,
     venue: 'Warehouse 19',
     category: 'Techno',
     genre: 'Techno / Underground',
@@ -51,8 +50,7 @@ final List<Event> mockEvents = [
   Event(
     id: '2',
     title: 'AFTERHOURS',
-    coverUrl:
-        'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200&auto=format&fit=crop',
+    coverColor: 0xFF0D1B2A,
     venue: 'NOIR Rooftop',
     category: 'Hip-Hop',
     genre: 'Hip-Hop / Trap',
@@ -68,8 +66,7 @@ final List<Event> mockEvents = [
   Event(
     id: '3',
     title: 'SKYLINE SIGNAL',
-    coverUrl:
-        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop',
+    coverColor: 0xFF1B263B,
     venue: 'Atlas Terrace',
     category: 'Rooftop',
     genre: 'Rooftop / House',
@@ -85,8 +82,7 @@ final List<Event> mockEvents = [
   Event(
     id: '4',
     title: 'AMPLIFIED CITY',
-    coverUrl:
-        'https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=1200&auto=format&fit=crop',
+    coverColor: 0xFF3D0C11,
     venue: 'The Foundry',
     category: 'Live Bands',
     genre: 'Live Bands / Indie',
@@ -102,8 +98,7 @@ final List<Event> mockEvents = [
   Event(
     id: '5',
     title: 'ELECTRIC MONSOON',
-    coverUrl:
-        'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1200&auto=format&fit=crop',
+    coverColor: 0xFF0B132B,
     venue: 'Pulse Arena',
     category: 'EDM',
     genre: 'EDM / Festival',

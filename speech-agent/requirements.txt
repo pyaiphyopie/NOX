@@ -1,0 +1,18 @@
+# Burmese Speech & Video Dubbing Agent — commercial-safe stack
+# ASR
+faster-whisper>=1.1.0
+# LLM (served via vLLM, Apache-2.0)
+openai>=1.40.0
+# TTS
+omnivoice @ git+https://github.com/k2-fsa/OmniVoice.git
+# Video I/O
+ffmpeg-python>=0.2.0
+av>=12.0.0
+# API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.0.0
+# Utilities
+numpy>=1.26.0
+soundfile>=0.12.0
+langdetect>=1.0.9
