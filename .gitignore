@@ -51,6 +51,10 @@ tmp
 temp
 .supabase
 
+# Root design decks — archived product thesis / brand docs, not build inputs
+# (May architecture PDF cited as Drive archive in docs/ARCHITECTURE_REALITY.md)
+/*.pdf
+/*.docx
 # Unused Trunk.io local config (removed in audit)
 .trunk/
 # Local nektos/act junk
