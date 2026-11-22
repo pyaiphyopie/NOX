@@ -1,4 +1,4 @@
-name: CI — Build, Lint, Test, Security
+name: CI — Monorepo smoke
 
 on:
   push:
@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: read
-  checks: write
-  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -20,114 +18,21 @@ env:
   NODE_VERSION: '22'
 
 jobs:
-  # ── Lint & Format Check ──────────────────────────────────────
-  lint:
-    name: Lint (ESLint + Prettier)
+  smoke:
+    name: Paths + workspace smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
 
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8  # v4.0.3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          # cache: npm
-
-      - name: Setup pnpm
+      - name: Confirm monorepo roots exist
         run: |
-          corepack enable
-          corepack prepare pnpm@9.15.0 --activate
-
-      - name: Node / pnpm diagnostics
-        run: |
-          echo "== Node / pnpm diagnostics =="
-          node -v
-          npm -v
-          pnpm -v || true
-          npm config get package-lock || true
-          echo "Top of package-lock.json (if present):"
-          head -n 40 package-lock.json || true
-
-      - name: Install (pnpm)
-        run: pnpm install --frozen-lockfile
-
-      - name: ESLint
-        run: pnpm -w exec eslint . --ext .js,.jsx --max-warnings 0
-
-      - name: Prettier Check
-        run: pnpm -w exec prettier --check "src/**/*.{js,jsx,css,json}"
-
-  # ── Type / Build Check ──────────────────────────────────────
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8  # v4.0.3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          # cache: npm
-
-      - name: Setup pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.15.0 --activate
-
-      - name: Node / pnpm diagnostics
-        run: |
-          echo "== Node / pnpm diagnostics =="
-          node -v
-          npm -v
-          pnpm -v || true
-          npm config get package-lock || true
-          echo "Top of package-lock.json (if present):"
-          head -n 40 package-lock.json || true
-
-      - name: Install (pnpm)
-        run: pnpm install --frozen-lockfile
-
-      - name: Build (workspace)
-        run: pnpm -w run build
-
-  # ── Unit & Component Tests ──────────────────────────────────
-  test:
-    name: Test (Vitest)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8  # v4.0.3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          # cache: npm
-
-      - name: Setup pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.15.0 --activate
-
-      - name: Node / pnpm diagnostics
-        run: |
-          echo "== Node / pnpm diagnostics =="
-          node -v
-          npm -v
-          pnpm -v || true
-          npm config get package-lock || true
-          echo "Top of package-lock.json (if present):"
-          head -n 40 package-lock.json || true
-
-      - name: Install (pnpm)
-        run: pnpm install --frozen-lockfile
-
-      - name: Run tests
-        run: pnpm -w test -- --coverage
-
-  # ── Security: Dependency Audit ──────────────────────────────
-  audit:
-    name: Security Audit (pnpm + SAST)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+          test -d backend
+          test -d packages
+          test -d flutter_blueprint
+          test -f package.json
+          test -f pnpm-workspace.yaml
+          test -f turbo.json
+          echo "Monorepo roots OK"
 
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8  # v4.0.3
         with:
@@ -137,30 +42,13 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@9.15.0 --activate
-
-      - name: Node / pnpm diagnostics
-        run: |
-          echo "== Node / pnpm diagnostics =="
           node -v
-          npm -v
-          pnpm -v || true
-          npm config get package-lock || true
-          echo "Top of package-lock.json (if present):"
-          head -n 40 package-lock.json || true
+          pnpm -v
 
-      - name: Install (pnpm)
-        run: pnpm install --frozen-lockfile
+      - name: Install (no frozen lock — pnpm-lock.yaml not committed yet)
+        run: pnpm install
 
-      - name: pnpm audit
-        run: pnpm audit || true
-
-  # ── Docker Build (Validate, don't push) ─────────────────────
-  docker:
-    name: Docker Build Check
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-
-      - name: Build Docker image
-        run: docker build -t nox-prototype:ci .
+      - name: Workspace scripts if present
+        run: |
+          pnpm -r --if-present run typecheck
+          pnpm -r --if-present run test

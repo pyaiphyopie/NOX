@@ -7,6 +7,10 @@ NOX is the digital operating system for nightlife economies — connecting consu
 
 ## Architecture
 
+Modular monolith (ADR-001). Do not add a `services/` microservice tree.
+
+**Living map of what is actually on `main`:** [`docs/ARCHITECTURE_REALITY.md`](docs/ARCHITECTURE_REALITY.md) (CURRENT LAW). The tree below is aspirational in places — `apps/` was removed in #34.
+
 ```
 nox-platform/
 ├── apps/
@@ -16,16 +20,11 @@ nox-platform/
 │   ├── admin-panel/         # Next.js
 │   └── qr-scanner/          # Flutter offline-capable scanner
 ├── backend/
-│   ├── api-gateway/
-│   ├── auth-service/        # Phone OTP + JWT rotation
-│   ├── event-service/
-│   ├── ticket-service/
-│   ├── payment-service/     # KBZPay / WavePay / AYA / CB
-│   ├── notification-service/
-│   └── analytics-service/
+│   ├── api/                 # NestJS modular monolith (target)
+│   └── auth-service/        # legacy scaffold — migrate into api/
 ├── packages/
 │   ├── design-tokens/       # NOX Black / Electric Cyan / Neon Violet
-│   ├── shared-types/
+│   ├── shared-types/        # domain + 0X Alpha job/evidence (ADR-002)
 │   ├── shared-utils/
 │   └── ui-kit/
 ├── infrastructure/
@@ -33,6 +32,7 @@ nox-platform/
 │   ├── docker/
 │   └── github-actions/
 └── docs/
+    └── adr/
 ```
 
 ## Design System
@@ -55,23 +55,30 @@ Dark mode first · Cinematic · Luxury minimalism
 |------------|-------------------------------------|
 | Mobile     | Flutter + Riverpod + GoRouter + Hive |
 | Web        | Next.js + TypeScript + Tailwind     |
-| Backend    | NestJS + TypeScript                 |
+| Backend    | NestJS + TypeScript (modular monolith) |
 | Database   | PostgreSQL (Supabase) + RLS         |
 | Auth       | Phone OTP (primary) + JWT rotation  |
 | Payments   | KBZPay, WavePay, AYA Pay, CBPay     |
 | Infra      | Docker, GitHub Actions, Vercel, Cloudflare |
 
+## Agent contracts (ADR-002)
+
+Job + evidence types live in `packages/shared-types/src/agent-job.ts`.  
+A change is not accepted without runtime evidence and an independent checker verdict.
+
 ## Phase 1 Status (Foundation)
 
 - [x] Turborepo monorepo root
 - [x] Design tokens package
-- [x] Shared types (domain models + API contracts)
+- [x] Shared types package (job/evidence contracts added 2026-09-20)
 - [x] Supabase initial schema (users, venues, organizers, events, tickets, orders, payments, checkins, RLS)
-- [x] Auth Service (NestJS) — Phone OTP + JWT + refresh rotation
+- [x] Auth Service (NestJS) — Phone OTP + JWT + refresh rotation (legacy location)
 - [x] Flutter consumer app foundation (Discovery, Auth, Event Detail, Tickets, Profile)
 - [ ] Organizer / Venue / Admin dashboards (Phase 4)
 - [ ] Ticket engine + QR generation + offline validation (Phase 5)
-- [ ] Payment webhooks (Phase 2)
+- [x] Payment adapter P0 (backend/api PaymentsModule, ADR-004) — 2026-09-27
+- [ ] Live Wave/KBZ webhooks in production
+- [ ] Migrate auth-service into backend/api
 
 ## Getting Started
 
@@ -93,6 +100,9 @@ cp .env.example .env
 
 # Start auth service (dev)
 cd backend/auth-service && pnpm dev
+
+# Payments API (P0, PAYMENTS_MODE=fake)
+cd backend/api && pnpm install && pnpm test && pnpm dev
 
 # Flutter
 cd apps/mobile-app
