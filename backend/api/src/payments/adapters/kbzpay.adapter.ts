@@ -20,8 +20,6 @@ import {
  */
 export class KbzPayAdapter implements PaymentProviderAdapter {
   readonly provider = 'kbzpay' as const;
-  readonly markets = ['MM'];
-  readonly methods = ['kbzpay_pwa' as const, 'kbzpay_qr' as const];
 
   constructor(
     private readonly merchantId: string,

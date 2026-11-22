@@ -16,8 +16,7 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "db:migrate": "supabase db push",
-    "db:reset": "supabase db reset",
-    "prepare": "husky"
+    "db:reset": "supabase db reset"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
