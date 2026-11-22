@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOX Dub — Burmese Speech & Video Dubbing</title>
+<style>
+  :root {
+    --bg: #070707; --surface: #0e0f0c; --panel: #141510;
+    --cyan: #00AEEF; --violet: #8B5CF6; --ice: #f4f0e6; --muted: #8a8778;
+    --danger: #ff4d6d; --ok: #2ecc71; --border: #1f2118; --radius: 14px;
+    --font: "Satoshi", "Inter", system-ui, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body { background: var(--bg); color: var(--ice); font-family: var(--font); display:flex; flex-direction:column; min-height:100vh; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:18px 32px; border-bottom:1px solid var(--border); background:linear-gradient(180deg,#0a0a0a 0%,var(--bg) 100%); }
+  .logo { display:flex; align-items:center; gap:12px; }
+  .logo-mark { width:34px; height:34px; border-radius:10px; background:conic-gradient(from 210deg,var(--cyan),var(--violet),var(--cyan)); display:grid; place-items:center; box-shadow:0 0 24px rgba(0,174,239,.35); animation:pulse 3.5s ease-in-out infinite; }
+  .logo-mark svg { width:18px; height:18px; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 18px rgba(0,174,239,.25);} 50%{box-shadow:0 0 34px rgba(139,92,246,.45);} }
+  .logo h1 { font-size:17px; font-weight:600; letter-spacing:.5px; }
+  .logo h1 span { color:var(--cyan); }
+  .status-pill { font-size:12px; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid var(--border); color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .status-pill .dot { width:8px; height:8px; border-radius:50%; background:var(--muted); transition:background .3s; }
+  .status-pill.ok .dot { background:var(--ok); box-shadow:0 0 8px var(--ok); }
+  .status-pill.err .dot { background:var(--danger); box-shadow:0 0 8px var(--danger); }
+  main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 24px; gap:28px; }
+  .dropzone { width:min(640px,100%); border:2px dashed #2a2c22; border-radius:var(--radius); background:var(--surface); padding:64px 32px; text-align:center; cursor:pointer; transition:border-color .25s,background .25s,transform .2s; position:relative; overflow:hidden; }
+  .dropzone:hover, .dropzone.dragover { border-color:var(--cyan); background:#10120d; transform:translateY(-2px); }
+  .dropzone.dragover { border-style:solid; }
+  .dropzone input { display:none; }
+  .dropzone .icon { font-size:42px; margin-bottom:14px; opacity:.9; }
+  .dropzone h2 { font-size:20px; font-weight:600; margin-bottom:6px; }
+  .dropzone p { color:var(--muted); font-size:14px; }
+  .dropzone .hint { margin-top:18px; font-size:12px; color:#5a5c50; letter-spacing:.5px; }
+  .controls { width:min(640px,100%); display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .field { display:flex; flex-direction:column; gap:6px; flex:1; min-width:160px; }
+  .field label { font-size:11px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); }
+  select, button { background:var(--panel); color:var(--ice); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:14px; font-family:inherit; }
+  select:focus, button:focus { outline:none; border-color:var(--cyan); }
+  .btn-primary { background:linear-gradient(135deg,var(--cyan),var(--violet)); border:none; color:#fff; font-weight:600; cursor:pointer; transition:opacity .2s,transform .15s; white-space:nowrap; }
+  .btn-primary:hover { opacity:.92; transform:translateY(-1px); }
+  .btn-primary:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+  .progress-wrap { width:min(640px,100%); display:none; }
+  .progress-wrap.visible { display:block; }
+  .progress-bar-bg { height:6px; background:#1a1c14; border-radius:999px; overflow:hidden; }
+  .progress-bar { height:100%; width:0%; background:linear-gradient(90deg,var(--cyan),var(--violet)); border-radius:999px; transition:width .4s ease; }
+  .progress-meta { display:flex; justify-content:space-between; margin-top:8px; font-size:12px; color:var(--muted); }
+  .result { width:min(640px,100%); display:none; }
+  .result.visible { display:block; }
+  .result-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px; }
+  .result-card h3 { font-size:14px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); margin-bottom:10px; }
+  audio, video { width:100%; border-radius:10px; background:#000; }
+  .burmese-preview { margin-top:14px; padding:14px; background:var(--panel); border-radius:10px; font-size:15px; line-height:1.7; color:var(--ice); word-break:break-word; border-left:3px solid var(--violet); }
+  .meta-row { display:flex; gap:18px; margin-top:10px; font-size:12px; color:var(--muted); }
+  .meta-row b { color:var(--cyan); font-weight:500; }
+  .dl-btn { margin-top:14px; display:inline-flex; align-items:center; gap:8px; background:var(--panel); border:1px solid var(--border); color:var(--ice); border-radius:10px; padding:9px 16px; font-size:13px; cursor:pointer; text-decoration:none; transition:border-color .2s; }
+  .dl-btn:hover { border-color:var(--cyan); }
+  .waveform-row { display:flex; gap:14px; margin-top:16px; }
+  .waveform-box { flex:1; min-width:0; }
+  .waveform-box .lbl { font-size:11px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); margin-bottom:6px; }
+  .waveform-box .lbl b { color:var(--cyan); font-weight:500; }
+  .waveform-box canvas { width:100%; height:72px; border-radius:8px; background:#0a0b08; border:1px solid var(--border); display:block; }
+  .drift-badge { display:inline-block; margin-top:8px; font-size:12px; padding:4px 10px; border-radius:999px; background:var(--panel); border:1px solid var(--border); color:var(--muted); }
+  .drift-badge.bad { border-color:var(--danger); color:var(--danger); }
+  .drift-badge.good { border-color:var(--ok); color:var(--ok); }
+  .log { width:min(640px,100%); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:12px; color:#6d6f62; max-height:180px; overflow-y:auto; display:none; }
+  .log.visible { display:block; }
+  .log .line { padding:2px 0; }
+  .log .line.info { color:var(--cyan); }
+  .log .line.err { color:var(--danger); }
+  .log .line.ok { color:var(--ok); }
+  footer { padding:16px 32px; border-top:1px solid var(--border); font-size:11px; color:#4a4c42; display:flex; justify-content:space-between; }
+  @media (max-width:640px) { header,footer{padding:14px 18px;} main{padding:28px 16px;} .dropzone{padding:44px 20px;} .waveform-row{flex-direction:column;} }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10v4M8 6v12M12 9v6M16 4v16M20 10v4" stroke="#070707" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+    <h1>NOX <span>Dub</span></h1>
+  </div>
+  <div class="status-pill" id="healthPill"><span class="dot"></span><span id="healthText">checking engine…</span></div>
+</header>
+<main>
+  <div class="dropzone" id="dropzone">
+    <input type="file" id="fileInput" accept="audio/*,video/*">
+    <div class="icon">🎙️</div>
+    <h2>Drop audio or video here</h2>
+    <p>MP3, WAV, MP4, MOV — anything with speech</p>
+    <div class="hint">ASR → Qwen translate → OmniVoice TTS · all commercial-safe licenses</div>
+  </div>
+  <div class="controls">
+    <div class="field"><label>Source language</label>
+      <select id="sourceLang"><option value="">Auto-detect</option><option value="en">English</option><option value="zh">Chinese</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="th">Thai</option><option value="vi">Vietnamese</option><option value="my">Burmese</option></select>
+    </div>
+    <div class="field"><label>Mode</label>
+      <select id="mode"><option value="auto">Auto (detect from file)</option><option value="audio">Audio only</option><option value="video">Video dub</option></select>
+    </div>
+    <div class="field" style="flex:0 0 auto; justify-content:flex-end;"><label>&nbsp;</label>
+      <button class="btn-primary" id="dubBtn" disabled>Dub it →</button>
+    </div>
+  </div>
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-meta"><span id="progressLabel">uploading…</span><span id="progressPct">0%</span></div>
+  </div>
+  <div class="result" id="result">
+    <div class="result-card">
+      <h3 id="resultTitle">Dubbed output</h3>
+      <div id="mediaSlot"></div>
+      <div class="waveform-row" id="waveformRow" style="display:none">
+        <div class="waveform-box"><div class="lbl">Source <b id="srcDur"></b></div><canvas id="srcWave"></canvas></div>
+        <div class="waveform-box"><div class="lbl">Dubbed <b id="dubDur"></b></div><canvas id="dubWave"></canvas></div>
+      </div>
+      <div class="drift-badge" id="driftBadge" style="display:none"></div>
+      <div class="burmese-preview" id="burmesePreview" style="display:none"></div>
+      <div class="meta-row" id="metaRow"></div>
+      <a class="dl-btn" id="dlBtn" download>↓ Download</a>
+    </div>
+  </div>
+  <div class="log" id="log"></div>
+</main>
+<footer><span>Pierre Systems · PierreSpeak stack</span><span>OmniVoice · Faster-Whisper · Qwen2.5-7B · Apache-2.0 / MIT</span></footer>
+<script>
+const $=id=>document.getElementById(id); const dz=$("dropzone"),fi=$("fileInput"),btn=$("dubBtn"); let selectedFile=null;
+async function checkHealth(){try{const r=await fetch("/health");if(r.ok){$("healthPill").className="status-pill ok";$("healthText").textContent="engine online";}else throw new Error(r.status);}catch(e){$("healthPill").className="status-pill err";$("healthText").textContent="engine unreachable";}}
+checkHealth(); setInterval(checkHealth,30000);
+dz.addEventListener("click",()=>fi.click()); dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("dragover");}); dz.addEventListener("dragleave",()=>dz.classList.remove("dragover"));
+dz.addEventListener("drop",e=>{e.preventDefault();dz.classList.remove("dragover");if(e.dataTransfer.files.length)setFile(e.dataTransfer.files[0]);});
+fi.addEventListener("change",()=>{if(fi.files.length)setFile(fi.files[0]);});
+function setFile(f){selectedFile=f;dz.querySelector("h2").textContent=f.name;dz.querySelector("p").textContent=(f.size/1024/1024).toFixed(1)+" MB · "+(f.type||"unknown type");btn.disabled=false;$("result").classList.remove("visible");$("log").classList.remove("visible");$("waveformRow").style.display="none";$("driftBadge").style.display="none";}
+function log(msg,kind="info"){const el=$("log");el.classList.add("visible");const line=document.createElement("div");line.className="line "+kind;line.textContent=new Date().toLocaleTimeString()+"  "+msg;el.appendChild(line);el.scrollTop=el.scrollHeight;}
+
+// ---------- waveform rendering ----------
+async function drawWave(canvas, arrayBuf, color) {
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+  const ac = new (window.AudioContext || window.webkitAudioContext)();
+  try {
+    const buf = await ac.decodeAudioData(arrayBuf.slice(0));
+    const data = buf.getChannelData(0);
+    const step = Math.max(1, Math.ceil(data.length / w));
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.beginPath();
+    for (let i = 0; i < w; i++) {
+      let min = 1, max = -1;
+      for (let j = 0; j < step; j++) {
+        const idx = i * step + j;
+        if (idx < data.length) { const v = data[idx]; if (v < min) min = v; if (v > max) max = v; }
+      }
+      ctx.moveTo(i, (1 - max) * h / 2);
+      ctx.lineTo(i, (1 - min) * h / 2);
+    }
+    ctx.stroke();
+    ac.close();
+    return buf.duration;
+  } catch (e) { ac.close(); return null; }
+}
+
+async function renderWaveforms(srcFile, dubBlob) {
+  const row = $("waveformRow"); row.style.display = "flex";
+  try {
+    const [srcBuf, dubBuf] = await Promise.all([srcFile.arrayBuffer(), dubBlob.arrayBuffer()]).catch(async () => {
+      // fallback: re-fetch source if arrayBuffer fails on File
+      const r = await fetch(URL.createObjectURL(srcFile));
+      return [await r.arrayBuffer(), await dubBlob.arrayBuffer()];
+    });
+    const srcDur = await drawWave($("srcWave"), srcBuf, "#8a8778");
+    const dubDur = await drawWave($("dubWave"), dubBuf, "#00AEEF");
+    const badge = $("driftBadge"); badge.style.display = "inline-block";
+    if (srcDur && dubDur) {
+      const drift = (dubDur - srcDur) / srcDur * 100;
+      const sign = drift > 0 ? "+" : "";
+      badge.textContent = "Timing drift: " + sign + drift.toFixed(1) + "%  (Δ" + (dubDur - srcDur).toFixed(2) + "s)";
+      badge.className = "drift-badge " + (Math.abs(drift) > 15 ? "bad" : "good");
+      $("srcDur").textContent = srcDur.toFixed(1) + "s";
+      $("dubDur").textContent = dubDur.toFixed(1) + "s";
+    } else {
+      badge.textContent = "Waveform rendered (duration unavailable)";
+      badge.className = "drift-badge";
+    }
+  } catch (e) { log("waveform render failed: " + e.message, "err"); }
+}
+
+btn.addEventListener("click",async()=>{
+  if(!selectedFile)return;btn.disabled=true;$("progressWrap").classList.add("visible");$("progressBar").style.width="0%";$("progressLabel").textContent="uploading "+selectedFile.name+"…";$("progressPct").textContent="0%";$("result").classList.remove("visible");
+  const mode=$("mode").value; const isVideo=mode==="video"||(mode==="auto"&&selectedFile.type.startsWith("video/")); const endpoint=isVideo?"/dub/video":"/dub/audio"; log("POST "+endpoint+"  file="+selectedFile.name,"info");
+  const fd=new FormData();fd.append("file",selectedFile);const src=$("sourceLang").value;if(src)fd.append("source_lang",src);
+  try{const r=await fetch(endpoint,{method:"POST",body:fd});if(!r.ok){const t=await r.text();throw new Error(r.status+" "+t.slice(0,200));}
+  $("progressBar").style.width="100%";$("progressPct").textContent="100%";$("progressLabel").textContent="done";
+  const blob=await r.blob();const url=URL.createObjectURL(blob);const slot=$("mediaSlot");slot.innerHTML="";
+  if(isVideo){const v=document.createElement("video");v.controls=true;v.src=url;slot.appendChild(v);}else{const a=document.createElement("audio");a.controls=true;a.src=url;slot.appendChild(a);}
+  renderWaveforms(selectedFile, blob);
+  $("resultTitle").textContent=isVideo?"Dubbed video":"Dubbed audio";$("dlBtn").href=url;$("dlBtn").download="dubbed_"+(Date.now())+(isVideo?".mp4":".wav");
+  const burmese=r.headers.get("X-Burmese-Text");const elapsed=r.headers.get("X-Elapsed-Sec");
+  if(burmese){$("burmesePreview").style.display="block";$("burmesePreview").textContent=burmese;}
+  $("metaRow").innerHTML=(elapsed?"<span>elapsed <b>"+elapsed+"s</b></span>":"")+"<span>size <b>"+(blob.size/1024/1024).toFixed(1)+" MB</b></span><span>type <b>"+(isVideo?"video/mp4":"audio/wav")+"</b></span>";
+  $("result").classList.add("visible");log("success · "+(elapsed||"?")+"s · "+(blob.size/1024/1024).toFixed(1)+" MB","ok");
+  }catch(e){log("FAILED: "+e.message,"err");$("progressLabel").textContent="failed";alert("Dub failed: "+e.message);}finally{btn.disabled=false;}});
+</script>
+</body>
+</html>

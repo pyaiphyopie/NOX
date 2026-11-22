@@ -1,3 +1,5 @@
+> **Living map:** [`docs/ARCHITECTURE_REALITY.md`](ARCHITECTURE_REALITY.md) is CURRENT LAW for what exists on `main`. This Phase 1 report is a historical scaffold snapshot; some paths (e.g. `apps/mobile-app`) lag the tree after #34.
+
 # Phase 1 — Foundation Execution Report
 
 **Date:** 2026-08-02  
