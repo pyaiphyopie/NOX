@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOX × Grab Partnership Package</title>
+<style>
+  :root {
+    --bg: #070707;
+    --panel: #0e0f0c;
+    --ink: #f4f0e6;
+    --muted: #8a8578;
+    --cyan: #00aeef;
+    --violet: #8b5cf6;
+    --brass: #e4a04a;
+    --line: #1c1d18;
+    --code-bg: #0a0b09;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 48px 28px 96px; }
+  header.hero {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 36px;
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  h1 span { color: var(--violet); }
+  .sub {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 640px;
+  }
+  nav.toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 52px;
+  }
+  nav.toc a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    padding: 7px 14px;
+    border-radius: 999px;
+    transition: all .2s;
+  }
+  nav.toc a:hover { color: var(--ink); border-color: var(--cyan); }
+  section { margin-bottom: 64px; }
+  h2 {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  h2::before {
+    content: '';
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  .section-sub { color: var(--muted); font-size: 13.5px; margin-bottom: 22px; }
+  h3 {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: var(--brass);
+  }
+  p { margin-bottom: 14px; color: #d9d4c7; }
+  ul, ol { margin: 0 0 16px 22px; color: #d9d4c7; }
+  li { margin-bottom: 7px; }
+  li strong { color: var(--ink); }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+  .card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--cyan);
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 12px;
+  }
+  td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--line);
+    color: #d9d4c7;
+    vertical-align: top;
+  }
+  td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  code, .mono {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    font-size: 12.5px;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 12px 0 20px;
+    font-size: 12.2px;
+    line-height: 1.55;
+    color: #c8c3b6;
+  }
+  pre .k { color: var(--violet); }
+  pre .t { color: var(--cyan); }
+  pre .s { color: var(--brass); }
+  pre .c { color: var(--muted); font-style: italic; }
+  pre .n { color: #e8e3d6; }
+  .seq {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 12px 0 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.2px;
+    line-height: 1.7;
+    color: #c8c3b6;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .flag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .flag.tbd { background: rgba(228,160,74,.15); color: var(--brass); }
+  .flag.open { background: rgba(139,92,246,.15); color: var(--violet); }
+  .flag.risk { background: rgba(220,60,60,.15); color: #e07070; }
+  .ask-box {
+    background: linear-gradient(135deg, rgba(0,174,239,.08), rgba(139,92,246,.08));
+    border: 1px solid rgba(0,174,239,.3);
+    border-radius: 12px;
+    padding: 26px 28px;
+    margin-top: 24px;
+  }
+  .ask-box h3 { color: var(--cyan); margin-top: 0; }
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  @media (max-width: 680px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    h1 { font-size: 26px; }
+    td:first-child { white-space: normal; }
+  }
+  @media print {
+    body { background: #fff; color: #111; }
+    .wrap { padding: 0; max-width: 100%; }
+    nav.toc, footer { display: none; }
+    pre, .seq, .card, .ask-box { border-color: #ccc; background: #f7f7f7; color: #111; }
+    pre .k, pre .t, pre .s, pre .c, pre .n { color: #111; }
+    h2::before { background: #111; }
+    .flag.tbd { background: #eee; color: #555; }
+    .flag.open { background: #eee; color: #555; }
+    .flag.risk { background: #eee; color: #555; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Partnership Package · Confidential</div>
+  <h1>NOX <span>×</span> Grab</h1>
+  <p class="sub">One-page partnership brief and technical adapter sketch for embedding NOX event discovery and ticketing inside the Grab SuperApp as a Partner App — Yangon pilot first, ASEAN expansion.</p>
+</header>
+
+<nav class="toc">
+  <a href="#brief">01 · Brief</a>
+  <a href="#problem">Problem</a>
+  <a href="#proposal">Proposal</a>
+  <a href="#value">Mutual Value</a>
+  <a href="#pilot">Pilot Metrics</a>
+  <a href="#ask">The Ask</a>
+  <a href="#sketch">02 · Sketch</a>
+  <a href="#adapters">Adapters</a>
+  <a href="#flow">Booking Flow</a>
+  <a href="#shared">Shared Concerns</a>
+  <a href="#open">Open Items</a>
+</nav>
+
+<section id="brief">
+  <h2>One-Page Partnership Brief</h2>
+  <p class="section-sub">Prepared for Grab Partnerships · Target: partnerapp.partnerships@grabtaxi.com · Date: November 2026</p>
+
+  <div class="card">
+    <h4>The Pitch</h4>
+    <p>NOX is Urban Entertainment Infrastructure — a nightlife operating system covering event discovery, digital ticketing, venue and promoter tools, QR entry validation, and payments. We are launching in Yangon, Myanmar, with ASEAN expansion planned. We want NOX to live inside Grab as a Partner App: the evening category Grab does not yet own, delivered through the surface users already open.</p>
+  </div>
+
+  <h3 id="problem">The Problem</h3>
+  <ul>
+    <li>Grab's Myanmar and ASEAN users spend evenings out — food, rides, socializing — but Grab has no native nightlife or events surface.</li>
+    <li>Existing ticketing options in Yangon are fragmented: paper, cash, Facebook posts, promoter WhatsApp groups. No trusted digital layer.</li>
+    <li>The "how do I get there" gap is unsolved: people find an event, then separately hail a ride. Two apps, two payments, zero data connection.</li>
+  </ul>
+
+  <h3 id="proposal">The Proposal</h3>
+  <p>A NOX Partner App embedded in the Grab SuperApp webview. Users discover events near them, book with GrabPay, earn GrabCoins, and get a one-tap Grab ride to the venue — all without leaving Grab. NOX owns tickets, entry validation, and the venue graph. Grab owns distribution, identity, payments, and mobility.</p>
+  <ol>
+    <li>Contextual entry: "Tonight" / "Events near you" placement, post-ride and post-food prompts.</li>
+    <li>Location-aware discovery powered by Grab location + NOX venue graph.</li>
+    <li>Checkout via GrabPay (dual-rail fallback: KBZPay / WavePay where GrabPay coverage is incomplete).</li>
+    <li>GrabCoins on successful purchase; SuperApp analytics events for funnel visibility.</li>
+    <li>Post-purchase in-app ride prompt to the venue.</li>
+    <li>Arrival: NOX Flutter scanner validates the cryptographically protected QR. NOX-owned, server-side authoritative.</li>
+  </ol>
+
+  <h3 id="value">Mutual Value</h3>
+  <div class="grid-2">
+    <div class="card">
+      <h4>For Grab</h4>
+      <ul>
+        <li>A high-intent evening category that drives rides, GMV, and GrabCoins loops.</li>
+        <li>Entertainment behavioral data (with consent) improves evening mobility predictions.</li>
+        <li>Differentiation in Myanmar and ASEAN without building nightlife ops in-house.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>For NOX</h4>
+      <ul>
+        <li>Instant access to Grab's user base with zero separate acquisition cost for that channel.</li>
+        <li>Trusted identity and payments already solved.</li>
+        <li>Ride integration closes the last-mile gap pure ticketing apps leave open.</li>
+        <li>Credibility for venue and promoter conversations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 id="pilot">Pilot Metrics (Yangon)</h3>
+  <table>
+    <tr><th>Metric</th><th>Target</th><th>Notes</th></tr>
+    <tr><td>Partner App sessions</td><td>TBD</td><td class="mono"><span class="flag tbd">TBD</span> traction baseline from Yangon closed beta</td></tr>
+    <tr><td>Tickets sold via GrabPay</td><td>TBD</td><td class="mono"><span class="flag tbd">TBD</span></td></tr>
+    <tr><td>Grab ride conversion post-booking</td><td>TBD</td><td>The mobility unlock — see Open Item 1</td></tr>
+    <tr><td>GrabCoins issued / redeemed</td><td>TBD</td><td class="mono"><span class="flag tbd">TBD</span></td></tr>
+    <tr><td>Repeat booking rate (30-day)</td><td>TBD</td><td class="mono"><span class="flag tbd">TBD</span></td></tr>
+  </table>
+  <p>All traction figures are marked TBD pending verification against live Yangon beta data. NOX will not invent metrics in commercial conversations.</p>
+
+  <div class="ask-box" id="ask">
+    <h3>The Ask</h3>
+    <ol>
+      <li>Commercial agreement to pilot NOX as a Grab Partner App in Yangon.</li>
+      <li>Sandbox access to SuperApp SDK (IdentityModule, location, analytics, push) and Grab Payment API.</li>
+      <li>Joint review of GrabPay merchant onboarding path for event merchants in Myanmar.</li>
+      <li>A named partnerships counterpart for a 90-day pilot with defined success criteria.</li>
+    </ol>
+    <p style="margin-bottom:0;margin-top:16px;"><strong>Contact:</strong> Jacob Pierre, Founder &amp; CEO, Pierre Systems (NOX) · Yangon, Myanmar · Asia/Rangoon</p>
+  </div>
+</section>
+
+<section id="sketch">
+  <h2>Technical Adapter Sketch</h2>
+  <p class="section-sub">NestJS adapters on the existing NOX backend (Turborepo monorepo: Flutter consumer, Next.js dashboards, NestJS services, Supabase/PostgreSQL, Redis). Four new adapter modules. Existing RLS, audit logging, and rate limiting unchanged.</p>
+
+  <h3 id="adapters">Four Adapters</h3>
+
+  <div class="card">
+    <h4>01 · GrabIdentityAdapter</h4>
+    <p>OAuth 2.0 + PKCE via SuperApp SDK IdentityModule. No separate NOX login inside the webview. Create-on-first-use: map Grab user to NOX identity with explicit consent. Store only the minimum GrabID reference needed for reconciliation.</p>
+<pre><span class="c">// apps/api/src/adapters/grab/grab-identity.adapter.ts</span>
+<span class="k">export interface</span> <span class="t">GrabIdentityPort</span> {
+  <span class="n">exchangeCode</span>(code: <span class="t">string</span>, codeVerifier: <span class="t">string</span>): <span class="t">Promise</span>&lt;<span class="t">GrabIdToken</span>&gt;;
+  <span class="n">getProfile</span>(accessToken: <span class="t">string</span>): <span class="t">Promise</span>&lt;<span class="t">GrabUserProfile</span>&gt;;
+  <span class="n">provisionNoxUser</span>(grabUser: <span class="t">GrabUserProfile</span>): <span class="t">Promise</span>&lt;<span class="t">NoxUser</span>&gt;;
+}
+
+<span class="k">export interface</span> <span class="t">GrabUserProfile</span> {
+  <span class="n">grabUserId</span>: <span class="t">string</span>;
+  <span class="n">phoneHash</span>?: <span class="t">string</span>;   <span class="c">// hashed only, never raw</span>
+  <span class="n">displayName</span>?: <span class="t">string</span>;
+  <span class="n">locale</span>?: <span class="t">string</span>;
+}
+
+<span class="k">export interface</span> <span class="t">NoxUser</span> {
+  <span class="n">id</span>: <span class="t">string</span>;
+  <span class="n">grabUserId</span>: <span class="t">string</span>;
+  <span class="n">createdAt</span>: <span class="t">Date</span>;
+  <span class="n">consentVersion</span>: <span class="t">string</span>;
+}</pre>
+  </div>
+
+  <div class="card">
+    <h4>02 · GrabPayAdapter</h4>
+    <p>HMAC-verified webhooks. Idempotent capture-to-ticket state machine: webhook delivery is at-least-once, so every transition is keyed on a deterministic idempotency key derived from the Grab payment reference. Ticket issuance happens server-side only after confirmed capture — never from the client.</p>
+<pre><span class="c">// apps/api/src/adapters/grab/grab-pay.adapter.ts</span>
+<span class="k">export interface</span> <span class="t">GrabPayPort</span> {
+  <span class="n">createPayment</span>(req: <span class="t">CreateGrabPaymentRequest</span>): <span class="t">Promise</span>&lt;<span class="t">GrabPaymentIntent</span>&gt;;
+  <span class="n">handleWebhook</span>(rawBody: <span class="t">Buffer</span>, signature: <span class="t">string</span>): <span class="t">Promise</span>&lt;<span class="t">void</span>&gt;;
+  <span class="n">refund</span>(grabPaymentRef: <span class="t">string</span>, amount: <span class="t">number</span>): <span class="t">Promise</span>&lt;<span class="t">void</span>&gt;;
+}
+
+<span class="k">export type</span> <span class="t">TicketState</span> |
+  | <span class="s">'pending_payment'</span>
+  | <span class="s">'captured'</span>
+  | <span class="s">'issued'</span>
+  | <span class="s">'refunded'</span>
+  | <span class="s">'voided'</span>;
+
+<span class="k">export interface</span> <span class="t">CreateGrabPaymentRequest</span> {
+  <span class="n">orderId</span>: <span class="t">string</span>;
+  <span class="n">amountMinor</span>: <span class="t">number</span>;   <span class="c">// currency minor units</span>
+  <span class="n">currency</span>: <span class="t">string</span>;
+  <span class="n">description</span>: <span class="t">string</span>;
+  <span class="n">returnUrl</span>: <span class="t">string</span>;    <span class="c">// in-webview return</span>
+  <span class="n">metadata</span>: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">string</span>&gt;;
+}</pre>
+    <p>State machine rules: <span class="mono">captured → issued</span> is the only forward path that mints a QR. <span class="mono">issued → refunded</span> invalidates the QR server-side and pushes a revocation to the venue scanner fleet. Duplicate webhook deliveries are no-ops after the first successful transition.</p>
+  </div>
+
+  <div class="card">
+    <h4>03 · GrabAnalyticsAdapter</h4>
+    <p>Maps the NOX funnel to SuperApp analytics events so Grab sees session depth, not just a link click. Events fire from the webview via the SuperApp SDK analytics bridge where available.</p>
+<pre><span class="c">// apps/api/src/adapters/grab/grab-analytics.adapter.ts</span>
+<span class="k">export interface</span> <span class="t">GrabAnalyticsPort</span> {
+  <span class="n">track</span>(event: <span class="t">GrabAnalyticsEvent</span>): <span class="t">Promise</span>&lt;<span class="t">void</span>&gt;;
+}
+
+<span class="k">export interface</span> <span class="t">GrabAnalyticsEvent</span> {
+  <span class="n">name</span>: <span class="s">'nox_discover_view'</span> | <span class="s">'nox_event_view'</span>
+         | <span class="s">'nox_checkout_start'</span> | <span class="s">'nox_payment_success'</span>
+         | <span class="s">'nox_ride_prompt_shown'</span> | <span class="s">'nox_ride_booked'</span>
+         | <span class="s">'nox_entry_validated'</span>;
+  <span class="n">grabUserId</span>: <span class="t">string</span>;
+  <span class="n">properties</span>: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">unknown</span>&gt;;
+  <span class="n">timestamp</span>: <span class="t">string</span>;  <span class="c">// ISO-8601</span>
+}</pre>
+  </div>
+
+  <div class="card">
+    <h4>04 · GrabRideHandoffAdapter</h4>
+    <p>Post-purchase in-app ride prompt. Stays Grab-native — no external ride-hailing promotion, per Partner App constraints. Deep-link or Farefeed-style handoff inside the webview.</p>
+<pre><span class="c">// apps/api/src/adapters/grab/grab-ride-handoff.adapter.ts</span>
+<span class="k">export interface</span> <span class="t">GrabRideHandoffPort</span> {
+  <span class="n">buildRidePrompt</span>(input: <span class="t">RidePromptInput</span>): <span class="t">RidePrompt</span>;
+}
+
+<span class="k">export interface</span> <span class="t">RidePromptInput</span> {
+  <span class="n">venueLat</span>: <span class="t">number</span>;
+  <span class="n">venueLng</span>: <span class="t">number</span>;
+  <span class="n">venueName</span>: <span class="t">string</span>;
+  <span class="n">eventStart</span>: <span class="t">Date</span>;
+  <span class="n">grabUserId</span>: <span class="t">string</span>;
+}
+
+<span class="k">export interface</span> <span class="t">RidePrompt</span> {
+  <span class="n">deeplink</span>: <span class="t">string</span>;   <span class="c">// grab:// or https://grab.onelink.me/...</span>
+  <span class="n">headline</span>: <span class="t">string</span>;
+  <span class="n">subline</span>: <span class="t">string</span>;
+  <span class="n">suggestedPickupWindow</span>: { <span class="n">from</span>: <span class="t">Date</span>; <span class="n">to</span>: <span class="t">Date</span> };
+}</pre>
+  </div>
+
+  <h3 id="flow">Booking Flow — Sequence</h3>
+  <div class="seq">User (in Grab) → SuperApp Webview → NOX Partner App (Next.js)
+        │
+        ├─1─ GET /nox/events?near=grab_location
+        │      ← venue graph + event list (RLS-scoped)
+        │
+        ├─2─ GET /nox/events/:id
+        │      ← event detail, ticket tiers, prices
+        │
+        ├─3─ POST /nox/orders  { eventId, tierId, qty }
+        │      → order created (status: pending_payment)
+        │      → GrabPayAdapter.createPayment()
+        │      ← GrabPaymentIntent { paymentUrl, grabRef }
+        │
+        ├─4─ Webview redirects to GrabPay (in-container)
+        │      User confirms with GrabPin / biometrics
+        │
+        ├─5─ GrabPay webhook → GrabPayAdapter.handleWebhook()
+        │      HMAC verify → idempotent transition
+        │      pending_payment → captured → issued
+        │      Ticket minted server-side, QR generated
+        │      (cryptographically signed, venue-scoped)
+        │
+        ├─6─ Webview shows confirmation + GrabRideHandoffAdapter
+        │      buildRidePrompt(venue, eventStart)
+        │      ← deeplink + suggested pickup window
+        │      GrabAnalyticsAdapter.track('nox_ride_prompt_shown')
+        │
+        ├─7─ (Optional) User taps → Grab ride booked
+        │      GrabAnalyticsAdapter.track('nox_ride_booked')
+        │
+        └─8─ Arrival: NOX Flutter scanner (venue app)
+               validates QR signature + server revocation list
+               GrabAnalyticsAdapter.track('nox_entry_validated')</div>
+
+  <h3 id="shared">Shared Concerns</h3>
+  <table>
+    <tr><th>Concern</th><th>Approach</th></tr>
+    <tr><td>Rate limiting</td><td>Existing NestJS guard, tightened for webview origin; per-GrabUserId buckets</td></tr>
+    <tr><td>Audit logging</td><td>Every adapter call logged with correlation ID; payment and ticket transitions immutable</td></tr>
+    <tr><td>Secrets</td><td>Grab client ID/secret, webhook HMAC key in env only; <span class="mono">.env.example</span> committed, never values</td></tr>
+    <tr><td>Webhook replay</td><td>Idempotency keys + timestamp skew check (±5 min) on HMAC payloads</td></tr>
+    <tr><td>Webview constraints</td><td>Mobile-first 320–428 px; no <span class="mono">window.open</span>; no external store links; HTTPS + security headers</td></tr>
+    <tr><td>Dual payment rails</td><td>GrabPay primary; KBZPay/WavePay fallback adapter retained for Myanmar coverage gaps</td></tr>
+    <tr><td>Data minimization</td><td>Store GrabID reference + consent version only; no raw PII from Grab retained beyond session</td></tr>
+  </table>
+</section>
+
+<section id="open">
+  <h2>Open Items — Jacob Only</h2>
+  <p class="section-sub">These cannot be closed by an agent. Each blocks a promise in the brief or sketch.</p>
+  <ol>
+    <li><span class="flag risk">Risk</span> <strong>GrabPay merchant eligibility in Myanmar</strong> for event merchants — confirm live status and onboarding path before promising GrabPay as the primary rail.</li>
+    <li><span class="flag open">Open</span> <strong>Exact GrabID user fields</strong> available from sandbox docs (phone hash? email? display name?) — shapes the GrabIdentityAdapter contract.</li>
+    <li><span class="flag open">Open</span> <strong>Analytics bridge for webviews</strong> — does the SuperApp SDK expose event tracking from an embedded web app, or do we post to a NOX endpoint that forwards?</li>
+    <li><span class="flag open">Open</span> <strong>Consent copy</strong> for Grab→NOX identity provisioning — needs legal review before sandbox testing.</li>
+    <li><span class="flag open">Open</span> <strong>Send the first email</strong> to partnerapp dot partnerships at grabtaxi dot com with this brief attached. Draft only until Jacob approves the send.</li>
+  </ol>
+</section>
+
+<footer>
+  <span>NOX × Grab Partnership Package · Pierre Systems · November 2026</span>
+  <span>Confidential — for Grab partnerships review only</span>
+</footer>
+
+</div>
+</body>
+</html>
