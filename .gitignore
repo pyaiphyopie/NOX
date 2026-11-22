@@ -50,3 +50,9 @@ coverage
 tmp
 temp
 .supabase
+
+# Unused Trunk.io local config (removed in audit)
+.trunk/
+# Local nektos/act junk
+.github/act-history.json
+.github/act-payloads/
