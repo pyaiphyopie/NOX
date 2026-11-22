@@ -30,6 +30,8 @@ Read every TLC result with the pstack **`/statechart`** skill (by name). Do not 
 **Sync commit:** `7be96628104a083afd510e376b0da2876a98d5c8`  
 Move this forward only after you confirm the model still describes the covered code at the new commit (`git status` clean of product edits, then re-run and update this hash).
 
+**STALE on `feat/nox-7-payments-supabase-store` (NOX-7).** The model still describes the in-memory paid path and multi-item reserve rollback at `7be9662`. It does not model JWT buyer identity, `claimOrder`, async Supabase store, compare-and-set `transitionOrder` / `save_payment`, the createPayment-before-savePayment webhook retry path, or the inventory RPC underflow guards. A green TLC run of the current model is not verification of this branch. Re-sync the model and re-run TLC before merging this branch to `main`. This note was added without re-running TLC.
+
 ## Bounds and assumptions
 
 - One ticket type; `QtyTotal = 2`; at most two orders (`o1`, `o2`); each order qty **1** (`CreateOrder`) or **2** (`CreateOrderMulti`); price `15000` MMK per seat.
