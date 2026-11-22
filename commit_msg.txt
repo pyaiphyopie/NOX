@@ -1,0 +1,1 @@
+build: complete NOX platform with 6-page React app, Flutter mobile, CI/CD, and Docker
