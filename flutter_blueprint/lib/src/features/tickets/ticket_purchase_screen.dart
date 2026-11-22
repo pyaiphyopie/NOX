@@ -23,10 +23,14 @@ class TicketPurchaseScreen extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child: Image.network(
-                event.coverUrl,
-                height: 220,
-                fit: BoxFit.cover,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Color(event.coverColor),
+                ),
+                child: const SizedBox(
+                  height: 220,
+                  width: double.infinity,
+                ),
               ),
             ),
             const SizedBox(height: 20),
