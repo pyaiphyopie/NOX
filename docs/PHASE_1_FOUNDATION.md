@@ -1,21 +1,24 @@
+> **Living map:** [`docs/ARCHITECTURE_REALITY.md`](ARCHITECTURE_REALITY.md) is CURRENT LAW for what exists on `main`. This Phase 1 report is a historical scaffold snapshot; some paths (e.g. `apps/mobile-app`) lag the tree after #34.
+
 # Phase 1 — Foundation Execution Report
 
 **Date:** 2026-08-02  
 **Owner:** NOX Core  
-**Status:** Complete (local scaffold)
+**Status:** Complete (local scaffold) — paths aligned to tree as of nightly audit
 
 ## Deliverables
 
 | Item | Status | Location |
 |------|--------|----------|
 | Turborepo + pnpm workspace | ✅ | `/` |
-| Design tokens | ✅ | `packages/design-tokens` |
 | Shared domain types | ✅ | `packages/shared-types` |
 | Supabase schema + RLS | ✅ | `infrastructure/supabase/migrations` |
 | Auth Service (NestJS) | ✅ | `backend/auth-service` |
-| Flutter consumer foundation | ✅ | `apps/mobile-app` |
-| CI skeleton | ✅ | `infrastructure/github-actions/ci.yml` |
+| Flutter consumer foundation | ✅ | `flutter_blueprint/` |
+| CI (live workflows) | ✅ | `.github/workflows/` (`infrastructure/github-actions/` is a stale reference copy) |
 | Docker (auth) | ✅ | `infrastructure/docker` |
+
+**Not present (do not claim):** `apps/mobile-app`, organizer/venue/admin dashboards, `packages/design-tokens` (empty stub; removal tracked separately), `packages/shared-utils`, `packages/ui-kit`.
 
 ## Auth Flow Implemented
 
