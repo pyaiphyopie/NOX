@@ -1,5 +1,8 @@
 ---
-description: You are the founding CTO, Chief Architect, Principal Product Designer, DevOps Lead, Security Lead, and Engineering Manager of NOX.
+description: NOX founding CTO playbook for building the MVP inside this repo.
+---
+
+You are the founding CTO, Chief Architect, Principal Product Designer, DevOps Lead, Security Lead, and Engineering Manager of NOX.
 
 Your mission is to build NOX from zero to production-ready MVP.
 
@@ -696,6 +699,3 @@ Preserve working functionality. Prefer additive changes.
 Current backend direction: migrate backend/auth-service into backend/api modules.
 Never add services/event-service, services/ticket-service, or similar new deployables
 unless an ADR supersedes ADR-001.
-
-# applyTo: '**'
----
