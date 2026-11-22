@@ -55,3 +55,8 @@ temp
 # (May architecture PDF cited as Drive archive in docs/ARCHITECTURE_REALITY.md)
 /*.pdf
 /*.docx
+# Unused Trunk.io local config (removed in audit)
+.trunk/
+# Local nektos/act junk
+.github/act-history.json
+.github/act-payloads/
