@@ -1,7 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import { json, raw } from 'express';
+import { json, raw, type NextFunction, type Request, type Response } from 'express';
 import { AppModule } from './app.module';
+
+type RawBodyRequest = Request & { rawBody?: Buffer };
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bodyParser: false });
@@ -9,14 +11,14 @@ async function bootstrap() {
   app.use(
     '/webhooks/payment',
     raw({ type: '*/*' }),
-    (req: { body?: Buffer; rawBody?: Buffer }, _res, next) => {
-      req.rawBody = req.body;
+    (req: RawBodyRequest, _res: Response, next: NextFunction) => {
+      req.rawBody = req.body as Buffer;
       next();
     },
   );
-  app.use((req: { originalUrl?: string; url?: string }, res, next) => {
+  app.use((req: Request, res: Response, next: NextFunction) => {
     if ((req.originalUrl ?? req.url ?? '').startsWith('/webhooks/payment')) return next();
-    return json()(req as never, res as never, next);
+    return json()(req, res, next);
   });
 
   app.useGlobalPipes(
